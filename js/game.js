@@ -17,8 +17,17 @@ function init() {
 
 function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
+    document.getElementById('end-screen').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     init();
+}
+
+function returnToStart() {
+    document.getElementById('start-screen').classList.remove('d-none');
+    document.getElementById('end-screen').classList.add('d-none');
+    document.getElementById('canvas').classList.add('d-none');
+    selectLanguage(language);
+    // SOUND-, MUSIK- UND FULLSCREEN-EINSTELLUNGEN ÜBERNEHMEN
 }
 
 

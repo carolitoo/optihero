@@ -42,6 +42,10 @@ h2 {
   margin-bottom: 16px;;
 }
 
+p {
+  margin: 0;
+}
+
 .start-screen {
   width: 720px;
   height: 480px;
@@ -139,15 +143,10 @@ h2 {
 
 .button {
     font-family: shantellSansExtraBold, sans-serif;
-    font-size: 24px;
     background: linear-gradient(45deg, #74CFBB, #8FD8C6);
-    width: 184px;
     color: white;
-    padding: 15px 0px;
-    text-align: center;
     text-shadow: 1px 1px 1px rgb(105, 105, 105);
     display: inline-block;
-    margin: 4px 2px;
     cursor: pointer;
     border-radius: 12px;
     /* border: none; */
@@ -158,6 +157,26 @@ h2 {
 .button:hover {
     background: linear-gradient(45deg, #8FD8C6, #74CFBB);
 }
+
+.start-button {
+  width: 184px;
+  font-size: 24px;
+  padding: 15px 0px;
+  margin: 4px 2px;
+  text-align: center;
+}
+
+.end-button {
+  width: 600px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  padding: 12px 0px;
+  /* margin: 4px 2px; */
+  /* text-align: center; */
+}
+
+
 
 .overlay {
   position: fixed; /* Bleibt immer an der gleichen Position */
@@ -207,6 +226,22 @@ h2 {
 .mobil-control-button img {
   width: 100%;
   height: 100%;
+}
+
+.end-screen {
+  height: 480px;
+  width: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.icon-end-screen {
+  width: 64px;
+  height: 64px;
+  margin: 0px 20px;
 }
 
 
@@ -259,11 +294,10 @@ h2 {
     height: 72px;
   }
 
-  .button {
-    font-size: 20px;
+  .start-button {
     width: 160px;
-
-}
+    font-size: 20px;
+  }
 }
 
 

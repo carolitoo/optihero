@@ -177,6 +177,33 @@
         </div>
       </div>
 
+      <div id="end-screen" class="end-screen">
+        <button
+        onclick="enterScore()"
+        id="enter-score-button"
+        class="button end-button"
+      >
+        <img class="icon-end-screen" src="./img/game/end/enter_score.png" alt="Enter Score">
+        <p id="enter-score-button-label">ZUR BESTENLISTE</p>
+      </button>
+        <button
+          onclick="startGame()"
+          id="restart-button"
+          class="button end-button"
+        >
+          <img class="icon-end-screen" src="./img/game/end/play_again.png" alt="Play again">
+          <p id="restart-button-label">NOCHMAL SPIELEN!</p>
+        </button>
+        <button
+          onclick="returnToStart()"
+          id="return-to-start-button"
+          class="button end-button"
+        >
+          <img class="icon-end-screen" src="./img/game/end/exit_game.png" alt="exit_game">
+          <p id="return-to-start-button-label">SPIEL VERLASSEN</p>
+        </button>
+      </div>
+
       <div>
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
       </div>
