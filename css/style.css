@@ -231,10 +231,13 @@ p {
 .end-screen {
   height: 480px;
   width: 720px;
+  position: absolute;
+  top: 231px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 36px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 

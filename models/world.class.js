@@ -172,6 +172,9 @@ class World {
         setTimeout(() => {
             this.showBanner('win',language);
         }, 400);
+        setTimeout(() => {
+            showEndScreen('win');
+        }, 5000);
 
         let timeScore = this.level.playClock[0].secondsPassed;
    '     this.checkTopScore(timeScore, this.coins);'
@@ -185,7 +188,7 @@ class World {
     //     }
     // }
 
-
+    // POSITION AUF MITTE DES BILDSCHIRMS ANPASSEN
     showBanner(status, language) {
         this.effectObjects.push(new FixedObject(`img/game/end/${status}_${language}.png`, this.character.x + 200, 150, 400, 100));
     }

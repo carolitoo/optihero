@@ -359,6 +359,9 @@ class Character extends MoveableObject {
       if (!isMuted) {
         this.GAME_SOUND_LOSE.play();
       }
+      setTimeout(() => {
+        showEndScreen('lose');
+    }, 4000);
     }
   }
 }

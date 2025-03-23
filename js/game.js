@@ -137,5 +137,16 @@ function clearAllIntervals() {
   }
 
 
+function showEndScreen(result) {
+    document.getElementById('end-screen').classList.remove('d-none');
+    if (result === 'win') {
+        // ggf. auf Top5-Wert prüfen, sonst ausgrauen
+        document.getElementById('enter-score-button').classList.remove('d-none');
+    } else {
+        document.getElementById('enter-score-button').classList.add('d-none');
+    }
+}
+
+
 
 
