@@ -1,0 +1,325 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../img/game/background/bg.jpg");
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-family: shantellSansExtraBold, sans-serif;
+}
+
+.wrapper-fullscreen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+canvas {
+  background-color: black;
+  display: block;
+  /* NICHT REAKTIVIEREN - FÜHRT ZU VERSCHWOMMENEN GRAFIKEN!
+    width: 720px;
+    height: 480px; */
+}
+
+h1 {
+  font-family: gorditasBold, sans-serif;
+  font-size: 72px;
+  margin-top: 72px;
+  margin-bottom: 72px;
+}
+
+h2 {
+  font-family: shantellSansExtraBold, sans-serif;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  text-shadow: 2px 2px 2px rgb(70, 70, 70);
+  margin-bottom: 16px;;
+}
+
+.start-screen {
+  width: 720px;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../img/game/start/bg-start.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.start-screen-content {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.header-start-screen {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selection-language {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.img-language {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.task-bar-start {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.img-task-bar {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.selection-character {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.profile-container {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    border: 3px solid #ddd; /* Rahmen um das Bild */
+    overflow: hidden; /* Beschneidet alles außerhalb des Containers */
+    position: relative; /* Positionierung für das Bild */
+}
+
+.profile-picture {
+    width: 100%; /* Bild passt sich der Container-Breite an */
+    height: 100%; /* Bild passt sich der Container-Höhe an */
+    object-fit: cover; /* Bild bleibt proportional und zentriert */
+    transform: scale(2.2); /* Vergrößert nur das Bild */
+    position: absolute; /* Ermöglicht die Transformation innerhalb des Containers */
+    top: -16px;
+    left: 0;
+}
+
+.selected-profile-container {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 5px solid #ddd; /* Rahmen um das Bild */
+    /* box-shadow: 0px 0px 5px rgb(206, 206, 206), 0px 0px 10px rgb(215, 216, 216); */
+    overflow: hidden; /* Beschneidet alles außerhalb des Containers */
+    position: relative; /* Positionierung für das Bild */
+}
+
+.start-screen-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button {
+    font-family: shantellSansExtraBold, sans-serif;
+    font-size: 24px;
+    background: linear-gradient(45deg, #74CFBB, #8FD8C6);
+    width: 184px;
+    color: white;
+    padding: 15px 0px;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgb(105, 105, 105);
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    /* border: none; */
+    border: 2px solid rgb(215, 218, 218);
+    box-shadow: 0px 0px 10px rgb(206, 206, 206), 0px 0px 20px rgb(215, 216, 216);
+}
+
+.button:hover {
+    background: linear-gradient(45deg, #8FD8C6, #74CFBB);
+}
+
+.overlay {
+  position: fixed; /* Bleibt immer an der gleichen Position */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Ganze Breite */
+  height: 100vh; /* Ganze Höhe */
+  background: rgba(0, 0, 0, 0.5); /* Schwarzer, halbtransparenter Hintergrund */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Über anderen Elementen */
+}
+
+.overlay-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+.mobil-control-panel {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 8px;
+  z-index: 1000;
+}
+
+.mobil-control-button {
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgb(206, 206, 206), 0px 0px 20px rgb(215, 216, 216);
+}
+
+.mobil-control-button img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.d-none {
+    display: none;
+}
+
+
+
+/* **** RESPONSIVE DESIGN **** */
+
+@media only screen and (max-width: 720px) {
+  canvas {
+    width: 100%;
+  }
+
+  .start-screen {
+    width: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 670px) {
+
+
+  h1 {
+    font-size: 54px;
+    margin-top: 54px;
+    margin-bottom: 54px;
+  }
+
+  .img-language {
+    width: 30px;
+    height: 30px;
+  }
+
+
+  .img-task-bar {
+    width: 40px;
+    height: 40px;
+  }
+
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .profile-container {
+    width: 72px;
+    height: 72px;
+  }
+
+  .button {
+    font-size: 20px;
+    width: 160px;
+
+}
+}
+
+
+
+@media only screen and (max-width: 540px) {
+
+
+  h1 {
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .img-language {
+    width: 24px;
+    height: 24px;
+  }
+
+  .img-task-bar {
+    width: 36px;
+    height: 36px;
+  }
+
+
+  h2 {
+    font-size: 28px;
+  }
+
+  .profile-container {
+    width: 72px;
+    height: 72px;
+  }
+
+  .button {
+    font-size: 16px;
+    width: 120px;
+
+}
+}
+
+
+
+
+@media only screen and (max-height: 480px) {
+  canvas {
+    height: 100vh;
+  }
+
+
+
+  h1 {
+    display: none;
+  }
+
+
+  
+}
+
+

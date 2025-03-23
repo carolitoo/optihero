@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>opti.hero</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="img/game/favicon/wind-solid.svg"
+    />
+
+    <link rel="stylesheet" href="./css/font.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./models/drawable-objects.class.js"></script>
+    <script src="./models/movable-objects.class.js"></script>
+    <script src="./models/character.class.js"></script>
+    <script src="./models/enemy.class.js"></script>
+    <script src="./models/bullet.class.js"></script>
+    <script src="./models/shooter.class.js"></script>
+    <script src="./models/snail.class.js"></script>
+    <script src="./models/warrior.class.js"></script>
+    <script src="./models/boss.class.js"></script>
+    <script src="./models/windmill.class.js"></script>
+    <script src="./models/coin.class.js"></script>
+    <script src="./models/swirl.class.js"></script>
+    <script src="./models/cloud.class.js"></script>
+    <script src="./models/statusbar.class.js"></script>
+    <script src="./models/fixed-object.class.js"></script>
+    <script src="./models/play-clock.class.js"></script>
+    <script src="./models/background-object.class.js"></script>
+    <script src="./models/throwable-objects.class.js"></script>
+    <script src="./models/world.class.js"></script>
+    <script src="./models/keyboard.class.js"></script>
+    <script src="./models/level.class.js"></script>
+    <script src="./levels/level1.js"></script>
+    <script src="./js/game.js"></script>
+    <script src="./js/translation.js"></script>
+  </head>
+
+  <body onload="checkOrientation()">
+    <div id="wrapper-fullscreen" class="wrapper-fullscreen">
+      <h1>opti.hero</h1>
+
+      <div id="loading-screen" class="loading-screen d-none">
+        <h1>Loading...</h1>
+      </div>
+
+      <div id="orientation-warning" class="orientation-warning overlay d-none">
+        <div class="overlay-content">
+          <!-- <img
+            class="img-orientation"
+            src="../img/game/navigation/arrow-rotate-left-solid.svg"
+            alt="Rotate"
+          /> -->
+          <h1>Please turn your device to play the game</h1>
+        </div>
+      </div>
+
+      <div id="start-screen" class="start-screen">
+        <div class="start-screen-content">
+          <div class="header-start-screen">
+            <div class="selection-language">
+              <img
+                class="img-language"
+                src="./img/game/start/en.png"
+                alt="EN"
+                onclick="selectLanguage('EN'), translateEN()"
+              />
+              <img
+                class="img-language"
+                src="./img/game/start/de.png"
+                alt="DE"
+                onclick="selectLanguage('DE'), translateDE()"
+              />
+            </div>
+            <div class="task-bar-start">
+              <img
+                id="toggle-music-start"
+                class="img-task-bar"
+                src="./img/game/navigation/music_on_green.png"
+                alt="Music on/off"
+                onclick="toggleMusic()"
+              />
+              <img
+                id="toggle-sound-start"
+                class="img-task-bar"
+                src="./img/game/navigation/sound_on_green.png"
+                alt="Sound on/off"
+                onclick="toggleSound()"
+              />
+              <img
+                id="toggle-fullscreen"
+                class="img-task-bar"
+                src="./img/game/navigation/maximize_green.png"
+                alt="Fullscreen on/off"
+                onclick="toggleFullScreen()"
+              />
+            </div>
+          </div>
+
+          <h2 id="text-selection-character">WÄHLE DEINEN OPTI.HERO</h2>
+          <div id="selection-character" class="selection-character">
+            <div class="profile-container">
+              <img
+                class="profile-picture"
+                src="./img/character/Character1/Idle/Character01-Idle_00.png"
+                alt="Charakter1"
+              />
+            </div>
+            <div class="profile-container">
+              <img
+                class="profile-picture"
+                src="./img/character/Character3/Idle/Character03-Idle_00.png"
+                alt="Charakter2"
+              />
+            </div>
+            <div class="selected-profile-container">
+              <img
+                class="profile-picture"
+                src="./img/character/Character10/Idle/Character010-Idle_00.png"
+                alt="Charakter3"
+              />
+            </div>
+            <div class="profile-container">
+              <img
+                class="profile-picture"
+                src="./img/character/Character12/Idle/Character012-Idle_00.png"
+                alt="Charakter4"
+              />
+            </div>
+            <div class="profile-container">
+              <img
+                class="profile-picture"
+                src="./img/character/Character13/Idle/Character013-Idle_00.png"
+                alt="Charakter5"
+              />
+            </div>
+            <!-- <div class="profile-container">
+              <img
+                class="profile-picture"
+                src="./img/character/Character15/Idle/Character015-Idle_00.png"
+                alt="Charakter6"
+              />
+            </div> -->
+          </div>
+
+          <div class="start-screen-buttons">
+            <!-- <button onclick="startGame()" id="startButton" class="button start-button">LET'S <br> PLAY!</button> -->
+            <button
+              onclick="startGame()"
+              id="start-button"
+              class="button start-button"
+            >
+              LOS <br />
+              GEHT'S!
+            </button>
+            <!-- <button onclick="howToPlay()" id="howToPlayButton" class="button start-button">HOW TO <br> PLAY</button> -->
+            <button
+              onclick="howToPlay()"
+              id="how-to-play-button"
+              class="button start-button"
+            >
+              INFO ZUM<br />
+              SPIEL
+            </button>
+            <!-- <button onclick="toggleControls()" id="controlButton" class="button start-button">SHOW <br> CONTROLS</button> -->
+            <button
+              onclick="toggleControls()"
+              id="control-button"
+              class="button start-button"
+            >
+              BELEGUNG <br />
+              TASTEN
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
+      </div>
+
+      <div id="mobil-control-panel" class="mobil-control-panel">
+        <button id="mobile-left" class="mobil-control-button">
+          <img src="./img/game/navigation/move_left.png" alt="Move left" />
+        </button>
+        <button id="mobile-right" class="mobil-control-button">
+          <img src="./img/game/navigation/move_right.png" alt="Move right" />
+        </button>
+        <button id="mobile-jump" class="mobil-control-button">
+          <img src="./img/game/navigation/jump.png" alt="Jump" />
+        </button>
+        <button id="mobile-throw" class="mobil-control-button">
+          <img src="./img/game/navigation/throw.png" alt="Throw" />
+        </button>
+      </div>
+
+      <!-- 
+    <div class="selection-container">
+        <div class="profile-container">
+            <img class="profile-picture" src="./img/character/Character1/Idle/Character01-Idle_00.png" alt="Charakter1">
+        </div>
+        <div class="profile-container">
+            <img class="profile-picture" src="./img/character/Character3/Idle/Character03-Idle_00.png" alt="Charakter2">
+        </div>
+        <div class="profile-container">
+            <img class="profile-picture" src="./img/character/Character10/Idle/Character010-Idle_00.png" alt="Charakter3">
+        </div>
+        <div class="profile-container">
+            <img class="profile-picture" src="./img/character/Character12/Idle/Character012-Idle_00.png" alt="Charakter4">
+        </div>
+        <div class="profile-container">
+            <img class="profile-picture" src="./img/character/Character13/Idle/Character013-Idle_00.png" alt="Charakter5">
+        </div>
+        <div class="profile-container">
+            <img class="profile-picture" src="./img/character/Character15/Idle/Character015-Idle_00.png" alt="Charakter6">
+        </div>
+        
+    </div> -->
+    </div>
+  </body>
+</html>

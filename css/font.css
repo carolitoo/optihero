@@ -1,0 +1,15 @@
+@font-face {
+    font-family: gorditasBold;
+    src: url(../font/gorditas/Gorditas-Bold.ttf);
+}
+
+@font-face {
+    font-family: gorditasReg;
+    src: url(../font/gorditas/Gorditas-Regular.ttf);
+}
+
+@font-face {
+    font-family: shantellSansExtraBold;
+    src: url(../font/shantellSans/ShantellSans-ExtraBold.ttf);
+    
+}
