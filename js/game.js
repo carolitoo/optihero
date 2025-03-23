@@ -22,7 +22,13 @@ function startGame() {
     init();
 }
 
+function restartGame() {
+    world.WINDMILL_SOUND.pause();
+    startGame();
+}
+
 function returnToStart() {
+    stopGame();
     document.getElementById('start-screen').classList.remove('d-none');
     document.getElementById('end-screen').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
@@ -129,6 +135,8 @@ function unsetKeyboard() {
 function stopGame() {
     clearAllIntervals();
     world.level.playClock[0].stopClock();
+    world.BACKGROUND_SOUND.pause();
+    world.WINDMILL_SOUND.pause();
 }
 
 

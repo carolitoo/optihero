@@ -13,6 +13,7 @@ class World {
 
     effectObjects = [];
     thrownObjects = [];
+    endBanner = [];
     canThrow = true;
     
 
@@ -169,6 +170,7 @@ class World {
         this.level.playClock[0].stopClock();
         this.replaceByWindmills(enemy);
         this.playWinSound();
+        this.BACKGROUND_SOUND.pause();
         setTimeout(() => {
             this.showBanner('win',language);
         }, 400);
@@ -188,11 +190,9 @@ class World {
     //     }
     // }
 
-    // POSITION AUF MITTE DES BILDSCHIRMS ANPASSEN
     showBanner(status, language) {
-        this.effectObjects.push(new FixedObject(`img/game/end/${status}_${language}.png`, this.character.x + 200, 150, 400, 100));
+        this.endBanner.push(new FixedObject(`img/game/end/${status}_${language}.png`, 200, 150, 400, 100));
     }
-
 
 
     replaceByWindmills(enemy) {
@@ -327,6 +327,12 @@ class World {
         this.addObjectsToMap(this.level.swirls);
         this.addObjectsToMap(this.thrownObjects);
         this.addObjectsToMap(this.effectObjects);
+
+        this.ctx.translate(-this.camera_x, 0);
+        // ---- fix positionierte Inhalte ---- 
+        this.addObjectsToMap(this.endBanner);
+        this.ctx.translate(this.camera_x, 0);
+
         this.addToMap(this.character);
       
         this.ctx.translate(-this.camera_x, 0);
