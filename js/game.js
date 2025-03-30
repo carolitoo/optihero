@@ -52,6 +52,7 @@ function selectLanguage(selectedLanguage) {
 function toggleSound() {
     let icon = document.getElementById('toggle-sound-start');
     isMuted = !isMuted;
+
     if (isMuted) {
         icon.src = 'img/game/navigation/sound_off_x_green.png';
     } else {
@@ -63,6 +64,7 @@ function toggleSound() {
 function toggleMusic() {
     let icon = document.getElementById('toggle-music-start');
     musicOff = !musicOff;
+
     if (musicOff) {
         icon.src = 'img/game/navigation/music_off_green.png';
     } else {
@@ -73,19 +75,17 @@ function toggleMusic() {
 
 function toggleFullScreen() {
     let icon = document.getElementById('toggle-fullscreen');
-
+    
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
         icon.src = 'img/game/navigation/minimize_green.png';
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-            icon.src = 'img/game/navigation/maximize_green.png';
+    } else if (document.fullscreenElement) {
+        document.exitFullscreen();
+        icon.src = 'img/game/navigation/maximize_green.png';
         }
-    }
 }
 
-
+  
 function checkOrientation() {
     if (window.matchMedia("(orientation: portrait)").matches && window.innerWidth < 670) {
     document.getElementById('orientation-warning').classList.remove('d-none');}

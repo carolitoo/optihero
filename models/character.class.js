@@ -9,6 +9,8 @@ class Character extends MoveableObject {
   jumpY = 25;
   // selectedCharacter = 12;
 
+  levelStartX = -860;
+
   endGame = false;
   bannerDisplayed = false;
   deathAnimationFrame = 0;
@@ -254,7 +256,7 @@ class Character extends MoveableObject {
       this.moveRight(this.speed);
       this.otherDirection = false;
     }
-    if (this.world.keyboard.LEFT && this.x > -860) {
+    if (this.world.keyboard.LEFT && this.x > this.levelStartX) {
       this.moveLeft(this.speed);
       this.otherDirection = true;
     }
@@ -265,7 +267,7 @@ class Character extends MoveableObject {
 
 
   adjustCamera() {
-    if (this.x > -750 && this.x < 2125) {
+    if (this.x > -750 && this.x < 2125 && !this.world.cameraFrozen) {
       this.world.camera_x = -this.x - 30;
     }
   }

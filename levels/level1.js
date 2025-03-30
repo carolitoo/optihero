@@ -51,12 +51,12 @@ function initLevel() {
             new BackgroundObject('img/background/l6_ground_test.png', 720*3, 0, 480)
         ],
         [
-            new FixedObject('img/statusbar/coinCollector/coinCounterIcon.png', 620, 0, 105, 105),
-            new FixedObject('img/statusbar/coinCollector/coinCounterSeparator.png', 582, 16, 80, 80),
-            new FixedObject('img/statusbar/coinCollector/coinCounter_0.png', 528, 0, 115, 115),
-            new FixedObject('img/game/navigation/maximize.png', 670, 428, 38, 38),
-            new FixedObject('img/game/navigation/sound_on.png', 625, 428, 38, 38),
-            new FixedObject('img/game/navigation/music_off.png', 580, 428, 38, 38)
+            new FixedObject('img/statusbar/coinCollector/coinCounterIcon.png', false, 'none', 620, 0, 105, 105),
+            new FixedObject('img/statusbar/coinCollector/coinCounterSeparator.png',false, 'none', 582, 16, 80, 80),
+            new FixedObject('img/statusbar/coinCollector/coinCounter_0.png', false, 'none', 528, 0, 115, 115),
+            new FixedObject('img/game/navigation/maximize.png', true, 'window', 670, 428, 38, 38),
+            new FixedObject('img/game/navigation/sound_on.png', true,'sound', 625, 428, 38, 38),
+            new FixedObject('img/game/navigation/music_off.png', true, 'music', 580, 428, 38, 38)
         ],
         [
             new StatusBar('energy', 100, 20, 15),

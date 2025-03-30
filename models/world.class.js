@@ -6,6 +6,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    cameraFrozen = false;
     coins = 0;
     valueOfCoin = 20;
     swirls = 0;
@@ -43,6 +44,49 @@ class World {
             this.BACKGROUND_SOUND.currentTime = 0;
             this.BACKGROUND_SOUND.play();
         }
+        this.setClickableObjects();
+        this.implementEventListener();
+    }
+
+
+    setClickableObjects() {
+        this.level.fixedObjects.forEach(object => {
+            if (object.clickable) {
+                object.setInitialValue(object.handler);
+            }
+        });
+    }
+
+
+    implementEventListener() {
+        this.canvas.addEventListener('click', (event) => {
+            this.checkClickedObject(event);
+          });
+    }
+
+
+    checkClickedObject(event) {
+        const rectCanvas = canvas.getBoundingClientRect();
+        const mouseX = event.clientX - rectCanvas.left;
+        const mouseY = event.clientY - rectCanvas.top;
+
+        this.level.fixedObjects.forEach(object => {
+            if (object.isClicked(mouseX, mouseY) && object.clickable) {
+              object.handleClick(object.handler);
+              if (object.handler === 'music') {
+                this.checkMusic();
+              }
+            }
+        });
+    }
+
+
+    checkMusic() {
+        if (musicOff) {
+            this.BACKGROUND_SOUND.pause();
+        } else {
+            this.BACKGROUND_SOUND.play();
+        }
     }
 
 
@@ -57,6 +101,7 @@ class World {
         }, 50);
         this.level.playClock[0].startClock();
     }
+
 
 /**
  * function checks if the first contact with the boss and the shooter has been made
@@ -169,6 +214,7 @@ class World {
     win(enemy) {
         this.level.playClock[0].stopClock();
         this.BACKGROUND_SOUND.pause();
+        this.cameraFrozen = true;
 
         this.replaceByWindmills(enemy);
         this.playWinSound();
@@ -202,9 +248,9 @@ class World {
         this.level.enemies = [];
     }
 
-    
+
     showBanner(status, language) {
-        this.endBanner.push(new FixedObject(`img/game/end/${status}_${language}.png`, 200, 150, 400, 100));
+        this.endBanner.push(new FixedObject(`img/game/end/${status}_${language}.png`, false, 'none', 200, 150, 400, 100));
     }
 
 
