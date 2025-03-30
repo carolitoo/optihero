@@ -1,4 +1,4 @@
-let selectedCharacter = 1;
+let selectedCharacter = 15;
 let indexOfSelectedCharacter;
 
 let indexOfPredecessor1;
@@ -107,7 +107,6 @@ async function renderCharacterSelection() {
     document.getElementById('profile-3').innerHTML = await generateSelectedProfileHTML(indexOfSelectedCharacter);
     document.getElementById('profile-4').innerHTML = await generateNextProfileHTML(indexOfSuccessor1);
     document.getElementById('profile-5').innerHTML = await generateNextProfileHTML(indexOfSuccessor2);
-
 }
 
 

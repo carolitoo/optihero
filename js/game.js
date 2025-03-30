@@ -27,10 +27,12 @@ function startGame() {
     init();
 }
 
+
 function restartGame() {
     world.WINDMILL_SOUND.pause();
     startGame();
 }
+
 
 function returnToStart() {
     stopGame();
@@ -82,7 +84,6 @@ function toggleFullScreen() {
         }
     }
 }
-
 
 
 function checkOrientation() {

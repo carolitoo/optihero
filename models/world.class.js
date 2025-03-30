@@ -168,9 +168,12 @@ class World {
 
     win(enemy) {
         this.level.playClock[0].stopClock();
+        this.BACKGROUND_SOUND.pause();
+
         this.replaceByWindmills(enemy);
         this.playWinSound();
-        this.BACKGROUND_SOUND.pause();
+        this.removeAllItems();
+      
         setTimeout(() => {
             this.showBanner('win',language);
         }, 400);
@@ -190,6 +193,16 @@ class World {
     //     }
     // }
 
+    removeAllItems() {
+        this.level.coins = [];
+        this.level.swirls = [];
+        this.level.enemies.forEach(enemy => {
+            enemy.energy = 0;
+        });
+        this.level.enemies = [];
+    }
+
+    
     showBanner(status, language) {
         this.endBanner.push(new FixedObject(`img/game/end/${status}_${language}.png`, 200, 150, 400, 100));
     }
