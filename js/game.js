@@ -7,6 +7,11 @@ let isMuted = !true;
 let musicOff = !true;
 
 
+async function renderStartScreen() {
+    checkOrientation();
+    await renderCharacterSelection();
+}
+
 
 function init() {
     initLevel();

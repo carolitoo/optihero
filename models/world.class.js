@@ -179,7 +179,7 @@ class World {
         }, 5000);
 
         let timeScore = this.level.playClock[0].secondsPassed;
-   '     this.checkTopScore(timeScore, this.coins);'
+        // this.checkTopScore(timeScore, this.coins);
     }
 
 

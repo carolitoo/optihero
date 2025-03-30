@@ -35,10 +35,11 @@
     <script src="./models/level.class.js"></script>
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
+    <script src="./js/selection-character.js"></script>
     <script src="./js/translation.js"></script>
   </head>
 
-  <body onload="checkOrientation()">
+  <body onload="renderStartScreen()" >
     <div id="wrapper-fullscreen" class="wrapper-fullscreen">
       <h1>opti.hero</h1>
 
@@ -101,48 +102,46 @@
 
           <h2 id="text-selection-character">WÄHLE DEINEN OPTI.HERO</h2>
           <div id="selection-character" class="selection-character">
-            <div class="profile-container">
+            <div class="profile-container preview-profile-container" id="profile-1">
               <img
                 class="profile-picture"
                 src="./img/character/Character1/Idle/Character01-Idle_00.png"
-                alt="Charakter1"
+                alt="Character1"
+                onclick="previousCharacter()"
               />
             </div>
-            <div class="profile-container">
+            <div class="profile-container" id="profile-2">
               <img
                 class="profile-picture"
                 src="./img/character/Character3/Idle/Character03-Idle_00.png"
-                alt="Charakter2"
+                alt="Character2"
+                onclick="previousCharacter()"
               />
             </div>
-            <div class="selected-profile-container">
+            <div class="profile-container selected-profile-container" id="profile-3">
               <img
                 class="profile-picture"
                 src="./img/character/Character10/Idle/Character010-Idle_00.png"
-                alt="Charakter3"
+                alt="Character3"
               />
             </div>
-            <div class="profile-container">
+            <div class="profile-container" id="profile-4">
               <img
                 class="profile-picture"
                 src="./img/character/Character12/Idle/Character012-Idle_00.png"
-                alt="Charakter4"
+                alt="Character4"
+                onclick="nextCharacter()"
               />
             </div>
-            <div class="profile-container">
+            <div class="profile-container preview-profile-container" id="profile-5">
               <img
                 class="profile-picture"
                 src="./img/character/Character13/Idle/Character013-Idle_00.png"
-                alt="Charakter5"
+                alt="Character5"
+                onclick="nextCharacter()"
               />
             </div>
-            <!-- <div class="profile-container">
-              <img
-                class="profile-picture"
-                src="./img/character/Character15/Idle/Character015-Idle_00.png"
-                alt="Charakter6"
-              />
-            </div> -->
+      
           </div>
 
           <div class="start-screen-buttons">
@@ -200,7 +199,7 @@
           class="button end-button"
         >
           <img class="icon-end-screen" src="./img/game/end/exit_game.png" alt="exit_game">
-          <p id="return-to-start-button-label">SPIEL VERLASSEN</p>
+          <p id="return-to-start-button-label">ZURÜCK ZUM START</p>
         </button>
       </div>
 
@@ -223,28 +222,6 @@
         </button>
       </div>
 
-      <!-- 
-    <div class="selection-container">
-        <div class="profile-container">
-            <img class="profile-picture" src="./img/character/Character1/Idle/Character01-Idle_00.png" alt="Charakter1">
-        </div>
-        <div class="profile-container">
-            <img class="profile-picture" src="./img/character/Character3/Idle/Character03-Idle_00.png" alt="Charakter2">
-        </div>
-        <div class="profile-container">
-            <img class="profile-picture" src="./img/character/Character10/Idle/Character010-Idle_00.png" alt="Charakter3">
-        </div>
-        <div class="profile-container">
-            <img class="profile-picture" src="./img/character/Character12/Idle/Character012-Idle_00.png" alt="Charakter4">
-        </div>
-        <div class="profile-container">
-            <img class="profile-picture" src="./img/character/Character13/Idle/Character013-Idle_00.png" alt="Charakter5">
-        </div>
-        <div class="profile-container">
-            <img class="profile-picture" src="./img/character/Character15/Idle/Character015-Idle_00.png" alt="Charakter6">
-        </div>
-        
-    </div> -->
     </div>
   </body>
 </html>

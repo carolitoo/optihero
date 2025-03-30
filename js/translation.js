@@ -7,7 +7,7 @@ function translateEN() {
 
     document.getElementById('enter-score-button-label').innerHTML = `ENTER SCORE`;
     document.getElementById('restart-button-label').innerHTML = `PLAY AGAIN!`;
-    document.getElementById('return-to-start-button-label').innerHTML = `EXIT GAME`;
+    document.getElementById('return-to-start-button-label').innerHTML = `RETURN TO START`;
 }
 
 
@@ -20,7 +20,7 @@ function translateDE() {
 
     document.getElementById('enter-score-button-label').innerHTML = `ZUR BESTENLISTE`;
     document.getElementById('restart-button-label').innerHTML = `NOCHMAL SPIELEN!`;
-    document.getElementById('return-to-start-button-label').innerHTML = `SPIEL VERLASSEN`;
+    document.getElementById('return-to-start-button-label').innerHTML = `ZURÜCK ZUM START`;
 }
 
 

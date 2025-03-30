@@ -110,9 +110,25 @@ p {
     width: 84px;
     height: 84px;
     border-radius: 50%;
-    border: 3px solid #ddd; /* Rahmen um das Bild */
+    border: 4px solid #ddd; /* Rahmen um das Bild */
     overflow: hidden; /* Beschneidet alles außerhalb des Containers */
     position: relative; /* Positionierung für das Bild */
+}
+
+.profile-container:hover {
+    cursor: pointer; /* Zeigt den Mauszeiger als Hand an */
+    border: 4px solid #74CFBB; /* Rahmenfarbe ändern bei Hover */
+    box-shadow: 0px 0px 5px rgb(206, 206, 206), 0px 0px 10px rgb(215, 216, 216); /* Schatten hinzufügen */
+}
+
+.selected-profile-container {
+  width: 128px;
+  height: 128px;
+}
+
+.preview-profile-container {
+  width: 64px;
+  height: 64px;
 }
 
 .profile-picture {
@@ -123,16 +139,6 @@ p {
     position: absolute; /* Ermöglicht die Transformation innerhalb des Containers */
     top: -16px;
     left: 0;
-}
-
-.selected-profile-container {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    border: 5px solid #ddd; /* Rahmen um das Bild */
-    /* box-shadow: 0px 0px 5px rgb(206, 206, 206), 0px 0px 10px rgb(215, 216, 216); */
-    overflow: hidden; /* Beschneidet alles außerhalb des Containers */
-    position: relative; /* Positionierung für das Bild */
 }
 
 .start-screen-buttons {
