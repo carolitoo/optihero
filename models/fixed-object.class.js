@@ -45,12 +45,14 @@ class FixedObject extends DrawableObject {
 
   }
 
+
   increaseCoinCounter(amountOfCoins) {
     this.loadImage(
       `img/statusbar/coinCollector/coinCounter_${amountOfCoins}.png`
     );
   }
 
+  
   setInitialValue(handler) {
     switch (handler) {
       case "window":
@@ -67,6 +69,7 @@ class FixedObject extends DrawableObject {
     }
   }
 
+
   isClicked(mouseX, mouseY) {
     return (
       mouseX >= this.x &&
@@ -76,11 +79,11 @@ class FixedObject extends DrawableObject {
     );
   }
 
-  async handleClick(handler) {
+
+  handleClick(handler) {
     switch (handler) {
       case "window":
         toggleFullScreen();
-        // this.handleWindowIcon();
         break;
       case "sound":
         toggleSound();

@@ -17,6 +17,7 @@ function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    bindMobileButtons();
     }
 
 
@@ -85,6 +86,11 @@ function toggleFullScreen() {
         }
 }
 
+
+function openInstructions() {
+    document.getElementById('instructions').classList.remove('d-none');
+}
+
   
 function checkOrientation() {
     if (window.matchMedia("(orientation: portrait)").matches && window.innerWidth < 670) {
@@ -126,6 +132,48 @@ function checkKey(code) {
             keyboard.D = true;
             break;
     }
+}
+
+
+function bindMobileButtons() {
+
+    document.getElementById('mobile-left').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    document.getElementById('mobile-left').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+
+    document.getElementById('mobile-right').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    document.getElementById('mobile-right').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+
+    document.getElementById('mobile-jump').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+
+    document.getElementById('mobile-jump').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+
+    document.getElementById('mobile-throw').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.D = true;
+    });
+
+    document.getElementById('mobile-throw').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.D = false;
+    });
 }
 
 

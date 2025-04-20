@@ -49,12 +49,12 @@
 
       <div id="orientation-warning" class="orientation-warning overlay d-none">
         <div class="overlay-content">
-          <!-- <img
+          <img
             class="img-orientation"
-            src="../img/game/navigation/arrow-rotate-left-solid.svg"
+            src="../img/game/navigation/arrows-rotate-solid.svg"
             alt="Rotate"
-          /> -->
-          <h1>Please turn your device to play the game</h1>
+          />
+          <p>Please turn your device to play the game</p>
         </div>
       </div>
 
@@ -156,7 +156,7 @@
             </button>
             <!-- <button onclick="howToPlay()" id="howToPlayButton" class="button start-button">HOW TO <br> PLAY</button> -->
             <button
-              onclick="howToPlay()"
+              onclick="openInstructions()"
               id="how-to-play-button"
               class="button start-button"
             >
@@ -175,6 +175,50 @@
           </div>
         </div>
       </div>
+
+
+      <div id="instructions" class="overlay d-none">
+        <div class="overlay-content">
+          <h2 id="intro-headline">Dein opti.hero braucht dich!</h2>
+          <p id="intro-text">
+            Hilf ihm, einen neuen Windpark zu errichten und lass dich dabei nicht von den zahlreichen Hürden stoppen. <br><br>
+            Überspringe die Gegner und sammle ausreichend Windböen, welche du gezielt gegen deine Widersacher auf dem Weg zu mehr erneuerbarer Energie einsetzen kannst. <br><br>
+            Achte dabei darauf, dass du ausreichend Windböen aufbewahrst, um der Endgegnerin – der Bürokratie – den Garaus zu machen. <br><br>
+            Einige Gegner kannst du auch besiegen, indem du von oben auf sie herabspringst, aber nimm dich dabei in Acht vor den scharfen Gesetzen, mit denen du nicht in Konflikt geraten solltest. <br><br> 
+            Damit wir die Energiewende vorantreiben, sollten wir keine Zeit verlieren! <br><br> 
+            Sammle auf dem Weg dahin das ein oder andere PPA, um so deine Wirtschaftlichkeit zu optimieren. Möglicherweise schaffst du es sogar den Highscore zu knacken...</p>
+          <h3 id="intro-end">Viel Erfolg!</h3>
+        </div>
+      </div>
+
+
+      <div id="controls" class="overlay d-none">
+        <div class="overlay-content">
+          <h1 id="controls-headline">Steuerung</h1>
+          <div class="controls-container">
+            <div class="controls-mobile-container">
+              <img src="" alt="">
+              <img src="" alt="">
+              <img src="" alt="">
+              <img src="" alt="">
+            </div>
+            <div class="controls-keyboard-container">
+              <div class="controls-single-key">→</div>
+              <div class="controls-single-key">←</div>
+              <div class="controls-single-key">D</div>
+              <div class="controls-space-key">Space</div>
+            </div>
+            <div class="controls-labels-container">
+              <div id="label-move-right" class="controls-label">rechts laufen</div>
+              <div id="label-move-left" class="controls-label">links laufen</div>
+              <div id="label-throw" class="controls-label">werfen</div>
+              <div id="label-jump" class="controls-label">springen</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
       <div id="end-screen" class="end-screen d-none">
         <button

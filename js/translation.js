@@ -8,6 +8,20 @@ function translateEN() {
     document.getElementById('enter-score-button-label').innerHTML = `ENTER SCORE`;
     document.getElementById('restart-button-label').innerHTML = `PLAY AGAIN!`;
     document.getElementById('return-to-start-button-label').innerHTML = `RETURN TO START`;
+
+    document.getElementById('intro-headline').innerHTML = `Your opti.hero needs you!`;
+    document.getElementById('intro-text').innerHTML = `
+    Help him build a new wind farm and don't let the numerous obstacles stop you.<br><br>
+    Jump over the enemies and collect enough gusts of wind, which you can use against your opponents on the way to more renewable energy.<br><br>
+    Make sure you keep enough gusts of wind to deal with the final boss - the Bureaucracy.<br><br>
+    You can also defeat some enemies by jumping down on them from above, but watch out for the harsh laws that you should not come into conflict with.<br><br> 
+    If we're going to make the energy transition, there is no time to lose!<br><br>
+    Collect some PPAs along the way to boost your efficiency and maybe you might even beat the high score...`;
+    document.getElementById('intro-end').innerHTML = `Good luck!`
+
+
+    
+
 }
 
 
@@ -21,6 +35,16 @@ function translateDE() {
     document.getElementById('enter-score-button-label').innerHTML = `ZUR BESTENLISTE`;
     document.getElementById('restart-button-label').innerHTML = `NOCHMAL SPIELEN!`;
     document.getElementById('return-to-start-button-label').innerHTML = `ZURÜCK ZUM START`;
+
+    document.getElementById('intro-headline').innerHTML = `Dein opti.hero braucht dich!`;
+    document.getElementById('intro-text').innerHTML = `
+    Hilf ihm, einen neuen Windpark zu errichten und lass dich dabei nicht von den zahlreichen Hürden stoppen. <br><br>
+    Überspringe die Gegner und sammle ausreichend Windböen, welche du gezielt gegen deine Widersacher auf dem Weg zu mehr erneuerbarer Energie einsetzen kannst. <br><br>
+    Achte dabei darauf, dass du ausreichend Windböen aufbewahrst, um der Endgegnerin – der Bürokratie – den Garaus zu machen. <br><br>
+    Einige Gegner kannst du auch besiegen, indem du von oben auf sie herabspringst, aber nimm dich dabei in Acht vor den scharfen Gesetzen, mit denen du nicht in Konflikt geraten solltest. <br><br> 
+    Damit wir die Energiewende vorantreiben, sollten wir keine Zeit verlieren! <br><br> 
+    Sammle auf dem Weg dahin das ein oder andere PPA, um so deine Wirtschaftlichkeit zu optimieren. Möglicherweise schaffst du es sogar den Highscore zu knacken...`;
+    document.getElementById('intro-end').innerHTML = `Viel Erfolg!`
 }
 
 

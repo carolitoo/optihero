@@ -182,7 +182,10 @@ p {
   /* text-align: center; */
 }
 
-
+.img-orientation {
+  width: 72px;
+  height: 72px;
+}
 
 .overlay {
   position: fixed; /* Bleibt immer an der gleichen Position */
@@ -190,7 +193,7 @@ p {
   left: 0;
   width: 100vw; /* Ganze Breite */
   height: 100vh; /* Ganze Höhe */
-  background: rgba(0, 0, 0, 0.5); /* Schwarzer, halbtransparenter Hintergrund */
+  background: rgba(0, 0, 0, 0.8); /* Schwarzer, halbtransparenter Hintergrund */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,7 +201,11 @@ p {
 }
 
 .overlay-content {
-  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -213,7 +220,7 @@ p {
   padding: 10px;
   position: fixed;
   bottom: 8px;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .mobil-control-button {
