@@ -165,7 +165,7 @@
             </button>
             <!-- <button onclick="toggleControls()" id="controlButton" class="button start-button">SHOW <br> CONTROLS</button> -->
             <button
-              onclick="toggleControls()"
+              onclick="openControls()"
               id="control-button"
               class="button start-button"
             >
@@ -179,6 +179,14 @@
 
       <div id="instructions" class="overlay d-none">
         <div class="overlay-content">
+          <div class="container-close-overlay">
+            <img
+              class ="img-close-overlay"
+              src="./img/game/end/exit_game.png"
+              alt="Close Overlay"
+              onclick="closeOverlay('instructions')"
+          />
+          </div>
           <h2 id="intro-headline">Dein opti.hero braucht dich!</h2>
           <p id="intro-text">
             Hilf ihm, einen neuen Windpark zu errichten und lass dich dabei nicht von den zahlreichen Hürden stoppen. <br><br>
@@ -186,7 +194,8 @@
             Achte dabei darauf, dass du ausreichend Windböen aufbewahrst, um der Endgegnerin – der Bürokratie – den Garaus zu machen. <br><br>
             Einige Gegner kannst du auch besiegen, indem du von oben auf sie herabspringst, aber nimm dich dabei in Acht vor den scharfen Gesetzen, mit denen du nicht in Konflikt geraten solltest. <br><br> 
             Damit wir die Energiewende vorantreiben, sollten wir keine Zeit verlieren! <br><br> 
-            Sammle auf dem Weg dahin das ein oder andere PPA, um so deine Wirtschaftlichkeit zu optimieren. Möglicherweise schaffst du es sogar den Highscore zu knacken...</p>
+            Sammle auf dem Weg dahin das ein oder andere PPA, um so deine Wirtschaftlichkeit zu optimieren. <br><br> 
+            Möglicherweise schaffst du es sogar den Highscore zu knacken...</p>
           <h3 id="intro-end">Viel Erfolg!</h3>
         </div>
       </div>
@@ -194,19 +203,29 @@
 
       <div id="controls" class="overlay d-none">
         <div class="overlay-content">
-          <h1 id="controls-headline">Steuerung</h1>
+          <div class="container-close-overlay">
+            <img
+              class ="img-close-overlay"
+              src="./img/game/end/exit_game.png"
+              alt="Close Overlay"
+              onclick="closeOverlay('controls')"
+          />
+          </div>
+          <h2 id="controls-headline">Steuerung</h2>
           <div class="controls-container">
-            <div class="controls-mobile-container">
-              <img src="" alt="">
-              <img src="" alt="">
-              <img src="" alt="">
-              <img src="" alt="">
-            </div>
-            <div class="controls-keyboard-container">
-              <div class="controls-single-key">→</div>
-              <div class="controls-single-key">←</div>
-              <div class="controls-single-key">D</div>
-              <div class="controls-space-key">Space</div>
+            <div class="controls-container-left">
+              <div class="controls-mobile-container">
+                <img src="./img/game/navigation/move_right.png" alt="Move right">
+                <img src="./img/game/navigation/move_left.png" alt="Move left">
+                <img src="./img/game/navigation/throw.png" alt="Throw">
+                <img src="./img/game/navigation/jump.png" alt="Jump">
+              </div>
+              <div class="controls-keyboard-container">
+                <div class="key controls-single-key">→</div>
+                <div class="key controls-single-key">←</div>
+                <div class="key controls-single-key">D</div>
+                <div id="space-key" class="key controls-space-key">Leerzeichen</div>
+              </div>
             </div>
             <div class="controls-labels-container">
               <div id="label-move-right" class="controls-label">rechts laufen</div>

@@ -91,6 +91,17 @@ function openInstructions() {
     document.getElementById('instructions').classList.remove('d-none');
 }
 
+
+function openControls() {
+    document.getElementById('controls').classList.remove('d-none');
+}
+
+
+function closeOverlay(id) {
+    document.getElementById(id).classList.add('d-none');
+}
+
+
   
 function checkOrientation() {
     if (window.matchMedia("(orientation: portrait)").matches && window.innerWidth < 670) {

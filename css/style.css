@@ -201,14 +201,88 @@ p {
 }
 
 .overlay-content {
+  width: 680px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.8);
+  /* background: rgba(255, 255, 255, 0.65); */
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+}
+
+.container-close-overlay {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.img-close-overlay {
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+}
+
+.controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls-container-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.controls-mobile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.controls-mobile-container img {
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+}
+
+.controls-keyboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+
+.key {
+  display: inline-block;
+  padding: 12px 20px;
+  margin: 5px;
+  background-color: #f0f0f0;
+  color: black;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px #bbb;
+  font-size: 24px;
+  text-align: center;
+  transition: all 0.1s ease-in-out;
+  user-select: none;
+}
+
+.key:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+  box-shadow: 0 2px #aaa;
+  transform: translateY(2px);
 }
 
 
