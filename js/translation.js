@@ -27,6 +27,7 @@ function translateEN() {
     document.getElementById('label-throw').innerHTML = `throw`;
     document.getElementById('label-jump').innerHTML = `jump`;
 
+    document.getElementById('text-orientation').innerHTML = `Please turn your device to play.`;
 
 }
 
@@ -59,6 +60,8 @@ function translateDE() {
     document.getElementById('label-move-left').innerHTML = `links laufen`;
     document.getElementById('label-throw').innerHTML = `werfen`;
     document.getElementById('label-jump').innerHTML = `springen`;
+
+    document.getElementById('text-orientation').innerHTML = `Bitte drehe dein Gerät, um zu spielen.`;
 }
 
 

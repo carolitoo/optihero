@@ -13,3 +13,9 @@
     src: url(../font/shantellSans/ShantellSans-ExtraBold.ttf);
     
 }
+
+@font-face {
+    font-family: shantellSansMedium;
+    src: url(../font/shantellSans/ShantellSans-Medium.ttf);
+    
+}
