@@ -10,8 +10,10 @@
       href="img/game/favicon/wind-solid.svg"
     />
 
+    <link rel="stylesheet" href="./css/loading.css" />
     <link rel="stylesheet" href="./css/font.css" />
     <link rel="stylesheet" href="./css/style.css" />
+ 
     <script src="./models/drawable-objects.class.js"></script>
     <script src="./models/movable-objects.class.js"></script>
     <script src="./models/character.class.js"></script>
@@ -40,12 +42,24 @@
   </head>
 
   <body onload="renderStartScreen()" >
-    <div id="wrapper-fullscreen" class="wrapper-fullscreen">
-      <h1>opti.hero</h1>
 
-      <div id="loading-screen" class="loading-screen d-none">
-        <h1>Loading...</h1>
+    <div id="loading-screen" class="overlay">
+      <div class="loading-spinner">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
       </div>
+      <h1>Loading</h1>
+    </div>
+
+
+    <div id="wrapper-fullscreen" class="wrapper-fullscreen d-none">
+      <h1>opti.hero</h1>
 
       <div id="orientation-warning" class="orientation-warning overlay d-none">
         <div class="overlay-content">
@@ -62,18 +76,23 @@
         <div class="start-screen-content">
           <div class="header-start-screen">
             <div class="selection-language">
-              <img
-                class="img-language"
-                src="./img/game/start/en.png"
-                alt="EN"
-                onclick="selectLanguage('EN'), translateEN()"
-              />
-              <img
-                class="img-language"
-                src="./img/game/start/de.png"
-                alt="DE"
-                onclick="selectLanguage('DE'), translateDE()"
-              />
+                <div class="container-language">
+                  <img
+                  class="img-language"
+                  src="./img/game/start/en.png"
+                  alt="EN"
+                  onclick="selectLanguage('EN'), translateEN()"
+                />
+                </div>
+            
+                <div class="container-language">
+                  <img
+                  class="img-language"
+                  src="./img/game/start/de.png"
+                  alt="DE"
+                  onclick="selectLanguage('DE'), translateDE()"
+                />
+                </div>
             </div>
             <div class="task-bar-start">
               <img
@@ -272,19 +291,26 @@
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
       </div>
 
-      <div id="mobil-control-panel" class="mobil-control-panel">
-        <button id="mobile-left" class="mobil-control-button">
-          <img src="./img/game/navigation/move_left.png" alt="Move left" />
-        </button>
-        <button id="mobile-right" class="mobil-control-button">
-          <img src="./img/game/navigation/move_right.png" alt="Move right" />
-        </button>
-        <button id="mobile-jump" class="mobil-control-button">
-          <img src="./img/game/navigation/jump.png" alt="Jump" />
-        </button>
-        <button id="mobile-throw" class="mobil-control-button">
-          <img src="./img/game/navigation/throw.png" alt="Throw" />
-        </button>
+      <div id="mobile-control-panel" class="mobile-control-panel">
+
+        <div class="mobile-control-panel-side">
+          <button id="mobile-left" class="mobile-control-button">
+            <img src="./img/game/navigation/move_left.png" alt="Move left" />
+          </button>
+          <button id="mobile-right" class="mobile-control-button">
+            <img src="./img/game/navigation/move_right.png" alt="Move right" />
+          </button>
+        </div>
+
+        <div class="mobile-control-panel-side">
+          <button id="mobile-jump" class="mobile-control-button">
+            <img src="./img/game/navigation/jump.png" alt="Jump" />
+          </button>
+          <button id="mobile-throw" class="mobile-control-button">
+            <img src="./img/game/navigation/throw.png" alt="Throw" />
+          </button>
+        </div>
+      
       </div>
 
     </div>

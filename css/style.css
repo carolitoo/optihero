@@ -31,6 +31,8 @@ h1 {
   font-size: 72px;
   margin-top: 72px;
   margin-bottom: 72px;
+  color: #64AD85;
+  filter: drop-shadow(2px 2px 1px #212127b0);
 }
 
 h2 {
@@ -78,10 +80,24 @@ p {
   gap: 12px;
 }
 
+.container-language {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 5px solid transparent; /* Rahmen um das Bild */
+}
+
+.container-language:hover {
+  cursor: pointer; /* Zeigt den Mauszeiger als Hand an */
+  border: 5px solid #64AD85; /* Rahmenfarbe ändern bei Hover */
+}
+
 .img-language {
   width: 36px;
   height: 36px;
-  cursor: pointer;
 }
 
 .task-bar-start {
@@ -203,6 +219,7 @@ p {
   height: 100vh; /* Ganze Höhe */
   background: rgba(0, 0, 0, 0.8); /* Schwarzer, halbtransparenter Hintergrund */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 1000; /* Über anderen Elementen */
@@ -350,8 +367,8 @@ p {
 }
 
 
-.mobil-control-panel {
-  width: 300px;
+.mobile-control-panel {
+  width: 680px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -361,7 +378,14 @@ p {
   z-index: 1;
 }
 
-.mobil-control-button {
+.mobile-control-panel-side {
+  width: 136px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-control-button {
   width: 56px;
   height: 56px;
   background: white;
@@ -374,7 +398,7 @@ p {
   box-shadow: 0px 0px 10px rgb(206, 206, 206), 0px 0px 20px rgb(215, 216, 216);
 }
 
-.mobil-control-button img {
+.mobile-control-button img {
   width: 100%;
   height: 100%;
 }

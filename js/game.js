@@ -7,6 +7,14 @@ let isMuted = !true;
 let musicOff = !true;
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      document.getElementById('loading-screen').style.display = 'none';
+      document.getElementById('wrapper-fullscreen').style.display = 'flex';
+    }, 4000);
+  });
+
+
 async function renderStartScreen() {
     checkOrientation();
     await renderCharacterSelection();
