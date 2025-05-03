@@ -6,6 +6,8 @@ let language = 'DE';
 let isMuted = !true;
 let musicOff = !true;
 
+let COUNTDOWN_SOUND = new Audio('./audio/01_game/countdown/game-countdown.mp3');
+
 
 /**
  * This function is called when the page is loaded. 
@@ -40,25 +42,21 @@ function init() {
     world = new World(canvas, keyboard);
     bindMobileButtons();
 
-    // ERSETZEN DURCH COUNTDOWN
     setTimeout(() => {
         document.getElementById('loading-screen').style.display = 'none';
         document.getElementById('wrapper-fullscreen').style.display = 'flex';
         document.getElementById('mobile-control-panel').classList.remove('d-none');
-      }, 3000);
+      }, 4000);
 
     }
 
 
 /**
  * This function initiates the game by replacing the start or end screen with the canvas/ game screen.
- * It also starts a countdown (to be implemented) and initializes the game.
+ * It also starts a countdown and initializes the game.
  */
 function startGame() {
-    // ERSETZEN DURCH COUNTDOWN
-    document.getElementById('loading-screen').style.display = 'flex';
-    document.getElementById('wrapper-fullscreen').style.display = 'none';
-
+    countdownStart();
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('end-screen').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
@@ -66,21 +64,28 @@ function startGame() {
 }
 
 
-// ANPASSEN
+/**
+ * This function starts a countdown before the game begins.
+ */
 function countdownStart() {
-    document.getElementById('countdown').classList.remove('d-none');
-    document.getElementById('countdown').innerHTML = '3';
-    setTimeout(() => {
-        document.getElementById('countdown').innerHTML = '2';
-    }, 1000);
-    setTimeout(() => {
-        document.getElementById('countdown').innerHTML = '1';
-    }, 2000);
-    setTimeout(() => {
-        document.getElementById('countdown').classList.add('d-none');
-        startGame();
-    }, 3000);
+    document.getElementById('loading-screen').style.display = 'flex';
+    document.getElementById('wrapper-fullscreen').style.display = 'none';
+    document.getElementById('loading-spinner').classList.add('d-none');
+
+    COUNTDOWN_SOUND.play();
+    document.getElementById('loading-text').innerHTML = '3';
+    setTimeout(() => {document.getElementById('loading-text').innerHTML = '2';}, 1000);
+    setTimeout(() => {document.getElementById('loading-text').innerHTML = '1';}, 2000);
+    // setTimeout(() => {document.getElementById('loading-text').innerHTML = 'Good luck!';}, 3000);
+    if (language === 'DE') {
+        setTimeout(() => {document.getElementById('loading-text').innerHTML = 'Viel Erfolg!';}, 3000);
+    }
+    if (language === 'EN') {
+        setTimeout(() => {document.getElementById('loading-text').innerHTML = 'Good luck!';}, 3000);
+    }
 }
+
+
 
 
 /**

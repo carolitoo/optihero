@@ -42,7 +42,9 @@ class World {
             this.BACKGROUND_SOUND.volume = 0.3;
             this.BACKGROUND_SOUND.loop = true;
             this.BACKGROUND_SOUND.currentTime = 0;
-            this.BACKGROUND_SOUND.play();
+            setTimeout(() => {
+                this.BACKGROUND_SOUND.play();
+            }, 4000);
         }
         this.setClickableObjects();
         this.implementEventListener();
@@ -99,7 +101,9 @@ class World {
             this.checkThrowObjects();
             this.checkFirstContact();
         }, 50);
-        this.level.playClock[0].startClock();
+        setTimeout(() => {
+            this.level.playClock[0].startClock();
+        }, 4000);
     }
 
 

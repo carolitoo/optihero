@@ -39,8 +39,4 @@ class Swirl extends MoveableObject {
 
     }
 
-
-
-
-
 }

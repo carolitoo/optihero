@@ -32,6 +32,7 @@ h1 {
   margin-top: 72px;
   margin-bottom: 72px;
   color: #64AD85;
+  /* color: #00A79D; */
   filter: drop-shadow(2px 2px 1px #212127b0);
 }
 
@@ -568,6 +569,16 @@ p {
 
   .start-screen {
     height: 100vh;
+  }
+
+  .mobile-control-panel {
+    justify-content: space-between;
+    width: 90%;
+    padding: 8px;
+  }
+  
+  .mobile-control-panel-side {
+    display: flex;
   }
 
   .end-screen {

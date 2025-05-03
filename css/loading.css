@@ -26,6 +26,18 @@
   .dot:nth-child(6) { --angle: 225deg; animation-delay: 0.5s; }
   .dot:nth-child(7) { --angle: 270deg; animation-delay: 0.6s; }
   .dot:nth-child(8) { --angle: 315deg; animation-delay: 0.7s; }
+
+
+.loading-text {
+  font-family: gorditasBold, sans-serif;
+  font-size: 72px;
+  margin-top: 72px;
+  margin-bottom: 72px;
+  color: #64AD85;
+  /* color: #00A79D; */
+  filter: drop-shadow(2px 2px 1px #212127b0);
+}
+
   
   /* Keyframes: Position (rotate+translate) UND Scale */
   @keyframes pulse {
