@@ -16,8 +16,7 @@ class Bullet extends Enemy {
 
   
     constructor(x) {
-      super().loadImage("img/enemies/bullet/bullet3.png");
-  
+      super().loadImage("img/enemies/bullet/bullet.png");
       this.x = x - 10; // abhängig von Position Shooter
   
       this.enemyId = globalCounterId++;

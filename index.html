@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./css/loading.css" />
     <link rel="stylesheet" href="./css/font.css" />
     <link rel="stylesheet" href="./css/style.css" />
- 
+
     <script src="./models/drawable-objects.class.js"></script>
     <script src="./models/movable-objects.class.js"></script>
     <script src="./models/character.class.js"></script>
@@ -41,8 +41,7 @@
     <script src="./js/translation.js"></script>
   </head>
 
-  <body onload="renderStartScreen()" >
-
+  <body onload="renderStartScreen()">
     <div id="loading-screen" class="overlay">
       <div class="loading-spinner">
         <div class="dot"></div>
@@ -57,7 +56,6 @@
       <h1>Loading</h1>
     </div>
 
-
     <div id="wrapper-fullscreen" class="wrapper-fullscreen d-none">
       <h1>opti.hero</h1>
 
@@ -65,10 +63,13 @@
         <div class="overlay-content">
           <img
             class="img-orientation"
-            src="../img/game/navigation/arrows-rotate-solid.svg"
+            src="./img/game/navigation/arrows-rotate-solid.svg"
             alt="Rotate"
           />
-          <div id="text-orientation" class="text-orientation">Bitte drehe dein Gerät, um zu spielen.</div>
+          <div id="text-orientation" class="text-orientation">
+            Bitte drehe dein Gerät, <br />
+            um zu spielen.
+          </div>
         </div>
       </div>
 
@@ -76,23 +77,23 @@
         <div class="start-screen-content">
           <div class="header-start-screen">
             <div class="selection-language">
-                <div class="container-language">
-                  <img
+              <div class="container-language">
+                <img
                   class="img-language"
                   src="./img/game/start/en.png"
                   alt="EN"
                   onclick="selectLanguage('EN'), translateEN()"
                 />
-                </div>
-            
-                <div class="container-language">
-                  <img
+              </div>
+
+              <div class="container-language">
+                <img
                   class="img-language"
                   src="./img/game/start/de.png"
                   alt="DE"
                   onclick="selectLanguage('DE'), translateDE()"
                 />
-                </div>
+              </div>
             </div>
             <div class="task-bar-start">
               <img
@@ -121,7 +122,10 @@
 
           <h2 id="text-selection-character">WÄHLE DEINEN OPTI.HERO</h2>
           <div id="selection-character" class="selection-character">
-            <div class="profile-container preview-profile-container" id="profile-1">
+            <div
+              class="profile-container preview-profile-container"
+              id="profile-1"
+            >
               <img
                 class="profile-picture"
                 src="./img/character/Character1/Idle/Character01-Idle_00.png"
@@ -137,7 +141,10 @@
                 onclick="previousCharacter()"
               />
             </div>
-            <div class="profile-container selected-profile-container" id="profile-3">
+            <div
+              class="profile-container selected-profile-container"
+              id="profile-3"
+            >
               <img
                 class="profile-picture"
                 src="./img/character/Character10/Idle/Character010-Idle_00.png"
@@ -152,7 +159,10 @@
                 onclick="nextCharacter()"
               />
             </div>
-            <div class="profile-container preview-profile-container" id="profile-5">
+            <div
+              class="profile-container preview-profile-container"
+              id="profile-5"
+            >
               <img
                 class="profile-picture"
                 src="./img/character/Character13/Idle/Character013-Idle_00.png"
@@ -160,7 +170,6 @@
                 onclick="nextCharacter()"
               />
             </div>
-      
           </div>
 
           <div class="start-screen-buttons">
@@ -195,62 +204,85 @@
         </div>
       </div>
 
-
       <div id="instructions" class="overlay d-none">
         <div class="overlay-content">
           <div class="container-close-overlay">
             <img
-              class ="img-close-overlay"
+              class="img-close-overlay"
               src="./img/game/end/exit_game.png"
               alt="Close Overlay"
               onclick="closeOverlay('instructions')"
-          />
+            />
           </div>
-          <div id="intro-headline" class="headline-overlay">Dein opti.hero braucht dich!</div>
+          <div id="intro-headline" class="headline-overlay">
+            Dein opti.hero braucht dich!
+          </div>
           <div class="instructions-wrapper-text">
             <p id="intro-text" class="intro-text">
-              Hilf ihm, einen neuen Windpark zu errichten und lass dich dabei nicht von den zahlreichen Hürden stoppen. <br><br>
-              Überspringe die Gegner und sammle ausreichend Windböen, welche du gezielt gegen deine Widersacher auf dem Weg zu mehr erneuerbarer Energie einsetzen kannst. <br><br>
-              Achte dabei darauf, dass du ausreichend Windböen aufbewahrst, um der Endgegnerin – der Bürokratie – den Garaus zu machen. <br><br>
-              Einige Gegner kannst du auch besiegen, indem du von oben auf sie herabspringst, aber nimm dich dabei in Acht vor den scharfen Gesetzen, mit denen du nicht in Konflikt geraten solltest. <br><br> 
-              Damit wir die Energiewende vorantreiben, sollten wir keine Zeit verlieren! <br><br> 
-              Sammle auf dem Weg dahin das ein oder andere PPA, um so deine Wirtschaftlichkeit zu optimieren. <br><br> 
-              Möglicherweise schaffst du es sogar den Highscore zu knacken...</p>
+              Hilf ihm, einen neuen Windpark zu errichten und lass dich dabei
+              nicht von den zahlreichen Hürden stoppen. <br /><br />
+              Überspringe die Gegner und sammle ausreichend Windböen, welche du
+              gezielt gegen deine Widersacher auf dem Weg zu mehr erneuerbarer
+              Energie einsetzen kannst. <br /><br />
+              Achte dabei darauf, dass du ausreichend Windböen aufbewahrst, um
+              der Endgegnerin – der Bürokratie – den Garaus zu machen.
+              <br /><br />
+              Einige Gegner kannst du auch besiegen, indem du von oben auf sie
+              herabspringst, aber nimm dich dabei in Acht vor den scharfen
+              Gesetzen, mit denen du nicht in Konflikt geraten solltest.
+              <br /><br />
+              Damit wir die Energiewende vorantreiben, sollten wir keine Zeit
+              verlieren! <br /><br />
+              Sammle auf dem Weg dahin das ein oder andere PPA, um so deine
+              Wirtschaftlichkeit zu optimieren. <br /><br />
+              Möglicherweise schaffst du es sogar den Highscore zu knacken...
+            </p>
             <h3 id="intro-end" class="intro-end">Viel Erfolg!</h3>
           </div>
         </div>
       </div>
 
-
       <div id="controls" class="overlay d-none">
         <div class="overlay-content">
           <div class="container-close-overlay">
             <img
-              class ="img-close-overlay"
+              class="img-close-overlay"
               src="./img/game/end/exit_game.png"
               alt="Close Overlay"
               onclick="closeOverlay('controls')"
-          />
+            />
           </div>
           <div id="controls-headline" class="headline-overlay">Steuerung</div>
           <div class="controls-container">
             <div class="controls-container-left">
               <div class="controls-mobile-container">
-                <img src="./img/game/navigation/move_right.png" alt="Move right">
-                <img src="./img/game/navigation/move_left.png" alt="Move left">
-                <img src="./img/game/navigation/throw.png" alt="Throw">
-                <img src="./img/game/navigation/jump.png" alt="Jump">
+                <img
+                  src="./img/game/navigation/move_right.png"
+                  alt="Move right"
+                />
+                <img
+                  src="./img/game/navigation/move_left.png"
+                  alt="Move left"
+                />
+                <img src="./img/game/navigation/throw.png" alt="Throw" />
+                <img src="./img/game/navigation/jump.png" alt="Jump" />
               </div>
               <div class="controls-keyboard-container">
                 <div class="key controls-single-key">→</div>
                 <div class="key controls-single-key">←</div>
                 <div class="key controls-single-key">D</div>
-                <div id="space-key" class="key controls-space-key">Leerzeichen</div>
+                <div id="space-key" class="key controls-space-key">
+                  Leerzeichen
+                </div>
               </div>
             </div>
             <div class="controls-labels-container">
-              <div id="label-move-right" class="controls-label">rechts laufen</div>
-              <div id="label-move-left" class="controls-label">links laufen</div>
+              <div id="label-move-right" class="controls-label">
+                rechts laufen
+              </div>
+              <div id="label-move-left" class="controls-label">
+                links laufen
+              </div>
               <div id="label-throw" class="controls-label">werfen</div>
               <div id="label-jump" class="controls-label">springen</div>
             </div>
@@ -258,23 +290,29 @@
         </div>
       </div>
 
-
-
       <div id="end-screen" class="end-screen d-none">
         <button
-        onclick="enterScore()"
-        id="enter-score-button"
-        class="button end-button"
-      >
-        <img class="icon-end-screen" src="./img/game/end/enter_score.png" alt="Enter Score">
-        <p id="enter-score-button-label">ZUR BESTENLISTE</p>
-      </button>
+          onclick="enterScore()"
+          id="enter-score-button"
+          class="button end-button"
+        >
+          <img
+            class="icon-end-screen"
+            src="./img/game/end/enter_score.png"
+            alt="Enter Score"
+          />
+          <p id="enter-score-button-label">ZUR BESTENLISTE</p>
+        </button>
         <button
           onclick="restartGame()"
           id="restart-button"
           class="button end-button"
         >
-          <img class="icon-end-screen" src="./img/game/end/play_again.png" alt="Play again">
+          <img
+            class="icon-end-screen"
+            src="./img/game/end/play_again.png"
+            alt="Play again"
+          />
           <p id="restart-button-label">NOCHMAL SPIELEN!</p>
         </button>
         <button
@@ -282,37 +320,91 @@
           id="return-to-start-button"
           class="button end-button"
         >
-          <img class="icon-end-screen" src="./img/game/end/exit_game.png" alt="exit_game">
+          <img
+            class="icon-end-screen"
+            src="./img/game/end/exit_game.png"
+            alt="exit_game"
+          />
           <p id="return-to-start-button-label">ZURÜCK ZUM START</p>
         </button>
       </div>
 
-      <div>
+      <div class="container-game">
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
-      </div>
 
-      <div id="mobile-control-panel" class="mobile-control-panel">
+        <div id="mobile-control-panel" class="mobile-control-panel d-none">
+          <div id="mobile-control-panel-left" class="mobile-control-panel-side d-none">
+            <button
+              id="mobile-left"
+              class="mobile-control-button"
+              onmousedown="checkKey('ArrowLeft')"
+              onmouseup="unsetKeyboard()"
+            >
+              <img src="./img/game/navigation/move_left.png" alt="Move left" />
+            </button>
+            <button
+              id="mobile-right"
+              class="mobile-control-button"
+              onmousedown="checkKey('ArrowRight')"
+              onmouseup="unsetKeyboard()"
+            >
+              <img
+                src="./img/game/navigation/move_right.png"
+                alt="Move right"
+              />
+            </button>
+          </div>
 
-        <div class="mobile-control-panel-side">
-          <button id="mobile-left" class="mobile-control-button">
-            <img src="./img/game/navigation/move_left.png" alt="Move left" />
-          </button>
-          <button id="mobile-right" class="mobile-control-button">
-            <img src="./img/game/navigation/move_right.png" alt="Move right" />
-          </button>
+          <div class="mobile-control-panel-navigation">
+            <div>
+              <img
+                id="toggle-music-game"
+                src="./img/game/navigation/music_on.png"
+                class="mobile-navigation-button"
+                alt="Music on"
+                onclick="toggleMusicInGame()"
+              />
+            </div>
+            <div>
+              <img
+                id="toggle-sound-game"
+                src="./img/game/navigation/sound_on.png"
+                class="mobile-navigation-button"
+                alt="Sound on"
+                onclick="toggleSound()"
+              />
+            </div>
+            <div>
+              <img
+                id="toggle-fullscreen-game"
+                src="./img/game/navigation/maximize.png"
+                class="mobile-navigation-button"
+                alt="Maximize"
+                onclick="toggleFullScreen()"
+              />
+            </div>
+          </div>
+
+          <div id="mobile-control-panel-side" class="mobile-control-panel-side d-none">
+            <button
+              id="mobile-jump"
+              class="mobile-control-button"
+              onmousedown="checkKey('Space')"
+              onmouseup="unsetKeyboard()"
+            >
+              <img src="./img/game/navigation/jump.png" alt="Jump" />
+            </button>
+            <button
+              id="mobile-throw"
+              class="mobile-control-button"
+              onmousedown="checkKey('D')"
+              onmouseup="unsetKeyboard()"
+            >
+              <img src="./img/game/navigation/throw.png" alt="Throw" />
+            </button>
+          </div>
         </div>
-
-        <div class="mobile-control-panel-side">
-          <button id="mobile-jump" class="mobile-control-button">
-            <img src="./img/game/navigation/jump.png" alt="Jump" />
-          </button>
-          <button id="mobile-throw" class="mobile-control-button">
-            <img src="./img/game/navigation/throw.png" alt="Throw" />
-          </button>
-        </div>
-      
       </div>
-
     </div>
   </body>
 </html>

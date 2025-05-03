@@ -18,13 +18,13 @@ class World {
     canThrow = true;
     
 
-    BACKGROUND_SOUND = new Audio('./audio/01_game/background/01_humorous-loop-275485.mp3');
+    BACKGROUND_SOUND = new Audio('./audio/01_game/background/humorous_loop.mp3');
     COIN_SOUND_COLLECT = new Audio('./audio/01_game/coin/coins-sound-effect-220030.mp3');
     SWIRL_SOUND_COLLECT = new Audio('./audio/01_game/heart/energy-drink-effect-230559.mp3');
-    BOSS_SOUND_HIT = new Audio('./audio/01_game/explosion/sci-fi-explosion-09-190268.mp3');
-    // BOSS_SOUND_HIT = new Audio('./audio/01_game/explosion/explosion-36210.mp3');
-    WINDMILL_SOUND = new Audio('./audio/02_character/throw/viento-de-ciada-79892.mp3');
-    GAME_SOUND_WIN = new Audio('./audio/01_game/win/01_brass-fanfare-with-timpani-and-winchimes-reverberated-146260.mp3');
+    // BOSS_SOUND_HIT = new Audio('./audio/01_game/explosion/hit_boss.mp3');
+    BOSS_SOUND_HIT = new Audio('./audio/01_game/explosion/hit_boss_2.mp3');
+    WINDMILL_SOUND = new Audio('./audio/01_game/wind/wind.mp3');
+    GAME_SOUND_WIN = new Audio('./audio/01_game/win/level_win.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');

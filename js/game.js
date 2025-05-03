@@ -7,6 +7,7 @@ let isMuted = !true;
 let musicOff = !true;
 
 
+// Initial loading screen
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       document.getElementById('loading-screen').style.display = 'none';
@@ -26,10 +27,20 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     bindMobileButtons();
+
+    setTimeout(() => {
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('wrapper-fullscreen').style.display = 'flex';
+        document.getElementById('mobile-control-panel').classList.remove('d-none');
+      }, 3000);
+
     }
 
 
 function startGame() {
+    document.getElementById('loading-screen').style.display = 'flex';
+    document.getElementById('wrapper-fullscreen').style.display = 'none';
+
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('end-screen').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
@@ -60,37 +71,67 @@ function selectLanguage(selectedLanguage) {
 
 function toggleSound() {
     let icon = document.getElementById('toggle-sound-start');
+    let iconGame = document.getElementById('toggle-sound-game');
+
     isMuted = !isMuted;
 
     if (isMuted) {
         icon.src = 'img/game/navigation/sound_off_x_green.png';
+        iconGame.src = './img/game/navigation/sound_off_x.png';
     } else {
         icon.src = 'img/game/navigation/sound_on_green.png';
+        iconGame.src = './img/game/navigation/sound_on.png';
     }
 }
 
 
 function toggleMusic() {
     let icon = document.getElementById('toggle-music-start');
+    let iconGame = document.getElementById('toggle-music-game');
+
     musicOff = !musicOff;
 
     if (musicOff) {
         icon.src = 'img/game/navigation/music_off_green.png';
+        iconGame.src = './img/game/navigation/music_off.png';
     } else {
         icon.src = 'img/game/navigation/music_on_green.png';
+        iconGame.src = './img/game/navigation/music_on.png';
     }  
+}
+
+
+function toggleMusicInGame() { 
+    let icon = document.getElementById('toggle-music-start');
+    let iconGame = document.getElementById('toggle-music-game');
+
+    musicOff = !musicOff;
+
+    if (musicOff) {
+        icon.src = 'img/game/navigation/music_off_green.png';
+        iconGame.src = './img/game/navigation/music_off.png';
+        world.BACKGROUND_SOUND.pause();
+    } else {
+        icon.src = 'img/game/navigation/music_on_green.png';
+        iconGame.src = './img/game/navigation/music_on.png';
+        world.BACKGROUND_SOUND.play();
+    }  
+
 }
 
 
 function toggleFullScreen() {
     let icon = document.getElementById('toggle-fullscreen');
+    let iconGame = document.getElementById('toggle-fullscreen-game');
     
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
         icon.src = 'img/game/navigation/minimize_green.png';
+        iconGame.src = './img/game/navigation/minimize.png';
     } else if (document.fullscreenElement) {
         document.exitFullscreen();
         icon.src = 'img/game/navigation/maximize_green.png';
+        iconGame.src = './img/game/navigation/maximize.png';
         }
 }
 
@@ -220,6 +261,7 @@ function clearAllIntervals() {
 
 function showEndScreen(result) {
     document.getElementById('end-screen').classList.remove('d-none');
+    document.getElementById('mobile-control-panel').classList.add('d-none');
     if (result === 'win') {
         // ggf. auf Top5-Wert prüfen, sonst ausgrauen
         document.getElementById('enter-score-button').classList.remove('d-none');

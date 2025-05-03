@@ -217,11 +217,12 @@ class Character extends MoveableObject {
   // Variable stellt "Verbindung" zur Welt her
   world;
 
-  CHARACTER_SOUND_WALK = new Audio("audio/02_character/walk/walk_fast_grass.mp3");
-  CHARACTER_SOUND_THROWING = new Audio("audio/02_character/throw/long-whoosh-194554.mp3");
-  CHARACTER_SOUND_HURT = new Audio("audio/02_character/confused/falled-sound-effect-278635.mp3");
+  CHARACTER_SOUND_WALK = new Audio("audio/02_character/walk.mp3");
+  CHARACTER_SOUND_THROWING = new Audio("audio/02_character/throw.mp3");
+  CHARACTER_SOUND_HURT = new Audio("audio/02_character/hurt.mp3");
+  CHARACTER_SOUND_FLY = new Audio("audio/02_character/jump.mp3");
 
-  GAME_SOUND_LOSE = new Audio("audio/01_game/lose/01_level-failed-80951.mp3");
+  GAME_SOUND_LOSE = new Audio("audio/01_game/lose/level_failed.mp3");
 
   constructor() {
     super().loadImage(
@@ -262,6 +263,10 @@ class Character extends MoveableObject {
     }
     if (this.world.keyboard.SPACE && !this.isAboveGround(this.groundLevelCharacter)) {
       this.jump(this.jumpY);
+      if (!isMuted) {
+        this.CHARACTER_SOUND_FLY.currentTime = 0;
+        this.CHARACTER_SOUND_FLY.play();
+      }
     }
   }
 
