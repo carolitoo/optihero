@@ -37,13 +37,14 @@
     <script src="./models/level.class.js"></script>
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
+    <script src="./js/controls.js"></script>
     <script src="./js/selection-character.js"></script>
     <script src="./js/translation.js"></script>
   </head>
 
   <body onload="renderStartScreen()">
     <div id="loading-screen" class="overlay">
-      <div class="loading-spinner">
+      <div id="loading-spinner" class="loading-spinner">
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
@@ -53,7 +54,7 @@
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-      <h1>Loading</h1>
+      <h1>Loading</h1> 
     </div>
 
     <div id="wrapper-fullscreen" class="wrapper-fullscreen d-none">

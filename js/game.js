@@ -7,7 +7,10 @@ let isMuted = !true;
 let musicOff = !true;
 
 
-// Initial loading screen
+/**
+ * This function is called when the page is loaded. 
+ * It sets a timeout to hide the loading screen and shows the intro screen after 4 seconds.
+ */
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       document.getElementById('loading-screen').style.display = 'none';
@@ -16,18 +19,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+/**
+ * This function is called when the homepage is loaded.
+ * It checks the orientation of the device and displays a info in case of potrait mode.
+ * It calls the function to render the character based on the current selection of character.
+ */
 async function renderStartScreen() {
     checkOrientation();
     await renderCharacterSelection();
 }
 
 
+/**
+ * This function initializes the game by setting up the level and creating a new world instance.
+ * It also binds mobile buttons for touch controls and sets a timeout to hide the loading screen and show the main game screen.
+ */
 function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     bindMobileButtons();
 
+    // ERSETZEN DURCH COUNTDOWN
     setTimeout(() => {
         document.getElementById('loading-screen').style.display = 'none';
         document.getElementById('wrapper-fullscreen').style.display = 'flex';
@@ -37,7 +50,12 @@ function init() {
     }
 
 
+/**
+ * This function initiates the game by replacing the start or end screen with the canvas/ game screen.
+ * It also starts a countdown (to be implemented) and initializes the game.
+ */
 function startGame() {
+    // ERSETZEN DURCH COUNTDOWN
     document.getElementById('loading-screen').style.display = 'flex';
     document.getElementById('wrapper-fullscreen').style.display = 'none';
 
@@ -48,12 +66,38 @@ function startGame() {
 }
 
 
+// ANPASSEN
+function countdownStart() {
+    document.getElementById('countdown').classList.remove('d-none');
+    document.getElementById('countdown').innerHTML = '3';
+    setTimeout(() => {
+        document.getElementById('countdown').innerHTML = '2';
+    }, 1000);
+    setTimeout(() => {
+        document.getElementById('countdown').innerHTML = '1';
+    }, 2000);
+    setTimeout(() => {
+        document.getElementById('countdown').classList.add('d-none');
+        startGame();
+    }, 3000);
+}
+
+
+/**
+ * This function is called when the game is restarted.
+ * It stops the current game, resets the level and starts a new game.
+ */
 function restartGame() {
     world.WINDMILL_SOUND.pause();
     startGame();
 }
 
 
+/**
+ * This function stops the game and returns to the start screen.
+ * It is called when the player loses or wins the game.
+ * The current settings are retained (e.g. sound, music, fullscreen).
+ */
 function returnToStart() {
     stopGame();
     document.getElementById('start-screen').classList.remove('d-none');
@@ -64,11 +108,23 @@ function returnToStart() {
 }
 
 
+/**
+ * This function is called when the player selects a language.
+ * It sets the selected language to the global variable 'language'.
+ * 
+ * @param {string} selectedLanguage - The selected language ('DE' or 'EN')
+ */
 function selectLanguage(selectedLanguage) {
     language = selectedLanguage;
 }
 
 
+/**
+ * This function toggles the sound on and off.
+ * It changes the icons of the sound buttons accordingly.
+ * It is called when the player clicks on the sound button on the start screen or in the game.
+ * 
+ */
 function toggleSound() {
     let icon = document.getElementById('toggle-sound-start');
     let iconGame = document.getElementById('toggle-sound-game');
@@ -85,6 +141,12 @@ function toggleSound() {
 }
 
 
+/**
+ * This function toggles the music on and off.
+ * It changes the icons of the music buttons accordingly.
+ * It is called when the player clicks on the sound button on the start screen.
+ * 
+ */
 function toggleMusic() {
     let icon = document.getElementById('toggle-music-start');
     let iconGame = document.getElementById('toggle-music-game');
@@ -101,6 +163,12 @@ function toggleMusic() {
 }
 
 
+/**
+ * This function toggles the music on and off.
+ * It changes the icons of the music buttons accordingly.
+ * It is called when the player clicks on the sound button within the game.
+ * 
+ */
 function toggleMusicInGame() { 
     let icon = document.getElementById('toggle-music-start');
     let iconGame = document.getElementById('toggle-music-game');
@@ -116,10 +184,14 @@ function toggleMusicInGame() {
         iconGame.src = './img/game/navigation/music_on.png';
         world.BACKGROUND_SOUND.play();
     }  
-
 }
 
 
+/**
+ * This function toggles the fullscreen mode on and off.
+ * It changes the icons of the fullscreen buttons accordingly.
+ * It is called when the player clicks on the fullscreen button on the start screen or in the game.
+ */
 function toggleFullScreen() {
     let icon = document.getElementById('toggle-fullscreen');
     let iconGame = document.getElementById('toggle-fullscreen-game');
@@ -136,22 +208,39 @@ function toggleFullScreen() {
 }
 
 
+/**
+ * This function is called when the player clicks on the instructions button on the start screen.
+ * It opens an overlay containing instructions for the game.
+ */
 function openInstructions() {
     document.getElementById('instructions').classList.remove('d-none');
 }
 
 
+/**
+ * This function is called when the player clicks on the controls button on the start screen.
+ * It opens an overlay explaining how the controls have to be used in the game.
+ */
 function openControls() {
     document.getElementById('controls').classList.remove('d-none');
 }
 
 
+/**
+ * This function closes the overlay that is currently opened.
+ * 
+ * @param {string} id - The id of the overlay to be closed. 
+ */
 function closeOverlay(id) {
     document.getElementById(id).classList.add('d-none');
 }
 
 
-  
+/**
+ * This function checks the orientation of the device and displays a warning if it is in portrait mode.
+ * It also checks the width of the window to determine if the warning should be displayed.
+ * It is called when the window is resized or the start page is loaded.
+ */  
 function checkOrientation() {
     if (window.matchMedia("(orientation: portrait)").matches && window.innerWidth < 670) {
     document.getElementById('orientation-warning').classList.remove('d-none');}
@@ -161,91 +250,16 @@ function checkOrientation() {
 }
 
 
+/**
+ * This function adds an event listener and calls the checkOrientation function when the window is resized.
+ */
 window.addEventListener('resize', checkOrientation); 
 
 
-window.addEventListener('keydown', (e) => {
-    checkKey(e.code);
-});
-
-
-window.addEventListener('keyup', () => {
-    unsetKeyboard();
-});
-
-
-function checkKey(code) {
-    switch (code) {
-        // case 'ArrowUp':
-        //     keyboard.UP = true;
-        //     break;
-        case 'ArrowLeft':
-            keyboard.LEFT = true;
-            break;
-        case 'ArrowRight':
-            keyboard.RIGHT = true;
-            break;
-        case 'Space':
-            keyboard.SPACE = true;
-            break;
-        case 'KeyD':
-            keyboard.D = true;
-            break;
-    }
-}
-
-
-function bindMobileButtons() {
-
-    document.getElementById('mobile-left').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.LEFT = true;
-    });
-    document.getElementById('mobile-left').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.LEFT = false;
-    });
-
-    document.getElementById('mobile-right').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.RIGHT = true;
-    });
-    document.getElementById('mobile-right').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.RIGHT = false;
-    });
-
-    document.getElementById('mobile-jump').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = true;
-    });
-
-    document.getElementById('mobile-jump').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.SPACE = false;
-    });
-
-    document.getElementById('mobile-throw').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard.D = true;
-    });
-
-    document.getElementById('mobile-throw').addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard.D = false;
-    });
-}
-
-
-function unsetKeyboard() {
-    // keyboard.UP = false;
-    keyboard.LEFT = false;
-    keyboard.RIGHT = false;
-    keyboard.SPACE = false;
-    keyboard.D = false;
-}
-
-
+/**
+ * This function stops the game.
+ * It also stops the background music and windmill sound.
+ */
 function stopGame() {
     clearAllIntervals();
     world.level.playClock[0].stopClock();
@@ -254,11 +268,23 @@ function stopGame() {
 }
 
 
+/**
+ * This function clears all intervals that are set in the game.
+ * It is used to stop all animations and timers when the game is stopped.
+ * It iterates through all possible interval IDs (1 to 9999) and clears them.
+ */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
   }
 
 
+/**
+ * 
+ * This function is called when the game ends (win or lose) and shows the end screen. 
+ * In case of a win it checks if the player has reached a top score that can be entered (to be implemented).
+ * 
+ * @param {string} result - The result of the game ('win' or 'lose').
+ */
 function showEndScreen(result) {
     document.getElementById('end-screen').classList.remove('d-none');
     document.getElementById('mobile-control-panel').classList.add('d-none');
@@ -269,7 +295,5 @@ function showEndScreen(result) {
         document.getElementById('enter-score-button').classList.add('d-none');
     }
 }
-
-
 
 
