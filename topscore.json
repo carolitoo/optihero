@@ -1,0 +1,32 @@
+[
+    {
+        "position": 1,
+        "name": "Hugo",
+        "timeInSeconds": 15,
+        "coins": 5
+    },
+    {
+        "position": 2,
+        "name": "Maria",
+        "timeInSeconds": 18,
+        "coins": 3
+    },
+    {
+        "position": 3,
+        "name": "Selma",
+        "timeInSeconds": 25,
+        "coins": 5
+    },
+    {
+        "position": 4,
+        "name": "Ian",
+        "timeInSeconds": 25,
+        "coins": 4
+    },
+    {
+        "position": 5,
+        "name": "Elli",
+        "timeInSeconds": 32,
+        "coins": 6
+    } 
+]

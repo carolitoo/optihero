@@ -76,7 +76,6 @@ function countdownStart() {
     document.getElementById('loading-text').innerHTML = '3';
     setTimeout(() => {document.getElementById('loading-text').innerHTML = '2';}, 1000);
     setTimeout(() => {document.getElementById('loading-text').innerHTML = '1';}, 2000);
-    // setTimeout(() => {document.getElementById('loading-text').innerHTML = 'Good luck!';}, 3000);
     if (language === 'DE') {
         setTimeout(() => {document.getElementById('loading-text').innerHTML = 'Viel Erfolg!';}, 3000);
     }
@@ -84,8 +83,6 @@ function countdownStart() {
         setTimeout(() => {document.getElementById('loading-text').innerHTML = 'Good luck!';}, 3000);
     }
 }
-
-
 
 
 /**
@@ -274,9 +271,8 @@ function stopGame() {
 
 
 /**
- * This function clears all intervals that are set in the game.
+ * This function clears all intervals that are set in the game by iterating through all possible interval IDs (1 to 9999).
  * It is used to stop all animations and timers when the game is stopped.
- * It iterates through all possible interval IDs (1 to 9999) and clears them.
  */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);

@@ -16,6 +16,8 @@ class World {
     thrownObjects = [];
     endBanner = [];
     canThrow = true;
+
+    timeScore = 0;
     
 
     BACKGROUND_SOUND = new Audio('./audio/01_game/background/humorous_loop.mp3');
@@ -234,17 +236,10 @@ class World {
             showEndScreen('win');
         }, 5000);
 
-        let timeScore = this.level.playClock[0].secondsPassed;
-        // this.checkTopScore(timeScore, this.coins);
+        this.timeScore = this.level.playClock[0].secondsPassed;
+        checkTopScore(this.timeScore, this.coins);
     }
 
-
-    // checkTopScore(timeScore, coinScore) {
-    //     let topScore = this.level.fixedObjects[2].getTopScore();
-    //     if (timeScore < topScore.time || coinScore > topScore.coins) {
-    //         this.level.fixedObjects[2].setTopScore(timeScore, coinScore);
-    //     }
-    // }
 
     removeAllItems() {
         this.level.coins = [];
