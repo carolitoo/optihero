@@ -261,9 +261,9 @@ p {
 
 .headline-overlay {
   width: 70%;
-  font-size: 48px;
-  margin-top: -20px;
-  margin-bottom: 32px;
+  font-size: 42px;
+  margin-top: -48px;
+  margin-bottom: 24px;
   color: #8FD8C6;
 }
 
@@ -459,6 +459,11 @@ p {
 
   .start-screen {
     width: 100%;
+  }
+
+  .headline-overlay {
+    font-size: 32px;
+
   }
 
   .mobile-control-panel {

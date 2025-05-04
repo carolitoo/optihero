@@ -21,8 +21,7 @@ class World {
     BACKGROUND_SOUND = new Audio('./audio/01_game/background/humorous_loop.mp3');
     COIN_SOUND_COLLECT = new Audio('./audio/01_game/coin/coins-sound-effect-220030.mp3');
     SWIRL_SOUND_COLLECT = new Audio('./audio/01_game/heart/energy-drink-effect-230559.mp3');
-    // BOSS_SOUND_HIT = new Audio('./audio/01_game/explosion/hit_boss.mp3');
-    BOSS_SOUND_HIT = new Audio('./audio/01_game/explosion/hit_boss_2.mp3');
+    BOSS_SOUND_HIT = new Audio('./audio/03_enemies/hit_boss.mp3');
     WINDMILL_SOUND = new Audio('./audio/01_game/wind/wind.mp3');
     GAME_SOUND_WIN = new Audio('./audio/01_game/win/level_win.mp3');
 
@@ -38,17 +37,27 @@ class World {
 
     setWorld() {
         this.character.world = this;
+        setTimeout(() => {
+            this.playBackgroundSound();
+        }, 4000);
+        this.setClickableObjects();
+        this.implementEventListener();
+    }
+
+
+    /**
+     * This function checks if the music is turned on. In this case starts the background sound of the game.
+     * It also sets the volume, makes it loop and resets the current time to 0.
+     * 
+     */
+    playBackgroundSound() {
         if (!musicOff) {
             this.BACKGROUND_SOUND.volume = 0.3;
             this.BACKGROUND_SOUND.loop = true;
             this.BACKGROUND_SOUND.currentTime = 0;
-            setTimeout(() => {
-                this.BACKGROUND_SOUND.play();
-            }, 4000);
-        }
-        this.setClickableObjects();
-        this.implementEventListener();
+            this.BACKGROUND_SOUND.play();
     }
+}
 
 
     setClickableObjects() {
@@ -93,24 +102,24 @@ class World {
 
 
      /**
-      * function starts the game loop
+      * This function starts the game loop and the play clock (after the countdown has finished).
       */
     run() {
-        setInterval(() => {
-            this.checkCollisions();
-            this.checkThrowObjects();
-            this.checkFirstContact();
-        }, 50);
         setTimeout(() => {
+            setInterval(() => {
+                this.checkCollisions();
+                this.checkThrowObjects();
+                this.checkFirstContact();
+            }, 50);
             this.level.playClock[0].startClock();
         }, 4000);
     }
 
 
-/**
- * function checks if the first contact with the boss and the shooter has been made
- * if the first contact with the shooter has been made, the loop for shooting bubbles is started
- */
+    /**
+    * This function checks if the first contact with the boss and the shooter has been made.
+    * If the first contact with the shooter has been made, the loop for shooting bubbles is started.
+    */
     checkFirstContact() {
         this.level.enemies.forEach((enemy) => {
             if ((enemy.x + enemy.adjustFrameX) - (this.character.x + this.character.adjustedWidth + this.character.adjustFrameX) < 450 && (enemy instanceof Boss || enemy instanceof Shooter)) {
@@ -144,7 +153,7 @@ class World {
 
 
     /**
-     * function checks if the character collides with an enemy or a collectable object
+     * This function checks if the character collides with an enemy or a collectable object.
      */
     checkCollisions() {
         this.checkCollisionEnemy();
@@ -154,30 +163,12 @@ class World {
     }
 
 
-
-    // checkHitSwirl() {
-    //     this.thrownObjects.forEach((to) => {
-    //         this.level.enemies.forEach((enemy) => {
-    //             if (to.isColliding(enemy)) {
-    //                 enemy.hit(20);
-    //                 to.removeThrownObject(to.thrownObjectId);
-    //                 if (enemy instanceof Boss) {
-    //                     if (!isMuted) {
-    //                         this.BOSS_SOUND_HIT.currentTime = 0;
-    //                         this.BOSS_SOUND_HIT.play();
-    //                     }
-    //                 }   
-    //                 if (enemy.isDead()) {
-    //                     let enemyIndex = enemy.findIndexOfEnemey(enemy.enemyId);
-    //                     enemy.removeEnemy(enemyIndex);
-    //                     enemy.animateDissapearanceOfEnemy(enemy);
-    //                 } 
-    //             }
-    //         })
-    //     })
-    // }
-
-
+    /**
+     * This function checks if the thrown object (swirl) hits an enemy.
+     * It checks if the thrown object is colliding with an enemy and if so, it removes the thrown object and reduces the energy of the enemy.
+     * If the enemy is the boss, it calls the handlingHitBoss function.
+     * If the enemy is dead, it calls the handlingDeadEnemy function (passing the dead enemy as parameter).
+     */ 
     checkHitSwirl() {
         this.thrownObjects.forEach((to) => {
             this.level.enemies.forEach((enemy) => {
@@ -196,6 +187,10 @@ class World {
     }
 
 
+    /**
+     * This function handles the sound when the boss is hit.
+     * It plays the sound (after reseting the current time to 0 to ensure the sound is played from the beginning).
+     */
     handlingHitBoss() {
         if (!isMuted) {
             this.BOSS_SOUND_HIT.currentTime = 0;
@@ -204,14 +199,22 @@ class World {
     }
 
 
+    /**
+     * This function handles the case when an enemy is dead.
+     * It removes the enemy from the array and plays the animation for the disappearance of the respective enemy.
+     * If the dead enemy is the boss, it also calls the win function.
+     * 
+     * @param {object} enemy - The enemy that is dead. 
+     */
     handlingDeadEnemy(enemy) {
         if (enemy instanceof Boss) {
             enemy.animateDissapearanceOfBoss(enemy);
             this.win(enemy);
+        } else {
+            enemy.animateDissapearanceOfSmallEnemy(enemy);
         }
         let enemyIndex = enemy.findIndexOfEnemey(enemy.enemyId);
         enemy.removeEnemy(enemyIndex);
-        enemy.animateDissapearanceOfSmallEnemy(enemy);
     }
 
 
@@ -405,9 +408,6 @@ class World {
         requestAnimationFrame(() => {
             self.draw()});
     }
-
-
-
 
 
 

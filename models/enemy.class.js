@@ -7,9 +7,9 @@ class Enemy extends MoveableObject {
   hadFirstContact = false;
 
 
-  ENEMY_SMALL_SOUND_KILL = new Audio('audio/01_game/explosion/kill_small_enemy.mp3');
+  ENEMY_SMALL_SOUND_KILL = new Audio('audio/03_enemies/kill_small_enemy.mp3');
   ENEMY_SMALL_SOUND_SHRINK = new Audio('audio/03_enemies/shrink_enemy.mp3');
-  BOSS_SOUND_KILL = new Audio('audio/01_game/explosion/kill_boss.mp3');
+  BOSS_SOUND_KILL = new Audio('audio/03_enemies/kill_boss.mp3');
 
 
   shrink(enemyId) {
