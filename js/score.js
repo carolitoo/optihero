@@ -182,6 +182,11 @@ function askForPlayerName() {
 }
 
 
+/**
+ * This function adjusts the positions of the top scores in the array.
+ * It starts from the first position and checks if the current score is equal to the previous one.
+ * If they are equal, it assigns the same position to the current score. Otherwise, it assigns the next position.
+ */
 async function adjustTopScorePositions() {
     topScore[0].position = 1;
     for (let i = 1; i < topScore.length; i++) {
@@ -194,14 +199,65 @@ async function adjustTopScorePositions() {
 }
 
 
-function showTopScore() {
-    document.getElementById('list-top-scores').classList.remove('d-none');
+async function showTopScore() {
+    const scoreTable = document.getElementById('table-top-scores')
+    scoreTable.innerHTML = '';
+    scoreTable.innerHTML += await createTableHeaderHTML();
 
-    // for (let i = 0; i < topScore.length; i++) {
-    //     let scoreItem = document.createElement('li');
-    //     scoreItem.innerHTML = `${topScore[i].position}. ${topScore[i].name} - ${topScore[i].timeInSeconds}s - ${topScore[i].coins} coins`;
-    //     topScoreList.appendChild(scoreItem);
-    // }
+    for (let i = 0; i < 5; i++) {
+        if (i < topScore.length) {
+            scoreTable.innerHTML += await createFilledScoreElementHTML(i);
+        } else {
+            scoreTable.innerHTML += await createEmptyScoreElementHTML(i);
+        }
+    }
+
+    document.getElementById('list-top-scores').classList.remove('d-none');
 }
 
 
+async function createTableHeaderHTML() {
+    let playerPosition;
+    let playerName;
+
+    if (selectLanguage === 'de') {
+        playerPosition = 'Platz';
+        playerName = 'Name';
+    } else if (selectLanguage === 'en') {
+        playerPosition = 'Position';
+        playerName = 'Name';
+    }
+    
+    return `
+        <tr>
+            <th>${playerPosition}</th>
+            <th>${playerName}</th>
+            <th><img ZEIT></th>
+            <th><img COINS></th>
+        </tr>`;
+}
+    
+
+
+
+async function createFilledScoreElementHTML(i) {
+    return `
+    <tr>
+        <th>${topScore[i].position}.</th>
+        <th>${topScore[i].name}</th>
+        <th>${topScore[i].timeInSeconds}</th>
+        <th>${topScore[i].coins}</th>
+    </tr>`;
+}
+
+
+async function createEmptyScoreElementHTML(i) {
+    return `
+    <tr>
+        <th>-</th>
+        <th>...</th>
+        <th>-:-</th>
+        <th>-</th>
+    </tr>`;
+
+}

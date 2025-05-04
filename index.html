@@ -43,7 +43,7 @@
     <script src="./js/translation.js"></script>
   </head>
 
-  <body onload="renderStartScreen()">
+  <body onload="renderStartScreen(), getTopScoreFromLocalStorage()">
     <div id="loading-screen" class="overlay">
       <div id="loading-spinner" class="loading-spinner">
         <div class="dot"></div>
@@ -202,6 +202,15 @@
               BELEGUNG <br />
               TASTEN
             </button>
+            <button
+              onclick="showTopScore()"
+              class="button start-button width-score-button"
+            >
+            <img 
+              class="img-task-bar"
+              src="./img/game/end/enter_score.png"
+              alt="Top 5">
+            </button>
           </div>
         </div>
       </div>
@@ -353,17 +362,9 @@
               onclick="closeOverlay('list-top-scores')"
             />
           </div>
-          <!-- // ÜBERSETZEN -->
-          <div id="list-top-scores-headline" class="headline-overlay">Bestenliste</div>
-          <!-- // ÜBERSETZEN -->
-          <!-- <div id="list-top-scores-subheadline" class="subheadline-overlay">Die besten Spieler</div> -->
-           <!-- was passiert bei leeren feldern? -->
-          <div class="single-top-scores-container">
-            <div class="single-top-scores-position">1</div>
-            <div class="single-top-scores-name">Name</div>
-            <div class="single-top-scores-time">1:30</div>
-            <div class="single-top-scores-coins">6</div> 
-          </div>
+          <div id="list-top-scores-headline" class="headline-overlay">Top 5</div>
+
+          <table id="table-top-scores" class="table-top-scores"></table> 
         </div>
       </div>
 
