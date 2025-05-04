@@ -224,6 +224,7 @@ class World {
         this.level.playClock[0].stopClock();
         this.BACKGROUND_SOUND.pause();
         this.cameraFrozen = true;
+        this.timeScore = this.level.playClock[0].secondsPassed;
 
         this.replaceByWindmills(enemy);
         this.playWinSound();
@@ -233,11 +234,8 @@ class World {
             this.showBanner('win',language);
         }, 400);
         setTimeout(() => {
-            showEndScreen('win');
+            showEndScreen('win', this.timeScore, this.coins);
         }, 5000);
-
-        this.timeScore = this.level.playClock[0].secondsPassed;
-        checkTopScore(this.timeScore, this.coins);
     }
 
 

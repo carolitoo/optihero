@@ -294,7 +294,7 @@
 
       <div id="end-screen" class="end-screen d-none">
         <button
-          onclick="enterScore()"
+          onclick="addNewTopScore(index, position, time, coins)"
           id="enter-score-button"
           class="button end-button"
         >
@@ -303,7 +303,19 @@
             src="./img/game/end/enter_score.png"
             alt="Enter Score"
           />
-          <p id="enter-score-button-label">ZUR BESTENLISTE</p>
+          <p id="enter-score-button-label">EINTRAG BESTENLISTE</p>
+        </button>
+        <button
+          onclick="showTopScore()"
+          id="show-score-button"
+          class="button end-button"
+        >
+          <img
+            class="icon-end-screen"
+            src="./img/game/end/enter_score.png"
+            alt="Show Score"
+          />
+          <p id="show-score-button-label">ANZEIGE BESTENLISTE</p>
         </button>
         <button
           onclick="restartGame()"
@@ -329,6 +341,30 @@
           />
           <p id="return-to-start-button-label">ZURÜCK ZUM START</p>
         </button>
+      </div>
+
+      <div id="list-top-scores" class="overlay d-none" onclick="closeOverlay('list-top-scores')">
+        <div class="overlay-content">
+          <div class="container-close-overlay">
+            <img
+              class="img-close-overlay"
+              src="./img/game/end/exit_game.png"
+              alt="Close Overlay"
+              onclick="closeOverlay('list-top-scores')"
+            />
+          </div>
+          <!-- // ÜBERSETZEN -->
+          <div id="list-top-scores-headline" class="headline-overlay">Bestenliste</div>
+          <!-- // ÜBERSETZEN -->
+          <!-- <div id="list-top-scores-subheadline" class="subheadline-overlay">Die besten Spieler</div> -->
+           <!-- was passiert bei leeren feldern? -->
+          <div class="single-top-scores-container">
+            <div class="single-top-scores-position">1</div>
+            <div class="single-top-scores-name">Name</div>
+            <div class="single-top-scores-time">1:30</div>
+            <div class="single-top-scores-coins">6</div> 
+          </div>
+        </div>
       </div>
 
       <div class="container-game">

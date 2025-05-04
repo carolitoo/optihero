@@ -285,15 +285,24 @@ function clearAllIntervals() {
  * In case of a win it checks if the player has reached a top score that can be entered (to be implemented).
  * 
  * @param {string} result - The result of the game ('win' or 'lose').
+ * @param {number} timeScore - The time score of the game.
+ * @param {number} coins - The number of coins collected in the game.
  */
-function showEndScreen(result) {
+async function showEndScreen(result, timeScore, coins) {
     document.getElementById('end-screen').classList.remove('d-none');
     document.getElementById('mobile-control-panel').classList.add('d-none');
     if (result === 'win') {
-        // ggf. auf Top5-Wert prüfen, sonst ausgrauen
-        document.getElementById('enter-score-button').classList.remove('d-none');
+        await checkTopScore(timeScore, coins);
+        if (isTopScore) {
+            document.getElementById('enter-score-button').classList.remove('d-none');
+            document.getElementById('show-score-button').classList.add('d-none');
+        } else {
+            document.getElementById('enter-score-button').classList.add('d-none');
+            document.getElementById('show-score-button').classList.remove('d-none');
+        }
     } else {
         document.getElementById('enter-score-button').classList.add('d-none');
+        document.getElementById('show-score-button').classList.add('d-none');
     }
 }
 

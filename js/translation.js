@@ -5,7 +5,8 @@ function translateEN() {
     document.getElementById('how-to-play-button').innerHTML = `HOW TO<br>PLAY`;
     document.getElementById('control-button').innerHTML = `SHOW<br>CONTROLS`;
 
-    document.getElementById('enter-score-button-label').innerHTML = `ENTER SCORE`;
+    document.getElementById('enter-score-button-label').innerHTML = `ENTER TOP SCORE`;
+    document.getElementById('show-score-button-label').innerHTML = `SHOW TOP SCORES`;
     document.getElementById('restart-button-label').innerHTML = `PLAY AGAIN!`;
     document.getElementById('return-to-start-button-label').innerHTML = `RETURN TO START`;
 
@@ -39,7 +40,8 @@ function translateDE() {
     document.getElementById('how-to-play-button').innerHTML = `INFO ZUM<br>SPIEL`;
     document.getElementById('control-button').innerHTML = `BELEGUNG<br>TASTEN`;
 
-    document.getElementById('enter-score-button-label').innerHTML = `ZUR BESTENLISTE`;
+    document.getElementById('enter-score-button-label').innerHTML = `EINTRAG BESTENLISTE`;
+    document.getElementById('show-score-button-label').innerHTML = `ANZEIGE BESTENLISTE`;
     document.getElementById('restart-button-label').innerHTML = `NOCHMAL SPIELEN!`;
     document.getElementById('return-to-start-button-label').innerHTML = `ZURÜCK ZUM START`;
 
