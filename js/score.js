@@ -199,6 +199,7 @@ async function adjustTopScorePositions() {
 }
 
 
+
 async function showTopScore() {
     const scoreTable = document.getElementById('table-top-scores')
     scoreTable.innerHTML = '';
@@ -216,14 +217,15 @@ async function showTopScore() {
 }
 
 
+
 async function createTableHeaderHTML() {
     let playerPosition;
     let playerName;
 
-    if (selectLanguage === 'de') {
+    if (language === 'DE') {
         playerPosition = 'Platz';
         playerName = 'Name';
-    } else if (selectLanguage === 'en') {
+    } else if (language === 'EN') {
         playerPosition = 'Position';
         playerName = 'Name';
     }
@@ -232,32 +234,32 @@ async function createTableHeaderHTML() {
         <tr>
             <th>${playerPosition}</th>
             <th>${playerName}</th>
-            <th><img ZEIT></th>
-            <th><img COINS></th>
+            <th><img src="./img/game/navigation/timer_white.png" class="table-img"></th>
+            <th><img src="./img/game/navigation/coin_score.png" class="table-img"></th>
         </tr>`;
 }
     
 
 
-
 async function createFilledScoreElementHTML(i) {
     return `
     <tr>
-        <th>${topScore[i].position}.</th>
-        <th>${topScore[i].name}</th>
-        <th>${topScore[i].timeInSeconds}</th>
-        <th>${topScore[i].coins}</th>
+        <td>${topScore[i].position}.</td>
+        <td>${topScore[i].name}</td>
+        <td>${topScore[i].timeInSeconds}</td>
+        <td>${topScore[i].coins}</td>
     </tr>`;
 }
+
 
 
 async function createEmptyScoreElementHTML(i) {
     return `
     <tr>
-        <th>-</th>
-        <th>...</th>
-        <th>-:-</th>
-        <th>-</th>
+        <td>-</td>
+        <td>...</td>
+        <td>-:-</td>
+        <td>-</td>
     </tr>`;
 
 }

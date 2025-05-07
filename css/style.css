@@ -370,6 +370,19 @@ p {
   gap: 12px;
 }
 
+.table-top-scores {
+  font-size: 32px;
+}
+
+th, td {
+  padding: 4px 12px;
+  text-align: right;
+}
+
+.table-img {
+  width: 54px;
+  height: 54px;
+}
 
 .container-game {
   position: relative;
