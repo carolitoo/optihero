@@ -249,6 +249,14 @@ class World {
     }
 
 
+    /**
+     * This function shows the end banner after the game is finished.
+     * It creates a new FixedObject with the image of the end banner and adds it to the endBanner array.
+     * It takes the status (win or lose) and the language as parameters to determine which image to show.
+     * 
+     * @param {string} status - The status of the game (win or lose).
+     * @param {string} language - The language of the game (DE or EN).
+     */
     showBanner(status, language) {
         this.endBanner.push(new FixedObject(`img/game/end/${status}_${language}.png`, false, 'none', 200, 150, 400, 100));
     }

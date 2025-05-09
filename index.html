@@ -352,6 +352,36 @@
         </button>
       </div>
 
+      <div id="enter-top-score" class="overlay" onclick="closeOverlay('enter-top-score')">
+        <div class="overlay-content" onclick="event.stopPropagation()">
+          <div class="container-close-overlay">
+            <img
+              class="img-close-overlay"
+              src="./img/game/end/exit_game.png"
+              alt="Close Overlay"
+              onclick="closeOverlay('enter-top-score')"
+            />
+          </div>
+          <div id="enter-top-score-headline" class="headline-overlay">Herzlichen Glückwunsch!</div>
+          <!-- Korrekte Funktion ergänzen -->
+          <form id="container-input-score" class="container-input-score" onsubmit="doSomething(); return false;">
+            <label for="input-player-name" id="label-input-player-name" class="label-input-player-name">Du hast den 3. Platz erreicht.</label>
+            <input
+              id="input-player-name"
+              class="input-player-name"
+              type="text"
+              placeholder="Gib deinen Namen ein"
+              required
+              maxlength="20"
+              onfocus="this.placeholder = ''"
+              onblur="this.placeholder = 'Gib deinen Namen ein'">
+            <button id="submit-score-btn" type="submit" class="button">
+              SPEICHERN
+            </button>
+          </form>
+        </div>
+      </div>
+
       <div id="list-top-scores" class="overlay d-none" onclick="closeOverlay('list-top-scores')">
         <div class="overlay-content">
           <div class="container-close-overlay">

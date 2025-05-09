@@ -23,12 +23,15 @@ class Windmill extends MoveableObject {
     }
 
 
+    /**
+     * This function plays the animation of the windmill (in case of a win).
+     * It changes the image of the windmill every 120 milliseconds.
+     */
     animateWindmill() {
         setInterval(() => {
             this.playAnimation(this.WINDMILL_IMAGE);
         }, 120);
     }
-
 
 
 }

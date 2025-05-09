@@ -35,6 +35,10 @@ class Coin extends MoveableObject {
     }
 
 
+    /**
+     * This function plays the animation of the coin.
+     * It changes the image of the coin every 200 milliseconds.
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.COIN_IMAGE);

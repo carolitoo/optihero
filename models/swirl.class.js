@@ -32,6 +32,10 @@ class Swirl extends MoveableObject {
     }
 
 
+    /**
+     * This function plays the animation of the swirl.
+     * It changes the image of the swirl every 200 milliseconds.
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.SWIRL_IMAGE);

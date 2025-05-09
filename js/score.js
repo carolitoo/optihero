@@ -30,9 +30,12 @@ let topScore = [
         "coins": 6
     } 
 ];
+
 let topScoreAsText;
 let isTopScore = false;
+let maxTopScores = 5;
 let positionScore = 999;
+let playerName;
 
 
 /**
@@ -105,7 +108,7 @@ async function handleEmptyTopScore(timeInSeconds, coins) {
 async function handleExistingTopScore(timeInSeconds, coins) {
     await getScorePosition(timeInSeconds, coins);
 
-    if (positionScore <= topScore.length) {
+    if (positionScore <= maxTopScores) {
         isTopScore = true;
         document.getElementById('enter-score-button').onclick = () => {
             addNewTopScore(positionScore - 1, positionScore, timeInSeconds, coins);
@@ -119,6 +122,7 @@ async function handleExistingTopScore(timeInSeconds, coins) {
 /**
  * This function retrieves the position of the new score in the top score list.
  * It compares the new score with the existing scores and finds the right position for it.
+ * If the new score is worse than the existing scores, but there are no 5 scores available yet, it extends the array.
  * If the new score is not a top score, it keeps the default value (999).
  * 
  * @param {number} timeInSeconds - The time in seconds of the new score
@@ -127,7 +131,6 @@ async function handleExistingTopScore(timeInSeconds, coins) {
 async function getScorePosition(timeInSeconds, coins) {
     positionScore = 999; 
     for (let i = 0; i < topScore.length; i++) {
-        // PRÜFEN, FKT. NOCH NICHT RICHTIG
         if (timeInSeconds < topScore[i].timeInSeconds) {
             positionScore = i + 1;
             break;
@@ -136,10 +139,13 @@ async function getScorePosition(timeInSeconds, coins) {
             break;
         } 
     }
+    if (positionScore === 999 && topScore.length < maxTopScores) {
+        positionScore = topScore.length + 1;
+    }
 }
 
 
-/**
+/** TO BE REVIEWED/ ADJUSTED
  * This function adds a new top score to the top score array.
  * It asks the user for their name and creates a new score object.
  * It then adds the new score at the right position of top score array and removes the last entry if the array length exceeds 5.
@@ -151,34 +157,55 @@ async function getScorePosition(timeInSeconds, coins) {
  * @param {number} coins - The number of coins of the new score
  */
 async function addNewTopScore(index, position, timeInSeconds, coins) {
-    const playerName = await askForPlayerName();
-    const newScore = {
-        "position": position,
-        "name": playerName,
-        "timeInSeconds": timeInSeconds,
-        "coins": coins
-    };
+    // const playerName = await askForPlayerName();
+    playerName = await askForPlayerName();
 
-    topScore.splice(index, 0, newScore);
-    if (topScore.length > 5) {
-        topScore.pop();
+    if (!playerName) {
+        // Abbruch
+    } else {
+        const newScore = {
+            "position": position,
+            "name": playerName,
+            "timeInSeconds": timeInSeconds,
+            "coins": coins
+        };
+        await updateTopScoreArray(index, newScore);
+        setTopScoreToLocalStorage();
     }
-    await adjustTopScorePositions();
-    setTopScoreToLocalStorage();
 }
 
+
+// async function askForPlayerName() {
+//     showInputPlayerName();
+
+// }
 
 
 // ANPASSEN // GGF. TASTATUR ZURÜCKSETZEN (wegen "D")
 function askForPlayerName() {
     return new Promise((resolve) => {
-        const playerName = prompt("Please enter your name:");
-        if (playerName) {
-            resolve(playerName);
+        const playerNameInput = prompt("Please enter your name:");
+        if (playerNameInput) {
+            resolve(playerNameInput);
         } else {
             resolve("Anonymous");
         }
     });
+}
+
+
+
+function showInputPlayerName() {
+    document.getElementById('enter-top-score').classList.remove('d-none');
+}
+
+
+async function updateTopScoreArray(index, newScore) {
+    topScore.splice(index, 0, newScore);
+    if (topScore.length > 5) {
+        topScore.pop();
+    }
+    await adjustTopScorePositions();
 }
 
 
@@ -207,9 +234,10 @@ async function showTopScore() {
 
     for (let i = 0; i < 5; i++) {
         if (i < topScore.length) {
-            scoreTable.innerHTML += await createFilledScoreElementHTML(i);
+            let formattedTime = await formatTime(topScore[i].timeInSeconds);
+            scoreTable.innerHTML += await createFilledScoreElementHTML(i, formattedTime);
         } else {
-            scoreTable.innerHTML += await createEmptyScoreElementHTML(i);
+            scoreTable.innerHTML += await createEmptyScoreElementHTML();
         }
     }
 
@@ -217,49 +245,79 @@ async function showTopScore() {
 }
 
 
-
+/**
+ * This function creates the header of the score table.
+ * 
+ * @returns {string} - The HTML string for the table header
+ */
 async function createTableHeaderHTML() {
-    let playerPosition;
-    let playerName;
-
-    if (language === 'DE') {
-        playerPosition = 'Platz';
-        playerName = 'Name';
-    } else if (language === 'EN') {
-        playerPosition = 'Position';
-        playerName = 'Name';
-    }
-    
     return `
         <tr>
-            <th>${playerPosition}</th>
-            <th>${playerName}</th>
-            <th><img src="./img/game/navigation/timer_white.png" class="table-img"></th>
-            <th><img src="./img/game/navigation/coin_score.png" class="table-img"></th>
+            <th>Pos.</th>
+            <th class="ta-left">Name</th>
+            <th><img src="./img/game/navigation/timer_white.png" class="table-img-timer"></th>
+            <th><img src="./img/game/navigation/coin_score.png" class="table-img-coin"></th>
         </tr>`;
 }
     
 
-
-async function createFilledScoreElementHTML(i) {
+/**
+ * This function creates the HTML for a filled score element in the table.
+ * It takes the index of the score and the formatted time as parameters.
+ * 
+ * @param {number} i - The index of the score in the top score array 
+ * @param {number} formattedTime - The formatted time string in the format mm:ss 
+ * @returns {string} - The HTML string for the filled score element
+ */
+async function createFilledScoreElementHTML(i, formattedTime) {
     return `
     <tr>
-        <td>${topScore[i].position}.</td>
-        <td>${topScore[i].name}</td>
-        <td>${topScore[i].timeInSeconds}</td>
+        <td>${topScore[i].position}</td>
+        <td class="ta-left">${topScore[i].name}</td>
+        <td>${formattedTime}</td>
         <td>${topScore[i].coins}</td>
     </tr>`;
 }
 
 
-
-async function createEmptyScoreElementHTML(i) {
+/**
+ * This function creates the HTML for an empty score element in the table.
+ * It is used when there are less than 5 scores in the top score array.
+ * 
+ * @returns {string} - The HTML string for the empty score element
+ */
+async function createEmptyScoreElementHTML() {
     return `
     <tr>
         <td>-</td>
-        <td>...</td>
+        <td class="ta-left">...</td>
         <td>-:-</td>
         <td>-</td>
     </tr>`;
+}
 
+
+/**
+ * This function formats the time in seconds into a string of the format mm:ss.
+ * It uses the twoDigits function to ensure that both minutes and seconds are always two digits long.
+ * 
+ * @param {number} seconds - The time in seconds to be formatted
+ * @returns {string} - The formatted time string in the format mm:ss
+ */
+async function formatTime (seconds) {
+    let minutes = Math.floor(seconds / 60);
+    let secondsLeft = seconds % 60;
+    return `${twoDigits(minutes)}:${twoDigits(secondsLeft)}`;
+}
+
+
+/**
+ * This function takes a number and returns it as a string with at least two digits.
+ * If the number is less than 10, it will be padded with a leading zero.
+ * 
+ * @param {number} digit - The number to be formatted
+ * @returns {string} - The formatted number as a string with at least two digits
+ */
+function twoDigits(digit) {
+    return digit.toString().padStart(2, "0");
 }

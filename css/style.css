@@ -49,6 +49,14 @@ p {
   margin: 0;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
 .start-screen {
   width: 720px;
   height: 480px;
@@ -375,13 +383,24 @@ p {
 }
 
 th, td {
-  padding: 4px 12px;
+  padding: 4px 32px;
   text-align: right;
 }
 
-.table-img {
+.ta-left {
+  text-align: left !important;
+  padding-left: 40px !important;
+}
+
+.table-img-timer {
   width: 54px;
   height: 54px;
+}
+
+.table-img-coin {
+  width: 48px;
+  height: 48px;
+  margin-right: -12px;
 }
 
 .container-game {
