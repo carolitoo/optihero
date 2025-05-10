@@ -123,9 +123,8 @@ function selectLanguage(selectedLanguage) {
 
 /**
  * This function toggles the sound on and off.
- * It changes the icons of the sound buttons accordingly.
+ * It calls a function to change the icons of the sound buttons accordingly (including hover effect).
  * It is called when the player clicks on the sound button on the start screen or in the game.
- * 
  */
 function toggleSound() {
     let icon = document.getElementById('toggle-sound-start');
@@ -134,20 +133,19 @@ function toggleSound() {
     isMuted = !isMuted;
 
     if (isMuted) {
-        icon.src = 'img/game/navigation/sound_off_x_green.png';
-        iconGame.src = './img/game/navigation/sound_off_x.png';
+        setIconSources(icon, './img/game/navigation/sound_off_x_turquoise.png', './img/game/navigation/sound_off_x_turquoise_hover.png')
+        setIconSources(iconGame, './img/game/navigation/sound_off_x.png', './img/game/navigation/sound_off_x_hover.png')
     } else {
-        icon.src = 'img/game/navigation/sound_on_green.png';
-        iconGame.src = './img/game/navigation/sound_on.png';
+        setIconSources(icon, './img/game/navigation/sound_on_turquoise.png', './img/game/navigation/sound_on_turquoise_hover.png')
+        setIconSources(iconGame, './img/game/navigation/sound_on.png', './img/game/navigation/sound_on_hover.png')
     }
 }
 
 
 /**
  * This function toggles the music on and off.
- * It changes the icons of the music buttons accordingly.
- * It is called when the player clicks on the sound button on the start screen.
- * 
+ * It calls a function to change the icons of the music buttons accordingly (including hover effect).
+ * It is called when the player clicks on the music button on the start screen.
  */
 function toggleMusic() {
     let icon = document.getElementById('toggle-music-start');
@@ -156,20 +154,20 @@ function toggleMusic() {
     musicOff = !musicOff;
 
     if (musicOff) {
-        icon.src = 'img/game/navigation/music_off_green.png';
-        iconGame.src = './img/game/navigation/music_off.png';
+        setIconSources(icon, './img/game/navigation/music_off_turquoise.png', './img/game/navigation/music_off_turquoise_hover.png')
+        setIconSources(iconGame, './img/game/navigation/music_off.png', './img/game/navigation/music_off_hover.png')
     } else {
-        icon.src = 'img/game/navigation/music_on_green.png';
-        iconGame.src = './img/game/navigation/music_on.png';
+        setIconSources(icon, './img/game/navigation/music_on_turquoise.png', './img/game/navigation/music_on_turquoise_hover.png')
+        setIconSources(iconGame, './img/game/navigation/music_on.png', './img/game/navigation/music_on_hover.png')
     }  
 }
 
 
 /**
- * This function toggles the music on and off.
- * It changes the icons of the music buttons accordingly.
+ * This function toggles the music on and off. 
+ * It calls a function to change the icons of the music buttons accordingly (including hover effect).
  * It is called when the player clicks on the sound button within the game.
- * 
+ * The function also plays or pauses the background music depending on the current state.
  */
 function toggleMusicInGame() { 
     let icon = document.getElementById('toggle-music-start');
@@ -178,12 +176,12 @@ function toggleMusicInGame() {
     musicOff = !musicOff;
 
     if (musicOff) {
-        icon.src = 'img/game/navigation/music_off_green.png';
-        iconGame.src = './img/game/navigation/music_off.png';
+        setIconSources(icon, './img/game/navigation/music_off_turquoise.png', './img/game/navigation/music_off_turquoise_hover.png')
+        setIconSources(iconGame, './img/game/navigation/music_off.png', './img/game/navigation/music_off_hover.png')
         world.BACKGROUND_SOUND.pause();
     } else {
-        icon.src = 'img/game/navigation/music_on_green.png';
-        iconGame.src = './img/game/navigation/music_on.png';
+        setIconSources(icon, './img/game/navigation/music_on_turquoise.png', './img/game/navigation/music_on_turquoise_hover.png')
+        setIconSources(iconGame, './img/game/navigation/music_on.png', './img/game/navigation/music_on_hover.png')
         world.BACKGROUND_SOUND.play();
     }  
 }
@@ -191,7 +189,7 @@ function toggleMusicInGame() {
 
 /**
  * This function toggles the fullscreen mode on and off.
- * It changes the icons of the fullscreen buttons accordingly.
+ * It calls a function to change the icons of the fullscreen buttons accordingly (including hover effect).
  * It is called when the player clicks on the fullscreen button on the start screen or in the game.
  */
 function toggleFullScreen() {
@@ -200,31 +198,38 @@ function toggleFullScreen() {
     
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
-        icon.src = 'img/game/navigation/minimize_green.png';
-        iconGame.src = './img/game/navigation/minimize.png';
+        setIconSources(icon, './img/game/navigation/minimize_turquoise.png', './img/game/navigation/minimize_turquoise_hover.png')
+        setIconSources(iconGame, './img/game/navigation/minimize.png', './img/game/navigation/minimize_hover.png')
     } else if (document.fullscreenElement) {
         document.exitFullscreen();
-        icon.src = 'img/game/navigation/maximize_green.png';
-        iconGame.src = './img/game/navigation/maximize.png';
+        setIconSources(icon, './img/game/navigation/maximize_turquoise.png', './img/game/navigation/maximize_turquoise_hover.png')
+        setIconSources(iconGame, './img/game/navigation/maximize.png', './img/game/navigation/maximize_hover.png')
         }
 }
 
 
 /**
- * This function is called when the player clicks on the instructions button on the start screen.
- * It opens an overlay containing instructions for the game.
+ * This function sets the sources of the icons (including source for hover effect).
+ * It changes the icon when the mouse is over it and resets it when the mouse leaves.
+ * 
+ * @param {string} element - The id of the icon element.
+ * @param {string} normalSrc - The normal source of the icon.
+ * @param {string} hoverSrc  - The source of the icon when hovered.
  */
-function openInstructions() {
-    document.getElementById('instructions').classList.remove('d-none');
+function setIconSources(element, normalSrc, hoverSrc) {
+    element.src = normalSrc;
+    element.onmouseover = function() { this.src = hoverSrc; };
+    element.onmouseout = function() { this.src = normalSrc; };
 }
 
 
 /**
- * This function is called when the player clicks on the controls button on the start screen.
- * It opens an overlay explaining how the controls have to be used in the game.
+ * This function is called when the player clicks on a button to open an overlay (e.g. instructions, controls).
+ * 
+ * @param {string} id - The id of the overlay to be opened. 
  */
-function openControls() {
-    document.getElementById('controls').classList.remove('d-none');
+function openOverlay(id) {
+    document.getElementById(id).classList.remove('d-none');
 }
 
 

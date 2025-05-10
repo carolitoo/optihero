@@ -214,6 +214,8 @@ class Boss extends Enemy {
         this.animate();
     }
 
+
+    
     animate() {
         let i = 0;
         setInterval(() => {

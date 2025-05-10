@@ -260,7 +260,7 @@ async function createTableHeaderHTML() {
     return `
         <tr>
             <th>Pos.</th>
-            <th class="ta-left">Name</th>
+            <th class="ta-left column-name-width">Name</th>
             <th><img src="./img/game/navigation/timer_white.png" class="table-img-timer"></th>
             <th><img src="./img/game/navigation/coin_score.png" class="table-img-coin"></th>
         </tr>`;
@@ -279,7 +279,7 @@ async function createFilledScoreElementHTML(i, formattedTime) {
     return `
     <tr>
         <td>${topScore[i].position}</td>
-        <td class="ta-left">${topScore[i].name}</td>
+        <td class="ta-left column-name-width">${topScore[i].name}</td>
         <td>${formattedTime}</td>
         <td>${topScore[i].coins}</td>
     </tr>`;
@@ -296,7 +296,7 @@ async function createEmptyScoreElementHTML() {
     return `
     <tr>
         <td>-</td>
-        <td class="ta-left">...</td>
+        <td class="ta-left column-name-width">...</td>
         <td>-:-</td>
         <td>-</td>
     </tr>`;

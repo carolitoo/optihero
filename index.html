@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>opti.hero</title>
     <link
-      rel="icon"
-      type="image/x-icon"
-      href="img/game/favicon/wind-solid.svg"
-    />
-
+    rel="icon"
+    type="image/x-icon"
+    href="img/game/favicon/favicon_wind.png"
+  />
     <link rel="stylesheet" href="./css/loading.css" />
     <link rel="stylesheet" href="./css/font.css" />
     <link rel="stylesheet" href="./css/style.css" />
@@ -101,23 +100,29 @@
               <img
                 id="toggle-music-start"
                 class="img-task-bar"
-                src="./img/game/navigation/music_on_green.png"
+                src="./img/game/navigation/music_on_turquoise.png"
                 alt="Music on/off"
                 onclick="toggleMusic()"
+                onmouseover="this.src='./img/game/navigation/music_on_turquoise_hover.png'"
+                onmouseout="this.src='./img/game/navigation/music_on_turquoise.png'"
               />
               <img
                 id="toggle-sound-start"
                 class="img-task-bar"
-                src="./img/game/navigation/sound_on_green.png"
+                src="./img/game/navigation/sound_on_turquoise.png"
                 alt="Sound on/off"
                 onclick="toggleSound()"
+                onmouseover="this.src='./img/game/navigation/sound_on_turquoise_hover.png'"
+                onmouseout="this.src='./img/game/navigation/sound_on_turquoise.png'"
               />
               <img
                 id="toggle-fullscreen"
                 class="img-task-bar"
-                src="./img/game/navigation/maximize_green.png"
+                src="./img/game/navigation/maximize_turquoise.png"
                 alt="Fullscreen on/off"
                 onclick="toggleFullScreen()"
+                onmouseover="this.src='./img/game/navigation/maximize_turquoise_hover.png'"
+                onmouseout="this.src='./img/game/navigation/maximize_turquoise.png'"
               />
             </div>
           </div>
@@ -186,7 +191,7 @@
             </button>
             <!-- <button onclick="howToPlay()" id="howToPlayButton" class="button start-button">HOW TO <br> PLAY</button> -->
             <button
-              onclick="openInstructions()"
+              onclick="openOverlay('instructions')"
               id="how-to-play-button"
               class="button start-button"
             >
@@ -195,7 +200,7 @@
             </button>
             <!-- <button onclick="toggleControls()" id="controlButton" class="button start-button">SHOW <br> CONTROLS</button> -->
             <button
-              onclick="openControls()"
+              onclick="openOverlay('controls')"
               id="control-button"
               class="button start-button"
             >
@@ -373,48 +378,6 @@
         </div>
       </div>
 
-      <div id="imprint" class="overlay" onclick="closeOverlay('imprint')">
-        <div class="overlay-content">
-          <div class="container-close-overlay">
-            <img
-              class="img-close-overlay"
-              src="./img/game/end/exit_game.png"
-              alt="Close Overlay"
-              onclick="closeOverlay('imprint')"
-            />
-          </div>
-          <div id="imprint-headline" class="headline-overlay">
-            Impressum
-          </div>
-          <h3>Angaben gemäß § 5 TMG</h3>
-          <p>
-            <b>Carolin Öller</b><br />
-              Weinstr. 14/2<br />
-              74172 Neckarsulm
-          </p>
-          <br>
-          <br>
-          
-          <h3>Kontakt</h3>
-          <div class="imprint-contact">
-            <p>E-Mail: </p>
-            <a href="mailto:carolin.oeller@gmail.com">carolin.oeller@gmail.com</a>
-          </div>
-          <br />
-
-          <p>
-            Quelle: <a href="https://www.e-recht24.de">https://www.e-recht24.de</a>
-          </p>
-     
-          <p>
-            The icons are provided by
-            <a href="https://fontawesome.com/" rel="nofollow" target="_blank">FontAwesome</a>
-            unter the
-            <a href="https://fontawesome.com/license" target="_blank" rel="nofollow">Creative Commons Attribution 4.0 International license</a>
-          </p>
-        </div>
-      </div>
-
       <div class="container-game">
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
 
@@ -449,6 +412,8 @@
                 class="mobile-navigation-button"
                 alt="Music on"
                 onclick="toggleMusicInGame()"
+                onmouseover="this.src='./img/game/navigation/music_on_hover.png'"
+                onmouseout="this.src='./img/game/navigation/music_on.png'"
               />
             </div>
             <div>
@@ -458,6 +423,8 @@
                 class="mobile-navigation-button"
                 alt="Sound on"
                 onclick="toggleSound()"
+                onmouseover="this.src='./img/game/navigation/sound_on_hover.png'"
+                onmouseout="this.src='./img/game/navigation/sound_on.png'"
               />
             </div>
             <div>
@@ -467,6 +434,8 @@
                 class="mobile-navigation-button"
                 alt="Maximize"
                 onclick="toggleFullScreen()"
+                onmouseover="this.src='./img/game/navigation/maximize_hover.png'"
+                onmouseout="this.src='./img/game/navigation/maximize.png'"
               />
             </div>
           </div>
@@ -491,6 +460,59 @@
           </div>
         </div>
       </div>
+
+      <img
+        class="icon-imprint"
+        src="./img/game/navigation/imprint.png"
+        alt="Imprint"
+        onclick="openOverlay('imprint')"
+        onmouseover="this.src='./img/game/navigation/imprint_hover.png'"
+        onmouseout="this.src='./img/game/navigation/imprint.png'">
+   
+        <div id="imprint" class="overlay d-none" onclick="closeOverlay('imprint')">
+          <div class="overlay-content" onclick="event.stopPropagation()">
+            <div class="container-close-overlay">
+              <img
+                class="img-close-overlay"
+                src="./img/game/end/exit_game.png"
+                alt="Close Overlay"
+                onclick="closeOverlay('imprint')"
+              />
+            </div>
+            <div id="imprint-headline" class="headline-overlay">
+              Impressum
+            </div>
+            <div id="imprint-text" class="imprint-text">
+              <h3>Angaben gemäß § 5 TMG</h3>
+              <p>
+                <b>Carolin Öller</b><br />
+                  Weinstr. 14/2<br />
+                  74172 Neckarsulm
+              </p>
+              <br>
+  
+              <h3>Kontakt</h3>
+              <div class="imprint-contact">
+                <p>E-Mail: </p>
+                <a href="mailto:carolin.oeller@gmail.com">carolin.oeller@gmail.com</a>
+              </div>
+              <br>
+  
+              <p>
+                The icons are provided by
+                <a href="https://fontawesome.com/" rel="nofollow" target="_blank">FontAwesome</a>
+                unter the
+                <br>
+                <a href="https://fontawesome.com/license" target="_blank" rel="nofollow">Creative Commons Attribution 4.0 International license</a>
+              </p>
+              <br>
+  
+              <p>The flag icons are created by <a href="https://www.flaticon.com/packs/countrys-flags/" rel="nofollow" target="_blank">Freepik - Flaticon</a></p>
+  
+            </div>
+          </div>
+        </div>
+
     </div>
   </body>
 </html>
