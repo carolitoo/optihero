@@ -430,6 +430,38 @@ th, td {
   margin-right: -12px;
 }
 
+.container-input-score {
+  display: flex;
+  gap: 40px;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+
+.input-player-name {
+  width: 280px;
+  height: 48px;
+  padding: 12px 16px;
+  font-size: 24px;
+  font-family: shantellSansExtraBold, sans-serif;
+  border-radius: 8px;
+  border: solid 2px transparent;
+  background-color: #ddd;
+  box-shadow: 0px 0px 8px rgb(206, 206, 206), 0px 0px 8px rgb(215, 216, 216);
+}
+
+.input-player-name:focus {
+  border: solid 2px #00A79D;
+  outline: none;
+}
+
+.submit-score-btn {
+  width: 280px;
+  font-size: 20px;
+  padding: 12px 0px;
+  text-align: center;
+}
+
 .icon-imprint {
   width: 42px;
   height: 42px;
