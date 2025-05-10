@@ -303,30 +303,6 @@
 
       <div id="end-screen" class="end-screen d-none">
         <button
-          onclick="addNewTopScore(index, position, time, coins)"
-          id="enter-score-button"
-          class="button end-button"
-        >
-          <img
-            class="icon-end-screen"
-            src="./img/game/end/enter_score.png"
-            alt="Enter Score"
-          />
-          <p id="enter-score-button-label">EINTRAG BESTENLISTE</p>
-        </button>
-        <button
-          onclick="showTopScore()"
-          id="show-score-button"
-          class="button end-button"
-        >
-          <img
-            class="icon-end-screen"
-            src="./img/game/end/enter_score.png"
-            alt="Show Score"
-          />
-          <p id="show-score-button-label">ANZEIGE BESTENLISTE</p>
-        </button>
-        <button
           onclick="restartGame()"
           id="restart-button"
           class="button end-button"
@@ -352,7 +328,7 @@
         </button>
       </div>
 
-      <div id="enter-top-score" class="overlay" onclick="closeOverlay('enter-top-score')">
+      <div id="enter-top-score" class="overlay d-none" onclick="closeOverlay('enter-top-score')">
         <div class="overlay-content" onclick="event.stopPropagation()">
           <div class="container-close-overlay">
             <img
@@ -363,20 +339,19 @@
             />
           </div>
           <div id="enter-top-score-headline" class="headline-overlay">Herzlichen Glückwunsch!</div>
-          <!-- Korrekte Funktion ergänzen -->
-          <form id="container-input-score" class="container-input-score" onsubmit="doSomething(); return false;">
-            <label for="input-player-name" id="label-input-player-name" class="label-input-player-name">Du hast den 3. Platz erreicht.</label>
+          <form id="container-input-score" class="container-input-score">
+            <label for="input-player-name" id="label-input-player-name" class="label-input-player-name">Du hast den X. Platz erreicht.</label>
             <input
               id="input-player-name"
               class="input-player-name"
               type="text"
-              placeholder="Gib deinen Namen ein"
+              placeholder="Dein Name..."
               required
-              maxlength="20"
+              maxlength="12"
               onfocus="this.placeholder = ''"
-              onblur="this.placeholder = 'Gib deinen Namen ein'">
+              onblur="this.placeholder = 'Dein Name...'">
             <button id="submit-score-btn" type="submit" class="button">
-              SPEICHERN
+              ERGEBNIS SPEICHERN
             </button>
           </form>
         </div>
@@ -395,6 +370,48 @@
           <div id="list-top-scores-headline" class="headline-overlay">Top 5</div>
 
           <table id="table-top-scores" class="table-top-scores"></table> 
+        </div>
+      </div>
+
+      <div id="imprint" class="overlay" onclick="closeOverlay('imprint')">
+        <div class="overlay-content">
+          <div class="container-close-overlay">
+            <img
+              class="img-close-overlay"
+              src="./img/game/end/exit_game.png"
+              alt="Close Overlay"
+              onclick="closeOverlay('imprint')"
+            />
+          </div>
+          <div id="imprint-headline" class="headline-overlay">
+            Impressum
+          </div>
+          <h3>Angaben gemäß § 5 TMG</h3>
+          <p>
+            <b>Carolin Öller</b><br />
+              Weinstr. 14/2<br />
+              74172 Neckarsulm
+          </p>
+          <br>
+          <br>
+          
+          <h3>Kontakt</h3>
+          <div class="imprint-contact">
+            <p>E-Mail: </p>
+            <a href="mailto:carolin.oeller@gmail.com">carolin.oeller@gmail.com</a>
+          </div>
+          <br />
+
+          <p>
+            Quelle: <a href="https://www.e-recht24.de">https://www.e-recht24.de</a>
+          </p>
+     
+          <p>
+            The icons are provided by
+            <a href="https://fontawesome.com/" rel="nofollow" target="_blank">FontAwesome</a>
+            unter the
+            <a href="https://fontawesome.com/license" target="_blank" rel="nofollow">Creative Commons Attribution 4.0 International license</a>
+          </p>
         </div>
       </div>
 

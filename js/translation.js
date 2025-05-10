@@ -5,8 +5,8 @@ function translateEN() {
     document.getElementById('how-to-play-button').innerHTML = `HOW TO<br>PLAY`;
     document.getElementById('control-button').innerHTML = `SHOW<br>CONTROLS`;
 
-    document.getElementById('enter-score-button-label').innerHTML = `ENTER TOP SCORE`;
-    document.getElementById('show-score-button-label').innerHTML = `SHOW TOP SCORES`;
+    // document.getElementById('enter-score-button-label').innerHTML = `ENTER TOP SCORE`;
+    // document.getElementById('show-score-button-label').innerHTML = `SHOW TOP SCORES`;
     document.getElementById('restart-button-label').innerHTML = `PLAY AGAIN!`;
     document.getElementById('return-to-start-button-label').innerHTML = `RETURN TO START`;
 
@@ -30,6 +30,12 @@ function translateEN() {
 
     document.getElementById('text-orientation').innerHTML = `Please turn your device to play.`;
 
+    document.getElementById('imprint-headline').innerHTML = 'Imprint';
+
+    document.getElementById('enter-top-score-headline').innerHTML = 'Congratulations!';
+    document.getElementById('submit-score-btn').innerHTML = `SAVE SCORE`;
+    document.getElementById('input-player-name').placeholder = 'Your name...';
+
 }
 
 
@@ -40,8 +46,8 @@ function translateDE() {
     document.getElementById('how-to-play-button').innerHTML = `INFO ZUM<br>SPIEL`;
     document.getElementById('control-button').innerHTML = `BELEGUNG<br>TASTEN`;
 
-    document.getElementById('enter-score-button-label').innerHTML = `EINTRAG BESTENLISTE`;
-    document.getElementById('show-score-button-label').innerHTML = `ANZEIGE BESTENLISTE`;
+    // document.getElementById('enter-score-button-label').innerHTML = `EINTRAG BESTENLISTE`;
+    // document.getElementById('show-score-button-label').innerHTML = `ANZEIGE BESTENLISTE`;
     document.getElementById('restart-button-label').innerHTML = `NOCHMAL SPIELEN!`;
     document.getElementById('return-to-start-button-label').innerHTML = `ZURÜCK ZUM START`;
 
@@ -64,6 +70,12 @@ function translateDE() {
     document.getElementById('label-jump').innerHTML = `springen`;
 
     document.getElementById('text-orientation').innerHTML = `Bitte drehe dein Gerät, um zu spielen.`;
+
+    document.getElementById('imprint-headline').innerHTML = 'Impressum';
+
+    document.getElementById('enter-top-score-headline').innerHTML = 'Herzlichen Glückwunsch!';
+    document.getElementById('submit-score-btn').innerHTML = `ERGEBNIS SPEICHERN`;
+    document.getElementById('input-player-name').placeholder = 'Dein Name...';
 }
 
 

@@ -75,7 +75,7 @@ async function checkTopScore(timeInSeconds, coins) {
     getTopScoreFromLocalStorage();
 
     if (!topScore.length) {
-        handleEmptyTopScore(timeInSeconds, coins);
+        handleEmptyTopScore();
     } else {
         handleExistingTopScore(timeInSeconds, coins);
     }     
@@ -84,23 +84,19 @@ async function checkTopScore(timeInSeconds, coins) {
 
 /**
  * This function handles the case when there are no top scores available yet.
- * It calls the function to add a new top score with the given time and coins. 
- * 
- * @param {number} timeInSeconds - The time in seconds of the new score
- * @param {number} coins - The number of coins of the new score
+ * It sets the isTopScore variable to true and the positionScore to 1.
  */
-async function handleEmptyTopScore(timeInSeconds, coins) {
+function handleEmptyTopScore() {
     isTopScore = true;
-    document.getElementById('enter-score-button').onclick = () => {
-        addNewTopScore(0, 1, timeInSeconds, coins);
-    }
+    positionScore = 1;
+
 }
 
 
 /**
  * This function handles the case when there are existing top scores.
- * It checks if the new score is a top score.
- * In case of a new top score it calls the function to add a new top score with the given time and coins.
+ * It gets the score position and checks if the new score is a top score.
+ * It sets the isTopScore variable accordingly.
  *  
  * @param {number} timeInSeconds - The time in seconds of the new score
  * @param {number} coins - The number of coins of the new score
@@ -110,9 +106,6 @@ async function handleExistingTopScore(timeInSeconds, coins) {
 
     if (positionScore <= maxTopScores) {
         isTopScore = true;
-        document.getElementById('enter-score-button').onclick = () => {
-            addNewTopScore(positionScore - 1, positionScore, timeInSeconds, coins);
-        }
     } else {
         isTopScore = false;
     }
@@ -122,7 +115,7 @@ async function handleExistingTopScore(timeInSeconds, coins) {
 /**
  * This function retrieves the position of the new score in the top score list.
  * It compares the new score with the existing scores and finds the right position for it.
- * If the new score is worse than the existing scores, but there are no 5 scores available yet, it extends the array.
+ * If the new score is worse than the existing scores, but there are still free scores available, it extends the array.
  * If the new score is not a top score, it keeps the default value (999).
  * 
  * @param {number} timeInSeconds - The time in seconds of the new score
@@ -145,10 +138,37 @@ async function getScorePosition(timeInSeconds, coins) {
 }
 
 
-/** TO BE REVIEWED/ ADJUSTED
+/**
+ * This function resets the input field for the player name and also sets up an event listener.
+ * It prevents the default form submission behavior and calls the addNewTopScore function with the provided parameters.
+ * It also closes the overlay and shows the top score.
+ * The function also shows the position of the player in the top score list.
+ * 
+ * @param {number} timeScore - The time score of the game (in seconds).
+ * @param {number} coins - The number of coins collected in the game.
+ */
+function setInputTopScoreElement(timeScore, coins) {
+    document.getElementById('input-player-name').value = ''; 
+
+    document.getElementById('container-input-score').addEventListener('submit', (event) => {
+        event.preventDefault(); 
+        addNewTopScore(positionScore - 1, positionScore, timeScore, coins);
+        closeOverlay('enter-top-score');
+        showTopScore();
+      }, { once: true });
+    
+      if (language === 'DE') {
+        document.getElementById('label-input-player-name').innerHTML = `Du hast den ${positionScore}. Platz erreicht.`;
+    } else if (language === 'EN') {
+        document.getElementById('label-input-player-name').innerHTML = `You reached the ${positionScore}. place.`;
+    }
+}
+
+
+/** 
  * This function adds a new top score to the top score array.
- * It asks the user for their name and creates a new score object.
- * It then adds the new score at the right position of top score array and removes the last entry if the array length exceeds 5.
+ * It gets the name of the player out of the input field that is displayed after winnung and having reached a top score.
+ * It calls the function to update the array with the top scores.
  * It also updates the local storage with the new top score.
  * 
  * @param {number} index - The index at which to insert the new score
@@ -157,11 +177,10 @@ async function getScorePosition(timeInSeconds, coins) {
  * @param {number} coins - The number of coins of the new score
  */
 async function addNewTopScore(index, position, timeInSeconds, coins) {
-    // const playerName = await askForPlayerName();
-    playerName = await askForPlayerName();
+    playerName = document.getElementById('input-player-name').value;
 
     if (!playerName) {
-        // Abbruch
+        console.log('No name entered/ available.');
     } else {
         const newScore = {
             "position": position,
@@ -175,34 +194,17 @@ async function addNewTopScore(index, position, timeInSeconds, coins) {
 }
 
 
-// async function askForPlayerName() {
-//     showInputPlayerName();
-
-// }
-
-
-// ANPASSEN // GGF. TASTATUR ZURÜCKSETZEN (wegen "D")
-function askForPlayerName() {
-    return new Promise((resolve) => {
-        const playerNameInput = prompt("Please enter your name:");
-        if (playerNameInput) {
-            resolve(playerNameInput);
-        } else {
-            resolve("Anonymous");
-        }
-    });
-}
-
-
-
-function showInputPlayerName() {
-    document.getElementById('enter-top-score').classList.remove('d-none');
-}
-
-
+/**
+ * This function updates the top score array with the new score.
+ * It adds the new score at the right position and removes the last entry if the array length exceeds the maximum number of entries.
+ * It also calls the function to adjust the positions of the scores in the array.
+ * 
+ * @param {number} index - The index at which to insert the new score
+ * @param {object} newScore - The new score object to be added to the array
+ */
 async function updateTopScoreArray(index, newScore) {
     topScore.splice(index, 0, newScore);
-    if (topScore.length > 5) {
+    if (topScore.length > maxTopScores) {
         topScore.pop();
     }
     await adjustTopScorePositions();
@@ -226,13 +228,18 @@ async function adjustTopScorePositions() {
 }
 
 
-
+/**
+ * This function shows the top score in the table.
+ * It clears the existing content of the table and adds the header.
+ * It then loops through the top score array and adds each score to the table.
+ * If there are less than the maximum amount of entries, it adds empty score elements to fill the table.
+ */
 async function showTopScore() {
     const scoreTable = document.getElementById('table-top-scores')
     scoreTable.innerHTML = '';
     scoreTable.innerHTML += await createTableHeaderHTML();
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < maxTopScores; i++) {
         if (i < topScore.length) {
             let formattedTime = await formatTime(topScore[i].timeInSeconds);
             scoreTable.innerHTML += await createFilledScoreElementHTML(i, formattedTime);
@@ -240,7 +247,6 @@ async function showTopScore() {
             scoreTable.innerHTML += await createEmptyScoreElementHTML();
         }
     }
-
     document.getElementById('list-top-scores').classList.remove('d-none');
 }
 

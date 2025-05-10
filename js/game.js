@@ -282,10 +282,10 @@ function clearAllIntervals() {
 /**
  * 
  * This function is called when the game ends (win or lose) and shows the end screen. 
- * In case of a win it checks if the player has reached a top score that can be entered (to be implemented).
+ * In case of a win it checks if the player has reached a top score that can be entered.
  * 
  * @param {string} result - The result of the game ('win' or 'lose').
- * @param {number} timeScore - The time score of the game.
+ * @param {number} timeScore - The time score of the game (in seconds).
  * @param {number} coins - The number of coins collected in the game.
  */
 async function showEndScreen(result, timeScore, coins) {
@@ -294,15 +294,9 @@ async function showEndScreen(result, timeScore, coins) {
     if (result === 'win') {
         await checkTopScore(timeScore, coins);
         if (isTopScore) {
-            document.getElementById('enter-score-button').classList.remove('d-none');
-            document.getElementById('show-score-button').classList.add('d-none');
-        } else {
-            document.getElementById('enter-score-button').classList.add('d-none');
-            document.getElementById('show-score-button').classList.remove('d-none');
-        }
-    } else {
-        document.getElementById('enter-score-button').classList.add('d-none');
-        document.getElementById('show-score-button').classList.add('d-none');
+            setInputTopScoreElement(timeScore, coins);
+            document.getElementById('enter-top-score').classList.remove('d-none');
+        } 
     }
 }
 
