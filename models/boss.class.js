@@ -5,7 +5,7 @@ class Boss extends Enemy {
     ratio = 380 / 350;
     height = 280;
     y = 117;
-    x = 2400;
+    x = 3800;
 
     speed = 1.6;
     speedY = 20;

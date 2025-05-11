@@ -272,7 +272,7 @@ class Character extends MoveableObject {
 
 
   adjustCamera() {
-    if (this.x > -750 && this.x < 2125 && !this.world.cameraFrozen) {
+    if (this.x > -750 && this.x < 3565 && !this.world.cameraFrozen) {
       this.world.camera_x = -this.x - 30;
     }
   }

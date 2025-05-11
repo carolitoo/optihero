@@ -3,7 +3,7 @@ class Coin extends MoveableObject {
     height = 80;
     width = this.height * this.ratio;
 
-    maxCoinX = 1800;
+    maxCoinX = 2800;
     maxCoinY = 200;
 
     adjustFrameX = 20;
@@ -29,7 +29,7 @@ class Coin extends MoveableObject {
         this.loadImages(this.COIN_IMAGE);
 
         this.y = 50 + Math.random() * this.maxCoinY;
-        this.x = 250 + Math.random() * this.maxCoinX;
+        this.x = 280 + Math.random() * this.maxCoinX;
 
         this.animate();
     }

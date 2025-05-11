@@ -98,7 +98,7 @@ class Warrior extends Enemy {
         this.loadImages(this.WARRIOR_IMAGE_IDLE);
 
         this.y = 220;
-        this.x = 250 + Math.random() * this.maxStartX;
+        this.x = 400 + Math.random() * this.maxStartX;
         this.speed = this.minSpeed + Math.random() * 0.2;
 
         this.enemyId = globalCounterId++;

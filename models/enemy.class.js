@@ -1,5 +1,5 @@
 class Enemy extends MoveableObject {
-  maxStartX = 1800;
+  maxStartX = 3400;
   state;
   energy;
   counterEnemyId = 1;

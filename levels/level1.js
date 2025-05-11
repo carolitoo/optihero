@@ -7,7 +7,10 @@ function initLevel() {
             new Warrior(),
             new Warrior(),
             new Warrior(),
+            new Warrior(),
             new Shooter(),
+            new Shooter(),
+            new Snail(),
             new Snail(),
             new Boss()
         ],
@@ -43,7 +46,19 @@ function initLevel() {
             new BackgroundObject('img/background/l2_mountains.png', 720*3, 0, 480),
             new BackgroundObject('img/background/l4_bg-ground.png', 720*3, 0, 480),
             new BackgroundObject('img/background/l5_bg-ground.png', 720*3, 0, 480),
-            new BackgroundObject('img/background/l6_ground.png', 720*3, 0, 480)
+            new BackgroundObject('img/background/l6_ground.png', 720*3, 0, 480),
+
+            new BackgroundObject('img/background/l1_sky.png', 720*4, 0, 480),
+            new BackgroundObject('img/background/l2_mountains.png', 720*4, 0, 480),
+            new BackgroundObject('img/background/l4_bg-ground.png', 720*4, 0, 480),
+            new BackgroundObject('img/background/l5_bg-ground.png', 720*4, 0, 480),
+            new BackgroundObject('img/background/l6_ground.png', 720*4, 0, 480),
+
+            new BackgroundObject('img/background/l1_sky.png', 720*5, 0, 480),
+            new BackgroundObject('img/background/l2_mountains.png', 720*5, 0, 480),
+            new BackgroundObject('img/background/l4_bg-ground.png', 720*5, 0, 480),
+            new BackgroundObject('img/background/l5_bg-ground.png', 720*5, 0, 480),
+            new BackgroundObject('img/background/l6_ground.png', 720*5, 0, 480)
         ],
         [
             new FixedObject('img/statusbar/coinCollector/coinCounterIcon.png', false, 'none', 620, 0, 105, 105),
@@ -63,9 +78,18 @@ function initLevel() {
             new Coin(),
             new Coin(),
             new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
+            new Coin(),
             new Coin()
         ],
         [
+            new Swirl(),
+            new Swirl(),
+            new Swirl(),
             new Swirl(),
             new Swirl(),
             new Swirl(),

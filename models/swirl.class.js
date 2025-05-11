@@ -3,7 +3,7 @@ class Swirl extends MoveableObject {
     height = 50;
     width = this.height * this.ratio;
 
-    maxSwirlX = 1800;
+    maxSwirlX = 2800;
     maxSwirlY = 200;
 
     adjustFrameX = 8;
@@ -25,8 +25,8 @@ class Swirl extends MoveableObject {
         super().loadImage('img/collect/swirl/swirl1.png');
         this.loadImages(this.SWIRL_IMAGE);
 
-        this.y = 100 + Math.random() * this.maxSwirlY;
-        this.x = 250 + Math.random() * this.maxSwirlX;
+        this.y = 50 + Math.random() * this.maxSwirlY;
+        this.x = 280 + Math.random() * this.maxSwirlX;
 
         this.animate();
     }

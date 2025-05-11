@@ -42,7 +42,7 @@ class Snail extends Enemy {
         this.loadImages(this.SNAIL_IMAGE_WALK);
 
         this.y = 235;
-        this.x = 250 + Math.random() * this.maxStartX;
+        this.x = 400 + Math.random() * this.maxStartX;
         this.speed = this.minSpeed + Math.random() * 0.4;
         this.state = 'walk';
 

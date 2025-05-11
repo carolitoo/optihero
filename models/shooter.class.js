@@ -97,7 +97,7 @@ class Shooter extends Enemy {
         this.loadImages(this.SHOOTER_IMAGE_IDLE);
 
         this.y = 246;
-        this.x = 250 + Math.random() * this.maxStartX;
+        this.x = 500 + Math.random() * this.maxStartX;
         this.speed = this.minSpeed + Math.random() * 0.2;
         this.state = 'walk';
         this.enemyId = globalCounterId++;
@@ -135,7 +135,7 @@ class Shooter extends Enemy {
         if (!this.isDead() && this.hadFirstContact) {
              shootIntervalId = setTimeout(() => {
                 this.shootBullet();
-            }, 4000); 
+            }, 1000); 
         }
        
     }

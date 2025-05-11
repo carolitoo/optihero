@@ -7,7 +7,7 @@ class Level {
     playClock;
     coins;
     swirls;
-    levelEndX = 720 * 3 + 485;
+    levelEndX = 720 * 5 + 485;
 
     constructor(enemies, clouds, backgroundObjects,  fixedObjects, statusBars, playClock, coins, swirls) {
         this.enemies = enemies;
