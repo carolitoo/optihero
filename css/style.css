@@ -3,8 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-image: url("../img/game/background/bg.jpg"); */
-  background-image: url("../img/game/background/bg_test_berge.png");
+  background-image: url("../img/game/background/bg.png");
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -74,7 +73,7 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('../img/game/start/bg-start_test2.png');
+  background-image: url('../img/game/start/bg-start.png');
   background-position: center;
   background-size: cover;
 }
