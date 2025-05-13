@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       document.getElementById('loading-screen').style.display = 'none';
       document.getElementById('wrapper-fullscreen').style.display = 'flex';
-    }, 2000);
+    }, 4000);
   });
 
 
@@ -66,13 +66,16 @@ function startGame() {
 
 /**
  * This function starts a countdown before the game begins.
+ * It displays a loading screen with a countdown from 3 to 1 and plays a sound if the sound is not muted.
  */
 function countdownStart() {
     document.getElementById('loading-screen').style.display = 'flex';
     document.getElementById('wrapper-fullscreen').style.display = 'none';
     document.getElementById('loading-spinner').classList.add('d-none');
 
-    COUNTDOWN_SOUND.play();
+    if (!isMuted) {
+       COUNTDOWN_SOUND.play();
+    }
     document.getElementById('loading-text').innerHTML = '3';
     setTimeout(() => {document.getElementById('loading-text').innerHTML = '2';}, 1000);
     setTimeout(() => {document.getElementById('loading-text').innerHTML = '1';}, 2000);
@@ -106,7 +109,6 @@ function returnToStart() {
     document.getElementById('end-screen').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
     selectLanguage(language);
-    // SOUND-, MUSIK- UND FULLSCREEN-EINSTELLUNGEN ÜBERNEHMEN
 }
 
 

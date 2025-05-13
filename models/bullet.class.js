@@ -29,7 +29,7 @@ class Bullet extends Enemy {
     animate() {
       setInterval(() => {
         this.x -= this.speedX;
-      }, 200);
+      }, 180);
     }
 
 

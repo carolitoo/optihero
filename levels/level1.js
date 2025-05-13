@@ -93,7 +93,6 @@ function initLevel() {
             new Swirl(),
             new Swirl(),
             new Swirl(),
-            new Swirl(),
             new Swirl()
         ]
     );
