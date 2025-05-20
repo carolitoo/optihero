@@ -22,7 +22,7 @@ class Enemy extends MoveableObject {
       this.ENEMY_SMALL_SOUND_SHRINK.play();
   }
 
-  this.animateShrinking(enemy, () => {
+    this.animateShrinking(enemy, () => {
     // Ermittele den Index erneut, falls sich das Array geändert hat (stellt sicher, dass sich der richtige Gegner entfernt wird und der Boss nicht verschwindet)
     enemyIndex = this.findIndexOfEnemey(enemyId);
     if (enemyIndex !== -1) {
@@ -62,7 +62,7 @@ class Enemy extends MoveableObject {
 
 
   animateDissapearanceOfSmallEnemy(enemy)  {
-    let explosion = new FixedObject('img/effects/explosion_3.png', enemy.x + enemy.adjustFrameX/ 1.3, enemy.y + enemy.adjustFrameY / 1.6, 120, 120);
+    let explosion = new FixedObject('img/effects/explosion_small_enemy.png', false, 'none', enemy.x + enemy.adjustFrameX/ 1.3, enemy.y + enemy.adjustFrameY / 1.6, 120, 120);
     world.effectObjects.push(explosion);
     setInterval(() => {
         let explosionIndex = world.effectObjects.indexOf(explosion);

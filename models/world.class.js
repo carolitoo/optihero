@@ -58,10 +58,11 @@ class World {
             this.BACKGROUND_SOUND.loop = true;
             this.BACKGROUND_SOUND.currentTime = 0;
             this.BACKGROUND_SOUND.play();
+        }
     }
-}
 
 
+    
     setClickableObjects() {
         this.level.fixedObjects.forEach(object => {
             if (object.clickable) {
@@ -71,11 +72,13 @@ class World {
     }
 
 
+
     implementEventListener() {
         this.canvas.addEventListener('click', (event) => {
             this.checkClickedObject(event);
           });
     }
+
 
 
     checkClickedObject(event) {
@@ -94,6 +97,11 @@ class World {
     }
 
 
+    /**
+     * This function checks if the music is turned off. 
+     * In this case it pauses the background sound, else it plays the background sound.
+     * The function is called when the music button is clicked.
+     */
     checkMusic() {
         if (musicOff) {
             this.BACKGROUND_SOUND.pause();
@@ -119,8 +127,8 @@ class World {
 
 
     /**
-    * This function checks if the first contact with the boss and the shooter has been made.
-    * If the first contact with the shooter has been made, the loop for shooting bubbles is started.
+    * This function checks if the first contact with the boss or a shooter has been made.
+    * If the first contact with a shooter has been made, the loop for shooting bubbles is started.
     */
     checkFirstContact() {
         this.level.enemies.forEach((enemy) => {
@@ -135,6 +143,12 @@ class World {
     }
 
 
+    /**
+     * This function checks if the character throws a swirl.
+     * It checks if the player presses the 'D' key and a swirl to throw is available.
+     * If so, it creates a new ThrowableObject and adds it to the thrownObjects array (x-position depending on the direction the character is facing).
+     * It also reduces the number of swirls, updates the corresponding status bar and calls the function to prevent the character from instantly throwing the next swirl.
+     */
     checkThrowObjects() {
         if (this.keyboard.D && this.swirls >= this.valueOfSwirl && this.canThrow) {
             let wind;
@@ -146,16 +160,25 @@ class World {
             this.thrownObjects.push(wind);
             this.swirls -= this.valueOfSwirl;
             this.level.statusBars[1].setPercentage(this.swirls, 'wind');
-            this.canThrow = false;
-            setTimeout(() => {
-                this.canThrow = true;
-            }, 1000);
+            this.blockThrow();
         }
     }
 
 
     /**
+     * This function blocks the throwing of swirls for 1 second.
+     */
+    blockThrow() {
+        this.canThrow = false;
+        setTimeout(() => {
+            this.canThrow = true;
+        }, 1000);
+    }
+
+
+    /**
      * This function checks if the character collides with an enemy or a collectable object.
+     * It also checks if a thrown object (swirl) hits an enemy.
      */
     checkCollisions() {
         this.checkCollisionEnemy();
@@ -220,26 +243,47 @@ class World {
     }
 
 
+    /**
+     * This function handles the win condition of the game.
+     * It stops the level, plays the win sound and after a short delay (for the explosion) replaces the boss with windmills and shows the win banner.
+     * It also shows the end screen after a delay of 5 seconds.
+     * 
+     * @param {object} enemy - The enemy that is replaced by windmills (normally the boss).
+     */
     win(enemy) {
-        this.level.playClock[0].stopClock();
-        this.BACKGROUND_SOUND.pause();
-        this.cameraFrozen = true;
-        this.timeScore = this.level.playClock[0].secondsPassed;
-
-        this.replaceByWindmills(enemy);
+        this.stopLevel();
         this.playWinSound();
-        this.removeAllItems();
-      
+       
         setTimeout(() => {
             this.showBanner('win',language);
+            this.replaceByWindmills(enemy);
         }, 400);
+        
         setTimeout(() => {
             showEndScreen('win', this.timeScore, this.coins);
         }, 5000);
     }
 
 
-    removeAllItems() {
+    /**
+     * This function stops the play clock and the background sound.
+     * It also sets the camera to be frozen and removes all items from the level.
+     * It updates the time score with the time passed by the play clock.
+     */
+    stopLevel() {
+        this.level.playClock[0].stopClock();
+        this.BACKGROUND_SOUND.pause();
+        this.cameraFrozen = true;
+        this.timeScore = this.level.playClock[0].secondsPassed;
+        this.removeLevelItems();
+    }
+
+
+    /**
+     * This function removes all items from the level.
+     * It removes all coins, swirls and enemies (by setting the energy of all to 0).
+     */
+    removeLevelItems() {
         this.level.coins = [];
         this.level.swirls = [];
         this.level.enemies.forEach(enemy => {
@@ -262,37 +306,49 @@ class World {
     }
 
 
+    /**
+     * This function replaces an enemy with windmills.
+     * It creates three new Windmill objects and adds them to the effectObjects array.
+     * It also plays the windmill sound and sets it to loop.
+    
+     * @param {object} enemy - The enemy replaced by windmills (normally the boss).
+     */
     replaceByWindmills(enemy) {
         if (!isMuted) {
             this.WINDMILL_SOUND.play();
             this.WINDMILL_SOUND.loop = true;
         }
 
-        let intervalWindmill = setInterval(() => {
-            this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX / 3, 40, 360));
-            this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX + 150, 70, 320));
-            this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX + 80, 185, 200));
-            // Interval stoppen, damit die Windmills nicht mehrfach angelegt werden
-            clearInterval(intervalWindmill);
-            }, 400);
+        this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX / 3, 40, 360));
+        this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX + 150, 70, 320));
+        this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX + 80, 185, 200));
     }
 
 
+    /**
+     * This function plays the win sound after a delay of 1 second (starting after the explosion effect).
+     * It checks if the sound is muted before playing the sound.
+     */
     playWinSound() {
         if (!isMuted) {
-            let winInterval = setInterval(() => {
+            setTimeout(() => {
                 this.GAME_SOUND_WIN.play();
             }, 1000);
-            setTimeout(() => {
-                clearInterval(winInterval);
-            }, 4000);
         }
     }
 
 
+    /**
+     * This function checks if the character collides with an enemy.
+     * It checks if the character is jumping on top of an enemy which in defined cases kills the enemy by shrinking it.
+     * If the character is not hurt and collides with a boss or another enemy, it hurts the character and updates the energy status bar.
+     * A hit from the boss reduces the energy of the character more than a hit from any other enemy.
+     * 
+     * @param {object} enemy - The enemy that the character hits from above or collides with.
+     */
     checkCollisionEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isShrinking(enemy) && !this.character.isHurt() && (enemy instanceof Shooter || enemy instanceof Snail || enemy instanceof Bullet)) {
+            if (this.character.hitsFromAbove(enemy) && !this.character.isHurt() && (enemy instanceof Shooter || enemy instanceof Snail || enemy instanceof Bullet)) {
                 this.character.jump(28);
                 enemy.shrink(enemy.enemyId);
                 enemy.energy = 0;
@@ -307,6 +363,11 @@ class World {
     }
 
 
+    /**
+     * This function checks if the character collects a coin.
+     * If so, it removes the coin from the map, increases the coin counter and plays the coin collect sound (if not muted).
+     * It also displays the updated amount of coins collected.
+     */
     checkCollectionCoin() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -322,6 +383,12 @@ class World {
     }
 
 
+    /**
+     * This function removes a coin from the map.
+     * It checks if the coin is in the array of coins and removes it if found.
+     * 
+     * @param {object} coin - The coin to be removed from the map.
+     */
     removeCoinFromMap(coin) {
         let coinIndex = this.level.coins.indexOf(coin); // Index des Coins suchen
         if (coinIndex > -1) {
@@ -330,22 +397,10 @@ class World {
     }
 
 
-
-    // removeElementFromMap(element, array, collector, sound, valueOfElement) {
-    //     let elementIndex = array.indexOf(element); // Index des Elements suchen
-    //     if (elementIndex > -1) {
-    //         array.splice(elementIndex, 1); // Element aus dem Array entfernen
-    //         if (collector < 100) {
-    //             collector += valueOfElement;
-    //         }
-    //         if (! this.isMuted) {
-    //             sound.currentTime = 0
-    //             sound.play();
-    //         }
-    //     } 
-    // }
-
-
+    /**
+     * This function checks if the character collects a swirl.
+     * If so, it calls the function to remove the swirl from the map und updates the status bar for the swirls.
+     */
     checkCollectionSwirl() {
         this.level.swirls.forEach((swirl) => {
             if (this.character.isColliding(swirl)) {
@@ -356,6 +411,13 @@ class World {
     }
 
 
+    /**
+     * This function removes a swirl from the map.
+     * It checks if the swirl is in the array of swirls and removes it if found.
+     * It increments the swirls collected (up to a maximum of 100%) and plays a sound (if not muted).
+     * 
+     * @param {object} swirl - The swirl to be removed from the map.
+     */
     removeSwirlFromMap(swirl) {
         let swirlIndex = this.level.swirls.indexOf(swirl);
         if (swirlIndex > -1) {
@@ -427,7 +489,6 @@ class World {
         object.draw(this.ctx);
         object.drawFrame(this.ctx);
         object.drawClock(this.ctx);
-        // object.drawHitEffect(this.ctx);
         
         if (object.otherDirection) {
             this.flipImageBack(object);

@@ -7,7 +7,8 @@ class Character extends MoveableObject {
   width = this.height * this.ratio;
   speed = 5;
   jumpY = 25;
-  // selectedCharacter = 12;
+
+  acceleration = 2;
 
   levelStartX = -860;
 

@@ -4,14 +4,14 @@ let level1;
 function initLevel() {
     level1 = new Level(
         [
-            new Warrior(),
-            new Warrior(),
-            new Warrior(),
+            // new Warrior(),
+            // new Warrior(),
+            // new Warrior(),
             new Warrior(),
             new Shooter(),
-            new Shooter(),
-            new Snail(),
-            new Snail(),
+            // new Shooter(),
+            // new Snail(),
+            // new Snail(),
             new Boss()
         ],
         [

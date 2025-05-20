@@ -2,7 +2,7 @@ class Shooter extends Enemy {
     ratio = 510/372;
     height = 170;
     width = this.height * this.ratio;
-    minSpeed = 0.6;
+    minSpeed = 0.8;
     energy = 20;
 
     adjustFrameX = 85;
@@ -12,7 +12,8 @@ class Shooter extends Enemy {
     adjustedWidth = this.width/ this.adjustFrameWidth;
     adjustedHeight = this.height/ this.adjustFrameHeight;
 
-    // maxStartX = 1800;
+    maxStartX = 3200;
+    minStartX = 800;
 
     loopHasStarted;
   
@@ -97,7 +98,7 @@ class Shooter extends Enemy {
         this.loadImages(this.SHOOTER_IMAGE_IDLE);
 
         this.y = 246;
-        this.x = 500 + Math.random() * this.maxStartX;
+        this.x = this.minStartX + Math.random() * this.maxStartX;
         this.speed = this.minSpeed + Math.random() * 0.2;
         this.state = 'walk';
         this.enemyId = globalCounterId++;
@@ -135,7 +136,7 @@ class Shooter extends Enemy {
         if (!this.isDead() && this.hadFirstContact) {
              shootIntervalId = setTimeout(() => {
                 this.shootBullet();
-            }, 1000); 
+            }, 1600); 
         }
        
     }

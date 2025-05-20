@@ -106,6 +106,8 @@ class Warrior extends Enemy {
         this.animate();
     }
 
+
+
     animate() {
         setInterval(() => {
             this.moveLeft(this.speed);
