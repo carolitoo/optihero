@@ -15,7 +15,15 @@ function initLevel() {
             new Boss()
         ],
         [
-            new Cloud()
+            new Cloud(200, -12),
+            new Cloud(800, -30),
+            new Cloud(1400, -8),
+            new Cloud(1900, -24),
+            new Cloud(2600, -12),
+            new Cloud(3100, -32),
+            new Cloud(3700, -20),
+            new Cloud(4200, -28),
+            new Cloud(4800, -12)
         ],
         [
             new BackgroundObject('img/background/l1_sky.png', -720, 0, 480),

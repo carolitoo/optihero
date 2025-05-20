@@ -215,7 +215,6 @@ class Character extends MoveableObject {
     `img/character/Character${selectedCharacter}/Throwing/Character0${selectedCharacter}-Throwing_34.png`,
   ];
 
-  // Variable stellt "Verbindung" zur Welt her
   world;
 
   CHARACTER_SOUND_WALK = new Audio("audio/02_character/walk.mp3");
@@ -226,9 +225,7 @@ class Character extends MoveableObject {
   GAME_SOUND_LOSE = new Audio("audio/01_game/lose/level_failed.mp3");
 
   constructor() {
-    super().loadImage(
-      `img/character/Character${selectedCharacter}/Idle/Character0${selectedCharacter}-Idle_00.png`
-    );
+    super().loadImage( `img/character/Character${selectedCharacter}/Idle/Character0${selectedCharacter}-Idle_00.png`);
     this.loadImages(this.CHARACTER_IMAGE_WALK);
     this.loadImages(this.CHARACTER_IMAGE_CONFUSED);
     this.loadImages(this.CHARACTER_IMAGE_DEAD);
@@ -241,6 +238,11 @@ class Character extends MoveableObject {
   }
 
 
+  /**
+   * This function manages the character.
+   * It calls the functions to move and animate the character.
+   * It also calls the function to adjusts the camera position based on the character's position. 
+   */
   animate() {
     setInterval(() => {
       this.moveCharacter();
@@ -253,6 +255,11 @@ class Character extends MoveableObject {
   }
 
 
+  /**
+   * This function moves the character based on the input of the player (keyboard or touch).
+   * It also makes sure that the character is heading in the right direction and does not go out of bounds. 
+   * The function ensures that the character only jumps if it is not already above the ground and plays a sound on taking off (only once).
+   */
   moveCharacter() {
     if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
       this.moveRight(this.speed);
@@ -272,6 +279,11 @@ class Character extends MoveableObject {
   }
 
 
+  /**
+   * This function adjusts the camera position based on the character's position.
+   * It ensures that the camera follows the character only within certain bounds.
+   * It also checks if the camera is frozen (game end) and does not adjust the camera in that case.
+   */
   adjustCamera() {
     if (this.x > -750 && this.x < 3565 && !this.world.cameraFrozen) {
       this.world.camera_x = -this.x - 30;
@@ -279,7 +291,9 @@ class Character extends MoveableObject {
   }
 
 
-
+  /**
+   * This function checks the input of the player and state of the character and calls the functions to handle the particular state.
+   */
   animateCharacter() {
     this.CHARACTER_SOUND_WALK.pause();
   
@@ -307,6 +321,10 @@ class Character extends MoveableObject {
   }
   
 
+  /**
+   * This function handles the death of the character.
+   * It calls the function to play the death animation and shows a lose banner after a short delay.
+   */
   handleDeath() {
     this.playAnimationDeadCharacter();
     setTimeout(() => {
@@ -317,6 +335,10 @@ class Character extends MoveableObject {
   }
   
 
+  /**
+   * This function handles the hurt state of the character.
+   * It plays the hurt animation and sound (if not muted).
+   */
   handleHurt() {
     this.playAnimation(this.CHARACTER_IMAGE_CONFUSED);
     if (!isMuted) {
@@ -325,11 +347,19 @@ class Character extends MoveableObject {
   }
   
 
+  /**
+   * This function handles the flying state of the character.
+   * It plays the fly animation.
+   */
   handleFly() {
     this.playAnimation(this.CHARACTER_IMAGE_FLY);
   }
   
 
+  /**
+   * This function handles the walking state of the character.
+   * It plays the walk animation and sound (if not muted).
+   */
   handleWalk() {
     this.playAnimation(this.CHARACTER_IMAGE_WALK);
     if (!isMuted) {
@@ -338,6 +368,10 @@ class Character extends MoveableObject {
   }
   
 
+  /**
+   * This function handles the throwing state of the character.
+   * It plays the throwing animation and sound (if not muted and swirls to throw are available).
+   */
   handleThrow() {
     this.playAnimation(this.CHARACTER_IMAGE_THROWING);
     if (!isMuted && this.world.swirls >= this.world.valueOfSwirl) {
@@ -348,11 +382,20 @@ class Character extends MoveableObject {
   }
   
 
+  /**
+   * This function handles the idle state of the character.
+   */
   handleIdle() {
     this.playAnimation(this.CHARACTER_IMAGE_IDLE);
   }
 
 
+  /**
+   * This function plays the animation for the dead character.
+   * It plays the hurt sound (if not muted).
+   * The function plays the dead animation frames one by one and checks if the animation is finished.
+   * After finishing the animation, it stops the game, plays the lose sound and shows the end screen with a delay of 4 seconds.
+   */
   playAnimationDeadCharacter() {
     if (!isMuted) {
       this.CHARACTER_SOUND_HURT.play();

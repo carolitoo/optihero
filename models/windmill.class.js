@@ -1,5 +1,4 @@
 class Windmill extends MoveableObject {
-
     ratio = 591/789;
 
     WINDMILL_IMAGE = [
@@ -7,8 +6,6 @@ class Windmill extends MoveableObject {
         'img/effects/windmill_02.png',
         'img/effects/windmill_03.png'
     ];
-
-
 
     constructor(x, y, height) {
         super().loadImage('img/effects/windmill_01.png');

@@ -5,10 +5,9 @@ class Boss extends Enemy {
     groundLevelBoss = 117;
     x = 2000;
 
-    acceleration = 1.8;
-
     speed = 1.8;
-    speedJump = 10;
+    speedXJump = 10;
+    acceleration = 1.8;
     jumpY = 20;
     width = this.height * this.ratio;
     energy = 60;
@@ -151,7 +150,7 @@ class Boss extends Enemy {
                 this.playAnimation(this.BOSS_IMAGE_HURT);
             } else if (this.isAboveGround(this.groundLevelBoss)) {
                 this.playAnimation(this.BOSS_IMAGE_ATTACK);
-                this.moveLeft(this.speedJump);
+                this.moveLeft(this.speedXJump);
                 i++;
             } else if (i < 24) {
                 this.playAnimation(this.BOSS_IMAGE_ATTACK);

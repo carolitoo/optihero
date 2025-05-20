@@ -25,7 +25,6 @@ class FixedObject extends DrawableObject {
     "img/statusbar/coinCollector/coinCounter_20.png",
   ];
 
-
   constructor(imagePath, clickable, handler, x, y, width, height) {
     super().loadImage(imagePath);
     this.clickable = clickable;
@@ -37,22 +36,25 @@ class FixedObject extends DrawableObject {
 
     this.fixedObjectId = globalCounterId++;
 
-    document.addEventListener("fullscreenchange", () => {
-        if (this.clickable && this.handler === 'window') {
-            this.handleWindowIcon();
-        }
-      });
-
   }
 
-
+  /**
+   * This function loads the image of the coin counter.
+   * It is used to display the number of coins collected by the player.
+   * It takes the number of coins as a parameter and loads the corresponding image.
+   * 
+   * @param {number} amountOfCoins - The number of coins collected by the player. 
+   */
   increaseCoinCounter(amountOfCoins) {
-    this.loadImage(
-      `img/statusbar/coinCollector/coinCounter_${amountOfCoins}.png`
-    );
+    this.loadImage(`img/statusbar/coinCollector/coinCounter_${amountOfCoins}.png`);
   }
 
   
+  /**
+   * This function calls the function to set the initial value of the icon if it is defined as a handler.
+   * 
+   * @param {string} handler - Type of handler defined for a icon.
+   */
   setInitialValue(handler) {
     switch (handler) {
       case "window":
@@ -70,6 +72,13 @@ class FixedObject extends DrawableObject {
   }
 
 
+  /**
+   * This function checks if an icon is clicked (based on the mouse coordinates).
+   * 
+   * @param {number} mouseX - The x coordinate of the mouse. 
+   * @param {number} mouseY - The y coordinate of the mouse.
+   * @returns {boolean} - Returns true if the icon is clicked, otherwise false.
+   */
   isClicked(mouseX, mouseY) {
     return (
       mouseX >= this.x &&
@@ -80,6 +89,13 @@ class FixedObject extends DrawableObject {
   }
 
 
+  /**
+   * This function handles the click event on an icon.
+   * It calls the function to toggle the state of clicked icon (fullscreen mode, sound or music).
+   * The function also ensures that the icon is displayed correctly after the click event by calling the respective function.
+   * 
+   * @param {string} handler - Type of handler defined for a icon. 
+   */
   handleClick(handler) {
     switch (handler) {
       case "window":
@@ -99,17 +115,21 @@ class FixedObject extends DrawableObject {
   }
 
 
+  /**
+   * This function handles the icon for the fullscreen mode.
+   */
   handleWindowIcon() {
     if (document.fullscreenElement) {
-        console.log("Fullscreen enabled");
         this.loadImage("img/game/navigation/minimize.png");
     } else if (!document.fullscreenElement) {
-        console.log("Fullscreen disabled");
         this.loadImage("img/game/navigation/maximize.png");
     }
   }
 
 
+  /**
+   * This function handles the icon for the sound.
+   */
   handleSoundIcon() {
     if (isMuted) {
       this.loadImage("img/game/navigation/sound_off_x.png");
@@ -119,6 +139,9 @@ class FixedObject extends DrawableObject {
   }
 
 
+  /**
+   * This function handles the icon for the music.
+   */
   handleMusicIcon() {
     if (musicOff) {
       this.loadImage("img/game/navigation/music_off.png");

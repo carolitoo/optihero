@@ -15,7 +15,6 @@ class StatusBar extends DrawableObject {
         'img/statusbar/energy/energy_100.png'
     ];
 
-
     STATUSBAR_IMAGE_WIND = [
         'img/statusbar/wind/wind_0.png',
         'img/statusbar/wind/wind_20.png',
@@ -24,7 +23,6 @@ class StatusBar extends DrawableObject {
         'img/statusbar/wind/wind_80.png',
         'img/statusbar/wind/wind_100.png'
     ];
-
 
     constructor(type, initialValue, x, y) {
         super();

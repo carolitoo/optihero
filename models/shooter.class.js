@@ -12,7 +12,7 @@ class Shooter extends Enemy {
     adjustedWidth = this.width/ this.adjustFrameWidth;
     adjustedHeight = this.height/ this.adjustFrameHeight;
 
-    maxStartX = 3200;
+    maxStartX = 3000;
     minStartX = 800;
 
     loopHasStarted;

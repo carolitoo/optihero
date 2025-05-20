@@ -1,11 +1,9 @@
 let selectedCharacter = 15;
 let indexOfSelectedCharacter;
-
 let indexOfPredecessor1;
 let indexOfPredecessor2;
 let indexOfSuccessor1;
 let indexOfSuccessor2;
-
 
 let selectableCharacters = [
     {

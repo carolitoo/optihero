@@ -6,19 +6,25 @@ class MoveableObject extends DrawableObject {
 
 
 
+  /**
+   * This function is used to apply gravity to an object.
+   * It checks if the object is above a certain ground level or a jump is active(speedy > 0).
+   * It makes sure that the object does not fall below the ground level by calculating the next position before updating the position.
+   * In case the next position would be below the ground level, it sets the position to the ground level and resets the speedY.
+   * It also applies a gravitational acceleration to the object, which decreases the speedY over time (jumping upwards the object becomes slower,falling downwards becomes faster.)
+   * 
+   * @param {number} groundLevel - The ground level to check against (y-coordinate). 
+   */
   applyGravity(groundLevel) {
     setInterval(() => {
-      // Die Figur bewegt sich, wenn sie entweder über dem Boden ist oder ein Sprung (speedY > 0) aktiv ist.
       if (this.y < groundLevel || this.speedY > 0) {
-        // Berechne die nächste Position: Bei einem Sprung wird y um den positiven speedY-Wert verringert.
         let nextY = this.y - this.speedY;
-        // Falls die Berechnung den Boden überschreiten würde, positioniere die Figur exakt auf groundLevel.
+
         if (nextY > groundLevel) {
           this.y = groundLevel;
           this.speedY = 0;
         } else {
           this.y = nextY;
-          // Gravitation: Verringert speedY. So wird beim Sprung die Aufwärtsgeschwindigkeit reduziert und nach Erreichen des Scheitelpunkts (speedY <= 0) beginnt die Fallbewegung.
           this.speedY -= this.acceleration;
         }
       }

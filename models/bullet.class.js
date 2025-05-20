@@ -4,6 +4,7 @@ class Bullet extends Enemy {
   width = this.height * this.ratio;
   y = 302;
 
+  energy = 20;
   speedX = 10;
 
   adjustFrameX = 0;
