@@ -1,120 +1,169 @@
 class Warrior extends Enemy {
-    ratio = 795/504;
-    height = 195;
-    width = this.height * this.ratio;
-    minSpeed = 0.35;
-    energy = 20;
-    
-    adjustFrameX = 148;
-    adjustFrameY = 68;
-    adjustFrameWidth = 4.0;
-    adjustFrameHeight = 1.8;
-    adjustedWidth = this.width/ this.adjustFrameWidth;
-    adjustedHeight = this.height/ this.adjustFrameHeight;
+  ratio = 795 / 504;
+  height = 195;
+  width = this.height * this.ratio;
+  minSpeed = 0.5;
+  energy = 20;
 
-    WARRIOR_IMAGE_WALK = [
-        `img/enemies/warrior/Walk/Walk_00.png`,
-        `img/enemies/warrior/Walk/Walk_01.png`,
-        `img/enemies/warrior/Walk/Walk_02.png`,
-        `img/enemies/warrior/Walk/Walk_03.png`,
-        `img/enemies/warrior/Walk/Walk_04.png`,
-        `img/enemies/warrior/Walk/Walk_05.png`,
-        `img/enemies/warrior/Walk/Walk_06.png`,
-        `img/enemies/warrior/Walk/Walk_07.png`,
-        `img/enemies/warrior/Walk/Walk_08.png`,
-        `img/enemies/warrior/Walk/Walk_09.png`,
-        `img/enemies/warrior/Walk/Walk_10.png`,
-        `img/enemies/warrior/Walk/Walk_11.png`,
-        `img/enemies/warrior/Walk/Walk_12.png`,
-        `img/enemies/warrior/Walk/Walk_13.png`,
-        `img/enemies/warrior/Walk/Walk_14.png`,
-        `img/enemies/warrior/Walk/Walk_15.png`,
-        `img/enemies/warrior/Walk/Walk_16.png`,
-        `img/enemies/warrior/Walk/Walk_17.png`,
-        `img/enemies/warrior/Walk/Walk_18.png`,	
-        `img/enemies/warrior/Walk/Walk_19.png`	
-    ];
+  adjustFrameX = 148;
+  adjustFrameY = 68;
+  adjustFrameWidth = 4.0;
+  adjustFrameHeight = 1.8;
+  adjustedWidth = this.width / this.adjustFrameWidth;
+  adjustedHeight = this.height / this.adjustFrameHeight;
 
-    WARRIOR_IMAGE_ATTACK = [
-        `img/enemies/warrior/Attack/Attack_00.png`,
-        `img/enemies/warrior/Attack/Attack_01.png`,
-        `img/enemies/warrior/Attack/Attack_02.png`,
-        `img/enemies/warrior/Attack/Attack_03.png`,
-        `img/enemies/warrior/Attack/Attack_04.png`,
-        `img/enemies/warrior/Attack/Attack_05.png`,
-        `img/enemies/warrior/Attack/Attack_06.png`,
-        `img/enemies/warrior/Attack/Attack_07.png`,
-        `img/enemies/warrior/Attack/Attack_08.png`,
-        `img/enemies/warrior/Attack/Attack_09.png`,
-        `img/enemies/warrior/Attack/Attack_10.png`,
-        `img/enemies/warrior/Attack/Attack_11.png`,
-        `img/enemies/warrior/Attack/Attack_12.png`,
-        `img/enemies/warrior/Attack/Attack_13.png`,
-        `img/enemies/warrior/Attack/Attack_14.png`,
-        `img/enemies/warrior/Attack/Attack_15.png`,
-        `img/enemies/warrior/Attack/Attack_16.png`,
-        `img/enemies/warrior/Attack/Attack_17.png`,
-        `img/enemies/warrior/Attack/Attack_18.png`,	
-        `img/enemies/warrior/Attack/Attack_19.png`,
-        `img/enemies/warrior/Attack/Attack_20.png`,
-        `img/enemies/warrior/Attack/Attack_21.png`,
-        `img/enemies/warrior/Attack/Attack_22.png`,
-        `img/enemies/warrior/Attack/Attack_23.png`,
-        `img/enemies/warrior/Attack/Attack_24.png`,
-        `img/enemies/warrior/Attack/Attack_25.png`,
-        `img/enemies/warrior/Attack/Attack_26.png`,
-        `img/enemies/warrior/Attack/Attack_27.png`,
-        `img/enemies/warrior/Attack/Attack_28.png`,	
-        `img/enemies/warrior/Attack/Attack_29.png`
-    ];
+  WARRIOR_IMAGE_WALK = [
+    `img/enemies/warrior/Walk/Walk_00.png`,
+    `img/enemies/warrior/Walk/Walk_01.png`,
+    `img/enemies/warrior/Walk/Walk_02.png`,
+    `img/enemies/warrior/Walk/Walk_03.png`,
+    `img/enemies/warrior/Walk/Walk_04.png`,
+    `img/enemies/warrior/Walk/Walk_05.png`,
+    `img/enemies/warrior/Walk/Walk_06.png`,
+    `img/enemies/warrior/Walk/Walk_07.png`,
+    `img/enemies/warrior/Walk/Walk_08.png`,
+    `img/enemies/warrior/Walk/Walk_09.png`,
+    `img/enemies/warrior/Walk/Walk_10.png`,
+    `img/enemies/warrior/Walk/Walk_11.png`,
+    `img/enemies/warrior/Walk/Walk_12.png`,
+    `img/enemies/warrior/Walk/Walk_13.png`,
+    `img/enemies/warrior/Walk/Walk_14.png`,
+    `img/enemies/warrior/Walk/Walk_15.png`,
+    `img/enemies/warrior/Walk/Walk_16.png`,
+    `img/enemies/warrior/Walk/Walk_17.png`,
+    `img/enemies/warrior/Walk/Walk_18.png`,
+    `img/enemies/warrior/Walk/Walk_19.png`,
+  ];
 
-    WARRIOR_IMAGE_IDLE = [
-        `img/enemies/warrior/Idle/Idle_00.png`,
-        `img/enemies/warrior/Idle/Idle_01.png`,
-        `img/enemies/warrior/Idle/Idle_02.png`,
-        `img/enemies/warrior/Idle/Idle_03.png`,
-        `img/enemies/warrior/Idle/Idle_04.png`,
-        `img/enemies/warrior/Idle/Idle_05.png`,
-        `img/enemies/warrior/Idle/Idle_06.png`,
-        `img/enemies/warrior/Idle/Idle_07.png`,
-        `img/enemies/warrior/Idle/Idle_08.png`,
-        `img/enemies/warrior/Idle/Idle_09.png`,
-        `img/enemies/warrior/Idle/Idle_10.png`,
-        `img/enemies/warrior/Idle/Idle_11.png`,
-        `img/enemies/warrior/Idle/Idle_12.png`,
-        `img/enemies/warrior/Idle/Idle_13.png`,
-        `img/enemies/warrior/Idle/Idle_14.png`,
-        `img/enemies/warrior/Idle/Idle_15.png`,
-        `img/enemies/warrior/Idle/Idle_16.png`,
-        `img/enemies/warrior/Idle/Idle_17.png`,
-        `img/enemies/warrior/Idle/Idle_18.png`,	
-        `img/enemies/warrior/Idle/Idle_19.png`	
-    ];
+  WARRIOR_IMAGE_ATTACK = [
+    `img/enemies/warrior/Attack/Attack_00.png`,
+    `img/enemies/warrior/Attack/Attack_01.png`,
+    `img/enemies/warrior/Attack/Attack_02.png`,
+    `img/enemies/warrior/Attack/Attack_03.png`,
+    `img/enemies/warrior/Attack/Attack_04.png`,
+    `img/enemies/warrior/Attack/Attack_05.png`,
+    `img/enemies/warrior/Attack/Attack_06.png`,
+    `img/enemies/warrior/Attack/Attack_07.png`,
+    `img/enemies/warrior/Attack/Attack_08.png`,
+    `img/enemies/warrior/Attack/Attack_09.png`,
+    `img/enemies/warrior/Attack/Attack_10.png`,
+    `img/enemies/warrior/Attack/Attack_11.png`,
+    `img/enemies/warrior/Attack/Attack_12.png`,
+    `img/enemies/warrior/Attack/Attack_13.png`,
+    `img/enemies/warrior/Attack/Attack_14.png`,
+    `img/enemies/warrior/Attack/Attack_15.png`,
+    `img/enemies/warrior/Attack/Attack_16.png`,
+    `img/enemies/warrior/Attack/Attack_17.png`,
+    `img/enemies/warrior/Attack/Attack_18.png`,
+    `img/enemies/warrior/Attack/Attack_19.png`,
+    `img/enemies/warrior/Attack/Attack_20.png`,
+    `img/enemies/warrior/Attack/Attack_21.png`,
+    `img/enemies/warrior/Attack/Attack_22.png`,
+    `img/enemies/warrior/Attack/Attack_23.png`,
+    `img/enemies/warrior/Attack/Attack_24.png`,
+    `img/enemies/warrior/Attack/Attack_25.png`,
+    `img/enemies/warrior/Attack/Attack_26.png`,
+    `img/enemies/warrior/Attack/Attack_27.png`,
+    `img/enemies/warrior/Attack/Attack_28.png`,
+    `img/enemies/warrior/Attack/Attack_29.png`,
+  ];
 
-    constructor() {
-        super().loadImage(`img/enemies/warrior/Idle/Idle_00.png`);
-        this.loadImages(this.WARRIOR_IMAGE_WALK);
-        this.loadImages(this.WARRIOR_IMAGE_ATTACK);
-        this.loadImages(this.WARRIOR_IMAGE_IDLE);
+  WARRIOR_IMAGE_IDLE = [
+    `img/enemies/warrior/Idle/Idle_00.png`,
+    `img/enemies/warrior/Idle/Idle_01.png`,
+    `img/enemies/warrior/Idle/Idle_02.png`,
+    `img/enemies/warrior/Idle/Idle_03.png`,
+    `img/enemies/warrior/Idle/Idle_04.png`,
+    `img/enemies/warrior/Idle/Idle_05.png`,
+    `img/enemies/warrior/Idle/Idle_06.png`,
+    `img/enemies/warrior/Idle/Idle_07.png`,
+    `img/enemies/warrior/Idle/Idle_08.png`,
+    `img/enemies/warrior/Idle/Idle_09.png`,
+    `img/enemies/warrior/Idle/Idle_10.png`,
+    `img/enemies/warrior/Idle/Idle_11.png`,
+    `img/enemies/warrior/Idle/Idle_12.png`,
+    `img/enemies/warrior/Idle/Idle_13.png`,
+    `img/enemies/warrior/Idle/Idle_14.png`,
+    `img/enemies/warrior/Idle/Idle_15.png`,
+    `img/enemies/warrior/Idle/Idle_16.png`,
+    `img/enemies/warrior/Idle/Idle_17.png`,
+    `img/enemies/warrior/Idle/Idle_18.png`,
+    `img/enemies/warrior/Idle/Idle_19.png`,
+  ];
 
-        this.y = 220;
-        this.x = 400 + Math.random() * this.maxStartX;
-        this.speed = this.minSpeed + Math.random() * 0.2;
+  constructor() {
+    super().loadImage(`img/enemies/warrior/Idle/Idle_00.png`);
+    this.loadImages(this.WARRIOR_IMAGE_WALK);
+    this.loadImages(this.WARRIOR_IMAGE_ATTACK);
+    this.loadImages(this.WARRIOR_IMAGE_IDLE);
 
-        this.enemyId = globalCounterId++;
+    this.y = 220;
+    this.x = 400 + Math.random() * this.maxStartX;
+    this.speed = this.minSpeed + Math.random() * 0.2;
 
-        this.animate();
+    this.enemyId = globalCounterId++;
+
+    this.state = "walking";
+    this.frameIndex = 0;
+    this.walkCycles = 0;
+
+    this.amoutOfWalkingCyclesToAttack = Math.random() * 4 + 1;
+    this.animate();
+  }
+
+
+
+  animate() {
+    setInterval(() => {
+      switch (this.state) {
+        case "walking":
+          this.handleWalkingWarrior();
+          break;
+
+        case "attacking":
+          this.handleAttackingWarrior();
+          break;
+
+        default:
+          this.state = "walking";
+          this.frameIndex = 0;
+          break;
+      }
+    }, 1000 / 40);
+  }
+
+
+
+  handleWalkingWarrior() {
+    this.changeFrameX(148, 4.0);
+    this.playAnimation([this.WARRIOR_IMAGE_WALK[this.frameIndex]]);
+    this.moveLeft(this.speed);
+    this.frameIndex++;
+
+    if (this.frameIndex >= this.WARRIOR_IMAGE_WALK.length) {
+        this.frameIndex = 0;
+        this.walkCycles++;
+
+    if (this.walkCycles >= this.amoutOfWalkingCyclesToAttack) {
+        this.state = "attacking";
+        this.frameIndex = 0;
+        this.walkCycles = 0;
+      }
     }
+  }
 
 
 
-    animate() {
-        setInterval(() => {
-            this.moveLeft(this.speed);
-            this.playAnimation(this.WARRIOR_IMAGE_WALK);
-        }, 1000 / 40);
+    handleAttackingWarrior() {
+    this.changeFrameX(75, 2.2);
+    this.playAnimation([this.WARRIOR_IMAGE_ATTACK[this.frameIndex]]);
+    this.frameIndex++;
+
+    if (this.frameIndex >= this.WARRIOR_IMAGE_ATTACK.length) {
+      this.state = "walking";
+      this.frameIndex = 0;
     }
+  }
+
 
 }
-
- 

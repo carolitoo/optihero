@@ -69,6 +69,12 @@ class DrawableObject {
     }
 
 
+    changeFrameX(adjustFrameX, adjustFrameWidth) {
+    this.adjustFrameX = adjustFrameX;
+    this.adjustedWidth = this.width / adjustFrameWidth;
+  }
+
+
     /**
      * This function ensures that the play clock is displayed in the right placa and format.
      * 

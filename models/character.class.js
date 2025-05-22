@@ -336,8 +336,7 @@ class Character extends MoveableObject {
   
 
   /**
-   * This function handles the hurt state of the character.
-   * It plays the hurt animation and sound (if not muted).
+   * This function plays the hurt animation and sound (if not muted).
    */
   handleHurt() {
     this.playAnimation(this.CHARACTER_IMAGE_CONFUSED);
@@ -348,8 +347,7 @@ class Character extends MoveableObject {
   
 
   /**
-   * This function handles the flying state of the character.
-   * It plays the fly animation.
+   * This function plays the fly animation.
    */
   handleFly() {
     this.playAnimation(this.CHARACTER_IMAGE_FLY);
@@ -357,8 +355,7 @@ class Character extends MoveableObject {
   
 
   /**
-   * This function handles the walking state of the character.
-   * It plays the walk animation and sound (if not muted).
+   * This function plays the walk animation and sound (if not muted).
    */
   handleWalk() {
     this.playAnimation(this.CHARACTER_IMAGE_WALK);
@@ -369,8 +366,7 @@ class Character extends MoveableObject {
   
 
   /**
-   * This function handles the throwing state of the character.
-   * It plays the throwing animation and sound (if not muted and swirls to throw are available).
+   * This function plays the throwing animation and sound (if not muted and swirls to throw are available).
    */
   handleThrow() {
     this.playAnimation(this.CHARACTER_IMAGE_THROWING);

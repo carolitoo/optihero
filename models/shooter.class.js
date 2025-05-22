@@ -109,6 +109,10 @@ class Shooter extends Enemy {
     }
 
 
+    /**
+     * This function checks the state of the shooter and plays the corresponding animation.
+     * If the state is 'walk', it moves the shooter to the left.
+     */
     animate() {
         setInterval(() => {
             if (this.state === 'walk') {
@@ -123,6 +127,11 @@ class Shooter extends Enemy {
     }
 
 
+    /**
+     * This function checks if the loop has started.
+     * If it has not started, it starts the loop.
+     * It is used to ensure that the loop is only started once.
+     */
     checkIfLoopHasStarted() {
         if (!this.loopHasStarted) {
             this.startLoop();
@@ -130,18 +139,26 @@ class Shooter extends Enemy {
     }
 }
 
-
+    /**
+     * This function starts the shooting loop.
+     * It sets a timeout to shoot a bullet every 1600 milliseconds.
+     * It checks if the shooter is not dead and has had first contact with the character before starting the loop.
+     */
     startLoop() {
         let shootIntervalId;
         if (!this.isDead() && this.hadFirstContact) {
-             shootIntervalId = setTimeout(() => {
+            shootIntervalId = setTimeout(() => {
                 this.shootBullet();
             }, 1600); 
         }
-       
     }
 
 
+    /**
+     * This function is called to shoot a bullet.
+     * It sets the state to 'attack' and creates a new bullet object which is added it to the enemy array.
+     * After shooting the bullet it sets the state of the shooter back to 'walk' and starts the loop again. 
+     */
     shootBullet() {
         if (this.isDead()) return;
 

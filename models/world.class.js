@@ -19,7 +19,6 @@ class World {
 
     timeScore = 0;
     
-
     BACKGROUND_SOUND = new Audio('./audio/01_game/background/humorous_loop.mp3');
     COIN_SOUND_COLLECT = new Audio('./audio/01_game/coin/coins-sound-effect-220030.mp3');
     SWIRL_SOUND_COLLECT = new Audio('./audio/01_game/heart/energy-drink-effect-230559.mp3');
@@ -129,6 +128,7 @@ class World {
     /**
     * This function checks if the first contact with the boss or a shooter has been made.
     * If the first contact with a shooter has been made, the loop for shooting bubbles is started.
+    * // GGF: PRÜFEN //
     */
     checkFirstContact() {
         this.level.enemies.forEach((enemy) => {
@@ -136,6 +136,9 @@ class World {
                 enemy.hadFirstContact = true;
                 if (enemy instanceof Shooter) {
                     enemy.checkIfLoopHasStarted();
+                }
+                if (enemy instanceof Boss) {
+                    enemy.bossFirstContactAnimation();
                 }
             }
 
@@ -201,7 +204,7 @@ class World {
                     enemy.hit(20);
                     to.removeThrownObject(to.thrownObjectId);
                     if (enemy instanceof Boss) {
-                        this.handlingHitBoss();
+                        this.handlingHitBoss(enemy);
                     }   
                     if (enemy.isDead()) {
                         this.handlingDeadEnemy(enemy);
@@ -216,11 +219,12 @@ class World {
      * This function handles the sound when the boss is hit.
      * It plays the sound (after reseting the current time to 0 to ensure the sound is played from the beginning).
      */
-    handlingHitBoss() {
+    handlingHitBoss(enemy) {
         if (!isMuted) {
             this.BOSS_SOUND_HIT.currentTime = 0;
             this.BOSS_SOUND_HIT.play();
         }
+        enemy.onHit();
     }
 
 
@@ -258,7 +262,7 @@ class World {
             this.showBanner('win',language);
             this.replaceByWindmills(enemy);
         }, 400);
-        
+
         setTimeout(() => {
             showEndScreen('win', this.timeScore, this.coins);
         }, 5000);
@@ -433,47 +437,84 @@ class World {
     }
     
 
-
+    /**
+     * This function draws the world on the canvas.
+     * It first clears the canvas and then calls several functions to draw the required elements.
+     * It also adds the character to the map and translates the canvas based on the camera position.
+     * The order is important: whatever is drawn first ends up in the background, the character should always be shown in the foreground.
+     * It uses requestAnimationFrame to continuously call the draw function.
+     */
     draw() {
-        // löscht alle Inhalte
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+        
         this.ctx.translate(this.camera_x, 0);
-
-        // zeichnet Inhalte ein
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.clouds);
-
-        this.ctx.translate(-this.camera_x, 0);
-        // ---- fix positionierte Inhalte ---- 
-        this.addObjectsToMap(this.level.statusBars);
-        this.addObjectsToMap(this.level.fixedObjects);
-        this.addObjectsToMap(this.level.playClock);
-        this.ctx.translate(this.camera_x, 0);
-
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.swirls);
-        this.addObjectsToMap(this.thrownObjects);
-        this.addObjectsToMap(this.effectObjects);
-
-        this.ctx.translate(-this.camera_x, 0);
-        // ---- fix positionierte Inhalte ---- 
-        this.addObjectsToMap(this.endBanner);
-        this.ctx.translate(this.camera_x, 0);
-
+        this.drawBackground();
+        this.drawFixedPositionedObjects();
+        this.drawFlexiblePositionedObjects();
+        this.drawEndBanner();
         this.addToMap(this.character);
-      
         this.ctx.translate(-this.camera_x, 0);
 
-        // draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(() => {
             self.draw()});
     }
 
 
+    /**
+     * This function draws the background objects and the clouds to the map.
+     */
+    drawBackground() {
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
+    }
 
+
+    /**
+     * This function draws the fixed positioned objects to the map.
+     * It translates the canvas based on the camera position and adds the status bars, fixed objects and play clock to the map.
+     * Then it translates the canvas back to the original position after drawing.
+     */
+    drawFixedPositionedObjects() {
+        this.ctx.translate(-this.camera_x, 0);
+        this.addObjectsToMap(this.level.statusBars);
+        this.addObjectsToMap(this.level.fixedObjects);
+        this.addObjectsToMap(this.level.playClock);
+        this.ctx.translate(this.camera_x, 0);
+    }
+
+
+    /**
+     * This function draws the flexible positioned objects to the map.
+     * It adds the enemies, collectable objects (coins & swirls), thrown objects and effect objects to the map.
+     */
+    drawFlexiblePositionedObjects() {
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.swirls);
+        this.addObjectsToMap(this.thrownObjects);
+        this.addObjectsToMap(this.effectObjects);
+    }
+
+
+    /**
+     * This function draws the end banner to the map. 
+     * As the end banner is fixed positioned, it translates the canvas based on the camera position and adds the end banner to the map.
+     * Then it translates the canvas back to the original position after drawing.
+     */
+    drawEndBanner() {
+        this.ctx.translate(-this.camera_x, 0);
+        this.addObjectsToMap(this.endBanner);
+        this.ctx.translate(this.camera_x, 0);
+    }
+
+
+    /**
+     * This function iterates over the given array and calls the addToMap function for each object.
+     * It is used to add multiple objects to the map at once.
+     * 
+     * @param {array} objects - An array of objects to be added to the map. 
+     */
     addObjectsToMap(objects) {
         objects.forEach(object => {
             this.addToMap(object);
@@ -481,6 +522,14 @@ class World {
     }
 
 
+    /**
+     * This function adds a single object to the map.
+     * It first checks if the object needs to be flipped (if it is facing the other direction).
+     * Then it draws the object, - if relevant - its frame and the play clock on the canvas.
+     * It also flips the image back to its original position (if it was flipped before).
+     * 
+     * @param {object} object - The object to be added to the map. 
+     */
     addToMap (object) {
         if (object.otherDirection) {
             this.flipImage(object);
@@ -496,6 +545,11 @@ class World {
     }
 
 
+    /**
+     * This function flips the image of the object horizontally (if an object is facing the other direction).
+     * 
+     * @param {object} movObj - The object to be flipped. 
+     */
     flipImage(movObj) {
         this.ctx.save();
         this.ctx.translate(movObj.width, 0);
@@ -504,6 +558,12 @@ class World {
     }
 
 
+    /**
+     * This function flips the image of the object back to its original position.
+     * It is called after the object has been drawn.
+     * 
+     * @param {object} movObj - The object to be flipped back. 
+     */
     flipImageBack(movObj) {
         movObj.x = movObj.x * -1;
         this.ctx.restore();
