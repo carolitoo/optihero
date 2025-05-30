@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="de" translate="no">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>opti.hero</title>
     <link
-    rel="icon"
-    type="image/x-icon"
-    href="img/game/favicon/favicon_wind.png"
-  />
+      rel="icon"
+      type="image/x-icon"
+      href="img/game/favicon/favicon_wind.png"
+    />
     <link rel="stylesheet" href="./css/loading.css" />
     <link rel="stylesheet" href="./css/font.css" />
     <link rel="stylesheet" href="./css/style.css" />
@@ -36,7 +36,7 @@
     <script src="./models/keyboard.class.js"></script>
     <script src="./models/level.class.js"></script>
     <script src="./levels/level1.js"></script>
-     <script src="./js/loader.js"></script>
+    <script src="./js/loader.js"></script>
     <script src="./js/game.js"></script>
     <script src="./js/controls.js"></script>
     <script src="./js/score.js"></script>
@@ -56,7 +56,7 @@
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-      <div id="loading-text" class="loading-text">Loading</div> 
+      <div id="loading-text" class="loading-text">Loading</div>
     </div>
 
     <div id="wrapper-fullscreen" class="wrapper-fullscreen d-none">
@@ -78,7 +78,7 @@
 
       <div id="start-screen" class="start-screen">
         <div class="start-screen-content">
-          <div class="header-start-screen">
+          <header class="header-start-screen">
             <div class="selection-language">
               <div class="container-language">
                 <img
@@ -127,10 +127,10 @@
                 onmouseout="this.src='./img/game/navigation/maximize_turquoise.png'"
               />
             </div>
-          </div>
+          </header>
 
           <h2 id="text-selection-character">WÄHLE DEINEN OPTI.HERO</h2>
-          <div id="selection-character" class="selection-character">
+          <section id="selection-character" class="selection-character">
             <div
               class="profile-container preview-profile-container"
               id="profile-1"
@@ -139,7 +139,7 @@
                 class="profile-picture"
                 src="./img/character/Character1/Idle/Character01-Idle_00.png"
                 alt="Character1"
-                onclick="previousCharacter()"
+                onclick="previousCharacter2()"
               />
             </div>
             <div class="profile-container" id="profile-2">
@@ -176,12 +176,12 @@
                 class="profile-picture"
                 src="./img/character/Character13/Idle/Character013-Idle_00.png"
                 alt="Character5"
-                onclick="nextCharacter()"
+                onclick="nextCharacter2()"
               />
             </div>
-          </div>
+          </section>
 
-          <div class="start-screen-buttons">
+          <section class="start-screen-buttons">
             <button
               onclick="startGame()"
               id="start-button"
@@ -210,16 +210,21 @@
               onclick="showTopScore()"
               class="button start-button width-score-button"
             >
-            <img 
-              class="img-task-bar"
-              src="./img/game/end/enter_score.png"
-              alt="Top 5">
+              <img
+                class="img-task-bar"
+                src="./img/game/end/enter_score.png"
+                alt="Top 5"
+              />
             </button>
-          </div>
+          </section>
         </div>
       </div>
 
-      <div id="instructions" class="overlay d-none" onclick="closeOverlay('instructions')">
+      <section
+        id="instructions"
+        class="overlay d-none"
+        onclick="closeOverlay('instructions')"
+      >
         <div class="overlay-content">
           <div class="container-close-overlay">
             <img
@@ -255,9 +260,13 @@
             <h3 id="intro-end" class="intro-end">Viel Erfolg!</h3>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div id="controls" class="overlay d-none" onclick="closeOverlay('controls')">
+      <section
+        id="controls"
+        class="overlay d-none"
+        onclick="closeOverlay('controls')"
+      >
         <div class="overlay-content">
           <div class="container-close-overlay">
             <img
@@ -303,7 +312,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <div id="end-screen" class="end-screen d-none">
         <button
@@ -332,7 +341,11 @@
         </button>
       </div>
 
-      <div id="enter-top-score" class="overlay d-none" onclick="closeOverlay('enter-top-score')">
+      <div
+        id="enter-top-score"
+        class="overlay d-none"
+        onclick="closeOverlay('enter-top-score')"
+      >
         <div class="overlay-content" onclick="event.stopPropagation()">
           <div class="container-close-overlay">
             <img
@@ -342,9 +355,16 @@
               onclick="closeOverlay('enter-top-score')"
             />
           </div>
-          <div id="enter-top-score-headline" class="headline-overlay">Herzlichen Glückwunsch!</div>
+          <div id="enter-top-score-headline" class="headline-overlay">
+            Herzlichen Glückwunsch!
+          </div>
           <form id="container-input-score" class="container-input-score">
-            <label for="input-player-name" id="label-input-player-name" class="label-input-player-name">Du hast den 2. Platz erreicht.</label>
+            <label
+              for="input-player-name"
+              id="label-input-player-name"
+              class="label-input-player-name"
+              >Du hast den 2. Platz erreicht.</label
+            >
             <input
               id="input-player-name"
               class="input-player-name"
@@ -353,15 +373,24 @@
               required
               maxlength="12"
               onfocus="this.placeholder = ''"
-              onblur="this.placeholder = 'Dein Name...'">
-            <button id="submit-score-btn" type="submit" class="button submit-score-btn">
+              onblur="this.placeholder = 'Dein Name...'"
+            />
+            <button
+              id="submit-score-btn"
+              type="submit"
+              class="button submit-score-btn"
+            >
               ERGEBNIS SPEICHERN
             </button>
           </form>
         </div>
       </div>
 
-      <div id="list-top-scores" class="overlay d-none" onclick="closeOverlay('list-top-scores')">
+      <div
+        id="list-top-scores"
+        class="overlay d-none"
+        onclick="closeOverlay('list-top-scores')"
+      >
         <div class="overlay-content">
           <div class="container-close-overlay">
             <img
@@ -371,9 +400,11 @@
               onclick="closeOverlay('list-top-scores')"
             />
           </div>
-          <div id="list-top-scores-headline" class="headline-overlay">Top 5</div>
+          <div id="list-top-scores-headline" class="headline-overlay">
+            Top 5
+          </div>
 
-          <table id="table-top-scores" class="table-top-scores"></table> 
+          <table id="table-top-scores" class="table-top-scores"></table>
         </div>
       </div>
 
@@ -381,7 +412,10 @@
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
 
         <div id="mobile-control-panel" class="mobile-control-panel d-none">
-          <div id="mobile-control-panel-left" class="mobile-control-panel-side d-none">
+          <div
+            id="mobile-control-panel-left"
+            class="mobile-control-panel-side d-none"
+          >
             <button
               id="mobile-left"
               class="mobile-control-button"
@@ -439,7 +473,10 @@
             </div>
           </div>
 
-          <div id="mobile-control-panel-side" class="mobile-control-panel-side d-none">
+          <div
+            id="mobile-control-panel-side"
+            class="mobile-control-panel-side d-none"
+          >
             <button
               id="mobile-jump"
               class="mobile-control-button"
@@ -466,52 +503,85 @@
         alt="Imprint"
         onclick="openOverlay('imprint')"
         onmouseover="this.src='./img/game/navigation/imprint_hover.png'"
-        onmouseout="this.src='./img/game/navigation/imprint.png'">
-   
-        <div id="imprint" class="overlay d-none" onclick="closeOverlay('imprint')">
-          <div class="overlay-content" onclick="event.stopPropagation()">
-            <div class="container-close-overlay">
-              <img
-                class="img-close-overlay"
-                src="./img/game/end/exit_game.png"
-                alt="Close Overlay"
-                onclick="closeOverlay('imprint')"
-              />
+        onmouseout="this.src='./img/game/navigation/imprint.png'"
+      />
+
+      <div
+        id="imprint"
+        class="overlay d-none"
+        onclick="closeOverlay('imprint')"
+      >
+        <div class="overlay-content" onclick="event.stopPropagation()">
+          <div class="container-close-overlay">
+            <img
+              class="img-close-overlay"
+              src="./img/game/end/exit_game.png"
+              alt="Close Overlay"
+              onclick="closeOverlay('imprint')"
+            />
+          </div>
+          <div id="imprint-headline" class="headline-overlay">Impressum</div>
+          <div id="imprint-text" class="imprint-text">
+            <p>
+              <b>Carolin Öller</b><br />
+              Weinstr. 14/2<br />
+              74172 Neckarsulm
+            </p>
+            <br />
+
+            <h3 id="imprint-contact">Kontakt</h3>
+            <div class="imprint-contact">
+              <p>E-Mail:</p>
+              <a href="mailto:carolin.oeller@gmail.com"
+                >carolin.oeller@gmail.com</a
+              >
             </div>
-            <div id="imprint-headline" class="headline-overlay">
-              Impressum
-            </div>
-            <div id="imprint-text" class="imprint-text">
-              <h3>Angaben gemäß § 5 TMG</h3>
-              <p>
-                <b>Carolin Öller</b><br />
-                  Weinstr. 14/2<br />
-                  74172 Neckarsulm
+            <br />
+
+            <h3>Copyright</h3>
+            <div id="imprint-copyright">
+              Die Icons kommen von
+                <a
+                  href="https://fontawesome.com/"
+                  rel="nofollow"
+                  target="_blank"
+                  >FontAwesome</a
+                >
+                unter der
+                <br/>
+                <a
+                  href="https://fontawesome.com/license"
+                  target="_blank"
+                  rel="nofollow"
+                  >Creative Commons Attribution 4.0 International license.</a
+                >
               </p>
-              <br>
-  
-              <h3>Kontakt</h3>
-              <div class="imprint-contact">
-                <p>E-Mail: </p>
-                <a href="mailto:carolin.oeller@gmail.com">carolin.oeller@gmail.com</a>
-              </div>
-              <br>
-  
+              <br/>
+
               <p>
-                The icons are provided by
-                <a href="https://fontawesome.com/" rel="nofollow" target="_blank">FontAwesome</a>
-                unter the
-                <br>
-                <a href="https://fontawesome.com/license" target="_blank" rel="nofollow">Creative Commons Attribution 4.0 International license</a>
+                Die Flaggen-Icons wurden erstellt von
+                <a
+                  href="https://www.flaticon.com/packs/countrys-flags/"
+                  rel="nofollow"
+                  target="_blank"
+                  >Freepik - Flaticon.</a
+                >
               </p>
-              <br>
-  
-              <p>The flag icons are created by <a href="https://www.flaticon.com/packs/countrys-flags/" rel="nofollow" target="_blank">Freepik - Flaticon</a></p>
-  
+              <br/>
+
+              <p>
+                Die Sounds stammen von
+                <a
+                  href="https://pixabay.com/service/license-summary/"
+                  rel="nofollow"
+                  target="_blank"
+                  >Pixaby.</a
+                >
+              </p>
             </div>
           </div>
         </div>
-
+      </div>
     </div>
   </body>
 </html>

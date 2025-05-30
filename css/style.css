@@ -466,7 +466,7 @@ th, td {
   max-height: 480px;
   padding: 0px 80px;
   margin-bottom: 24px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .container-game {

@@ -10,7 +10,7 @@ class Boss extends Enemy {
   acceleration = 1.6;
   jumpY = 24;
   width = this.height * this.ratio;
-  energy = 60;
+  energy = 80;
 
   introPlayed = false;
 
@@ -120,7 +120,7 @@ class Boss extends Enemy {
   ];
 
   BOSS_SOUND_START = new Audio("./audio/03_enemies/start_boss.mp3");
-  BOSS_SOUND_WALK = new Audio("./audio/03_enemies/walk_boss_long.mp3");
+  BOSS_SOUND_WALK = new Audio("./audio/03_enemies/walk_boss.mp3");
   BOSS_SOUND_ATTACK = new Audio("./audio/03_enemies/attack_boss.mp3");
 
   constructor() {

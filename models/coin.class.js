@@ -3,7 +3,7 @@ class Coin extends MoveableObject {
   height = 80;
   width = this.height * this.ratio;
 
-  maxCoinX = 3000;
+  maxCoinX = 3200;
   maxCoinY = 200;
 
   adjustFrameX = 20;

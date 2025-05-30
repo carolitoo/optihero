@@ -42,11 +42,12 @@ class Enemy extends MoveableObject {
   // PRÜFEN //
   animateShrinking(enemy, callback) {
     let scale = 1;
-    let steps = 20; // Anzahl der Animationsschritte (mehr Schritte = sanftere Animation)
-    let stepSize = enemy.height / steps; // Wie viel Höhe pro Frame reduziert wird
+    let steps = 20;
+    let stepSize = enemy.height / steps; 
+
     let animationInterval = setInterval(() => {
       if (scale <= 0) {
-        clearInterval(animationInterval); // Stoppt die Animation
+        clearInterval(animationInterval);
         callback(); // Entfernt den Gegner nach der Animation
       } else {
         scale -= 1 / steps;

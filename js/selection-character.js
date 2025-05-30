@@ -69,6 +69,23 @@ async function previousCharacter() {
 
 
 /**
+ * This function is called when the user clicks on the second previous character profile.
+ * It retrieves the index of the selected character and updates the selected character to the second previous one in the list.
+ * It wraps around to the last/ second last character if the current character is the first/ second in the list.
+ * It then calls the renderCharacterSelection function to update the displayed profiles.
+ */
+async function previousCharacter2() { 
+    indexOfSelectedCharacter = await getIndexOfCharacter(selectedCharacter);
+    if (indexOfSelectedCharacter === 0) {
+        selectedCharacter = selectableCharacters[selectableCharacters.length - 2].idCharacter;
+    } else {
+        selectedCharacter = selectableCharacters[indexOfSelectedCharacter - 2].idCharacter;
+    }
+    await renderCharacterSelection();
+}
+
+
+/**
  * This function is called when the user clicks on the next character profile.
  * It retrieves the index of the selected character and updates the selected character to the next one in the list.
  * It wraps around to the first character if the current character is the last in the list.
@@ -80,6 +97,25 @@ async function nextCharacter() {
         selectedCharacter = selectableCharacters[0].idCharacter;
     } else {
         selectedCharacter = selectableCharacters[indexOfSelectedCharacter + 1].idCharacter;
+    }
+    await renderCharacterSelection();
+}
+
+
+/**
+ * This function is called when the user clicks on the second next character profile.
+ * It retrieves the index of the selected character and updates the selected character to the second next one in the list.
+ * It wraps around to the first/ second character if the current character is the second to last/ last in the list.
+ * It then calls the renderCharacterSelection function to update the displayed profiles.
+ */
+async function nextCharacter2() {
+    indexOfSelectedCharacter = await getIndexOfCharacter(selectedCharacter);
+    if (indexOfSelectedCharacter === selectableCharacters.length - 2) {
+        selectedCharacter = selectableCharacters[0].idCharacter;
+    } else if (indexOfSelectedCharacter === selectableCharacters.length - 1) {
+        selectedCharacter = selectableCharacters[1].idCharacter;
+    } else {
+        selectedCharacter = selectableCharacters[indexOfSelectedCharacter + 2].idCharacter;
     }
     await renderCharacterSelection();
 }
@@ -133,11 +169,11 @@ async function renderCharacterSelection() {
     await determinePredecessors();
     await determineSuccessors();
 
-    document.getElementById('profile-1').innerHTML = await generatePreviousProfileHTML(indexOfPredecessor2);
+    document.getElementById('profile-1').innerHTML = await generatePreviousProfileHTML2(indexOfPredecessor2);
     document.getElementById('profile-2').innerHTML = await generatePreviousProfileHTML(indexOfPredecessor1);
     document.getElementById('profile-3').innerHTML = await generateSelectedProfileHTML(indexOfSelectedCharacter);
     document.getElementById('profile-4').innerHTML = await generateNextProfileHTML(indexOfSuccessor1);
-    document.getElementById('profile-5').innerHTML = await generateNextProfileHTML(indexOfSuccessor2);
+    document.getElementById('profile-5').innerHTML = await generateNextProfileHTML2(indexOfSuccessor2);
 }
 
 
@@ -161,6 +197,26 @@ async function generatePreviousProfileHTML(indexOfCharacter) {
 
 
 /**
+ * This function generates the HTML for the second previous character profile.
+ * The image element has an onclick event that calls the previousCharacter2 function when clicked.
+ * 
+ * @param {number} indexOfCharacter - The index of the character in the selectableCharacters array.
+ * @returns The HTML string for the second previous character profile.
+ */
+async function generatePreviousProfileHTML2(indexOfCharacter) {
+    return `
+       <img
+            class="profile-picture"
+            src="${selectableCharacters[indexOfCharacter].imgCharacter}"
+            alt="${selectableCharacters[indexOfCharacter].altCharacter}"
+            onclick="previousCharacter2()"
+        />
+    `;
+}
+
+
+
+/**
  * This function generates the HTML for the next character profile.
  * The image element has an onclick event that calls the nextCharacter function when clicked.
  * 
@@ -174,6 +230,25 @@ async function generateNextProfileHTML(indexOfCharacter) {
             src="${selectableCharacters[indexOfCharacter].imgCharacter}"
             alt="${selectableCharacters[indexOfCharacter].altCharacter}"
             onclick="nextCharacter()"
+        />
+    `;
+}
+
+
+/**
+ * This function generates the HTML for the second next character profile.
+ * The image element has an onclick event that calls the nextCharacter2 function when clicked.
+ * 
+ * @param {number} indexOfCharacter - The index of the character in the selectableCharacters array.
+ * @returns - The HTML string for the second next character profile.
+ */
+async function generateNextProfileHTML2(indexOfCharacter) {
+    return `
+        <img
+            class="profile-picture"
+            src="${selectableCharacters[indexOfCharacter].imgCharacter}"
+            alt="${selectableCharacters[indexOfCharacter].altCharacter}"
+            onclick="nextCharacter2()"
         />
     `;
 }

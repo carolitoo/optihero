@@ -68,34 +68,10 @@ class Warrior extends Enemy {
     `img/enemies/warrior/Attack/Attack_29.png`,
   ];
 
-  WARRIOR_IMAGE_IDLE = [
-    `img/enemies/warrior/Idle/Idle_00.png`,
-    `img/enemies/warrior/Idle/Idle_01.png`,
-    `img/enemies/warrior/Idle/Idle_02.png`,
-    `img/enemies/warrior/Idle/Idle_03.png`,
-    `img/enemies/warrior/Idle/Idle_04.png`,
-    `img/enemies/warrior/Idle/Idle_05.png`,
-    `img/enemies/warrior/Idle/Idle_06.png`,
-    `img/enemies/warrior/Idle/Idle_07.png`,
-    `img/enemies/warrior/Idle/Idle_08.png`,
-    `img/enemies/warrior/Idle/Idle_09.png`,
-    `img/enemies/warrior/Idle/Idle_10.png`,
-    `img/enemies/warrior/Idle/Idle_11.png`,
-    `img/enemies/warrior/Idle/Idle_12.png`,
-    `img/enemies/warrior/Idle/Idle_13.png`,
-    `img/enemies/warrior/Idle/Idle_14.png`,
-    `img/enemies/warrior/Idle/Idle_15.png`,
-    `img/enemies/warrior/Idle/Idle_16.png`,
-    `img/enemies/warrior/Idle/Idle_17.png`,
-    `img/enemies/warrior/Idle/Idle_18.png`,
-    `img/enemies/warrior/Idle/Idle_19.png`,
-  ];
-
   constructor() {
     super().loadImage(`img/enemies/warrior/Idle/Idle_00.png`);
     this.loadImages(this.WARRIOR_IMAGE_WALK);
     this.loadImages(this.WARRIOR_IMAGE_ATTACK);
-    this.loadImages(this.WARRIOR_IMAGE_IDLE);
 
     this.y = 220;
     this.x = 400 + Math.random() * this.maxStartX;
@@ -112,7 +88,11 @@ class Warrior extends Enemy {
   }
 
 
-
+  /**
+   * This function starts the animation loop for the warrior.
+   * It checks the current state of the warrior and calls the appropriate handler function.
+   * If the state is not recognized, it defaults to walking.
+   */
   animate() {
     setInterval(() => {
       switch (this.state) {
@@ -133,7 +113,11 @@ class Warrior extends Enemy {
   }
 
 
-
+  /**
+   * This function handles the walking state of the warrior.
+   * It changes the frame, plays the walking animation, moves the warrior to the left.
+   * After a defined amount of walking cycles, it changes the state to attacking.
+   */
   handleWalkingWarrior() {
     this.changeFrameX(148, 4.0);
     this.playAnimation([this.WARRIOR_IMAGE_WALK[this.frameIndex]]);
@@ -141,10 +125,10 @@ class Warrior extends Enemy {
     this.frameIndex++;
 
     if (this.frameIndex >= this.WARRIOR_IMAGE_WALK.length) {
-        this.frameIndex = 0;
-        this.walkCycles++;
+      this.frameIndex = 0;
+      this.walkCycles++;
 
-    if (this.walkCycles >= this.amoutOfWalkingCyclesToAttack) {
+      if (this.walkCycles >= this.amoutOfWalkingCyclesToAttack) {
         this.state = "attacking";
         this.frameIndex = 0;
         this.walkCycles = 0;
@@ -153,8 +137,12 @@ class Warrior extends Enemy {
   }
 
 
-
-    handleAttackingWarrior() {
+  /**
+   * This function handles the attacking state of the warrior.
+   * It changes the frame, plays the attacking animation.
+   * After finishing the attack animation, it changes the state back to walking.
+   */
+  handleAttackingWarrior() {
     this.changeFrameX(75, 2.2);
     this.playAnimation([this.WARRIOR_IMAGE_ATTACK[this.frameIndex]]);
     this.frameIndex++;
@@ -164,6 +152,4 @@ class Warrior extends Enemy {
       this.frameIndex = 0;
     }
   }
-
-
 }

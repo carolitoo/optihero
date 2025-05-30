@@ -63,7 +63,7 @@ class DrawableObject {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'red';
-        // ctx.strokeStyle = 'transparent';
+        ctx.strokeStyle = 'transparent';
         ctx.strokeRect(this.x + this.adjustFrameX, this.y + this.adjustFrameY, this.adjustedWidth, this.adjustedHeight);
       }
     }

@@ -1,6 +1,11 @@
 let globalCounterId = 1;
 let level1;
 
+
+/**
+ * This function initializes the first level of the game.
+ * It creates a new Level object with various enemies, background objects, fixed objects, status bars, play clock, coins, and swirls
+ */
 function initLevel() {
     level1 = new Level(
         [
@@ -94,6 +99,7 @@ function initLevel() {
             new Coin()
         ],
         [
+            new Swirl(),
             new Swirl(),
             new Swirl(),
             new Swirl(),

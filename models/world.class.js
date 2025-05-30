@@ -1,6 +1,5 @@
 class World {
     character = new Character();
-    boss = new Boss();
     level = level1;
     canvas;
     ctx;

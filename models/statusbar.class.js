@@ -34,6 +34,14 @@ class StatusBar extends DrawableObject {
     }
 
 
+    /**
+     * This function sets the percentage of the status bar and loads the corresponding images.
+     * It first checks the type and loads the corresponding image array.
+     * It then resolves the image index based on the percentage and loads the right image.
+     * 
+     * @param {number} percentage - The percentage value to set for the status bar. 
+     * @param {string} type - The type of status bar, either 'energy' or 'wind'.
+     */
     setPercentage(percentage, type) { 
         this.percentage = percentage;
         let imageArray = this.checkStatusBarType(type);
@@ -42,6 +50,13 @@ class StatusBar extends DrawableObject {
     }
 
 
+    /**
+     * This function checks the type of the status bar and returns the corresponding image array.
+     * It is used to determine which images to load based on the type of status bar.
+     * 
+     * @param {string} type - The type of status bar, either 'energy' or 'wind'. 
+     * @returns {array} - The image array corresponding to the type of status bar.
+     */
     checkStatusBarType(type) {
         if (type == 'energy') {
             return this.STATUSBAR_IMAGE_ENERGY;
@@ -51,6 +66,12 @@ class StatusBar extends DrawableObject {
     }
 
 
+    /**
+     * This function resolves the image index based on the percentage value.
+     * It returns an index that corresponds to the percentage range.
+     * 
+     * @returns {number} - The index of the image to be displayed based on the percentage.
+     */
     resolveImageIndex(){
         if (this.percentage == 100) {
             return 5;

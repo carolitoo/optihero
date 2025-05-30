@@ -17,7 +17,6 @@ class Shooter extends Enemy {
 
     loopHasStarted;
   
-    
     SHOOTER_IMAGE_WALK = [
         'img/enemies/shooter/Walk/Walk_00.png',
         'img/enemies/shooter/Walk/Walk_01.png',
@@ -40,7 +39,6 @@ class Shooter extends Enemy {
         'img/enemies/shooter/Walk/Walk_18.png',	
         'img/enemies/shooter/Walk/Walk_19.png'	
     ];
-
 
     SHOOTER_IMAGE_ATTACK = [
         'img/enemies/shooter/Attack/Attack_00.png',
@@ -65,37 +63,10 @@ class Shooter extends Enemy {
         'img/enemies/shooter/Attack/Attack_19.png'	
     ];
 
-
-    SHOOTER_IMAGE_IDLE = [
-        'img/enemies/shooter/Idle/Idle_00.png',
-        'img/enemies/shooter/Idle/Idle_01.png',
-        'img/enemies/shooter/Idle/Idle_02.png',
-        'img/enemies/shooter/Idle/Idle_03.png',
-        'img/enemies/shooter/Idle/Idle_04.png',
-        'img/enemies/shooter/Idle/Idle_05.png',
-        'img/enemies/shooter/Idle/Idle_06.png',
-        'img/enemies/shooter/Idle/Idle_07.png',
-        'img/enemies/shooter/Idle/Idle_08.png',
-        'img/enemies/shooter/Idle/Idle_09.png',
-        'img/enemies/shooter/Idle/Idle_10.png',
-        'img/enemies/shooter/Idle/Idle_11.png',
-        'img/enemies/shooter/Idle/Idle_12.png',
-        'img/enemies/shooter/Idle/Idle_13.png',
-        'img/enemies/shooter/Idle/Idle_14.png',
-        'img/enemies/shooter/Idle/Idle_15.png',
-        'img/enemies/shooter/Idle/Idle_16.png',
-        'img/enemies/shooter/Idle/Idle_17.png',
-        'img/enemies/shooter/Idle/Idle_18.png',	
-        'img/enemies/shooter/Idle/Idle_19.png'	
-    ];
-
-
-
     constructor() {
         super().loadImage(`img/enemies/shooter/Idle/Idle_00.png`);
         this.loadImages(this.SHOOTER_IMAGE_WALK);
         this.loadImages(this.SHOOTER_IMAGE_ATTACK);
-        this.loadImages(this.SHOOTER_IMAGE_IDLE);
 
         this.y = 246;
         this.x = this.minStartX + Math.random() * this.maxStartX;
