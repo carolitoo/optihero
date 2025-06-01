@@ -68,7 +68,13 @@ class DrawableObject {
       }
     }
 
-
+    /**
+     * This function changes the x position and the width of the frame for collision detection.
+     * It is used to adjust the frame during attacks of certain enemies.
+     * 
+     * @param {number} adjustFrameXv - The x position to adjust the frame. 
+     * @param {number} adjustFrameWidth - The width of the adjusted frame.
+     */
     changeFrameX(adjustFrameX, adjustFrameWidth) {
     this.adjustFrameX = adjustFrameX;
     this.adjustedWidth = this.width / adjustFrameWidth;

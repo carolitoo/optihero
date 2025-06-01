@@ -39,7 +39,14 @@ class Enemy extends MoveableObject {
   }
 
 
-  // PRÜFEN //
+  /**
+   * This function animates the shrinking effect of the enemy.
+   * It reduces the height of the enemy in small steps and moves it slightly upwards to create a folding effect.
+   * It calls the callback function once the animation is complete, which is used to remove the enemy from the enemies array. 
+   * 
+   * @param {*} enemy 
+   * @param {*} callback 
+   */
   animateShrinking(enemy, callback) {
     let scale = 1;
     let steps = 20;
@@ -48,11 +55,11 @@ class Enemy extends MoveableObject {
     let animationInterval = setInterval(() => {
       if (scale <= 0) {
         clearInterval(animationInterval);
-        callback(); // Entfernt den Gegner nach der Animation
+        callback();
       } else {
         scale -= 1 / steps;
         enemy.height -= stepSize;
-        enemy.y += stepSize / 1.2; // Gegner leicht nach oben schieben für Falt-Effekt
+        enemy.y += stepSize / 1.2;
       }
     }, 20);
   }

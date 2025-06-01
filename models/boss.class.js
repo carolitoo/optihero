@@ -149,7 +149,11 @@ class Boss extends Enemy {
   bossFirstContactAnimation() {
     if (!this.introPlayed) {
       this.state = "idle";
-      this.BOSS_SOUND_START.play();
+
+      if (!isMuted) {
+         this.BOSS_SOUND_START.play();
+      }
+
       setTimeout(() => {
         this.state = "walking";
       }, 3000);
@@ -168,10 +172,13 @@ class Boss extends Enemy {
   }
 
 
-
+  /**
+   * This function handles the animation and sound for the boss.
+   * It checks the current state of the boss and calls the appropriate handler function.
+   * If the boss has not had its first contact with the character, it is not animated.
+   */
   animate() {
     setInterval(() => {
-      // Animation startet erst nach erstem Treffer
       if (!this.hadFirstContact) return;
 
       switch (this.state) {
@@ -180,7 +187,9 @@ class Boss extends Enemy {
           break;
 
         case "walking":
-          this.BOSS_SOUND_WALK.play();
+          if (!isMuted) {
+             this.BOSS_SOUND_WALK.play();
+          }
           this.handleWalkingBoss();
           break;
 
@@ -208,7 +217,13 @@ class Boss extends Enemy {
   }
 
 
-
+  /**
+   * This function handles the walking state of the boss.
+   * It changes the frame for collision detection, plays the walking animation and moves the boss to the left.
+   * It increments the frame index and checks if it has reached the end of the walking animation.
+   * In this case, it calls the function to reset the frame index and increment the walk cycles.
+   * If the boss has reached a defined x coordinate, it handles the end position.
+   */
   handleWalkingBoss() {
     this.changeFrameX(115, 3.2);
     this.playAnimation([this.BOSS_IMAGE_WALK[this.frameIndex]]);
@@ -225,6 +240,11 @@ class Boss extends Enemy {
   }
 
 
+  /**
+   * This function handles the walking cycles of the boss.
+   * It resets the frame index, increments the walk cycles and checks if the walk cycles have reached a defined amount.
+   * If so, it changes the state to attacking, resets the frame index and walk cycles.
+   */
   handleWalkingCyclesBoss() {
     this.frameIndex = 0;
     this.walkCycles++;
@@ -237,15 +257,24 @@ class Boss extends Enemy {
   }
 
 
-
+  /**
+   * This function handles the attacking state of the boss.
+   * It changes the frame for collision detection, plays the attacking animation and moves the boss to the left.
+   * If the frame index is 0 and the boss is not above ground, it makes the boss jump and plays the attack sound.
+   * It increments the frame index and checks if it has reached the end of the attacking animation.
+   * If so, it changes the state to walking and resets the frame index.
+   */
   handleAttackingBoss() {
     this.changeFrameX(60, 1.6);
     this.playAnimation([this.BOSS_IMAGE_ATTACK[this.frameIndex]]);
 
     if (this.frameIndex === 0 && !this.isAboveGround(this.groundLevelBoss)) {
       this.jump(this.jumpY);
-      this.BOSS_SOUND_ATTACK.currentTime = 0;
-      this.BOSS_SOUND_ATTACK.play();
+      if (!isMuted) {
+        this.BOSS_SOUND_ATTACK.currentTime = 0;
+        this.BOSS_SOUND_ATTACK.play();
+      }
+  
     }
     this.moveLeft(this.speedXJump);
     this.frameIndex++;
@@ -257,7 +286,12 @@ class Boss extends Enemy {
   }
 
 
-
+  /**
+   * This function handles the hurt state of the boss.
+   * It resets the frame for collision detection, plays the hurt animation and increments the frame index.
+   * If the frame index is greater than or equal to the length of the hurt animation, it checks if the boss is still hurt.
+   * If not, it changes the state to walking and resets the frame index.
+   */
   handleHurtBoss() {
     this.changeFrameX(115, 3.2);
     this.playAnimation([this.BOSS_IMAGE_HURT[this.frameIndex]]);
@@ -270,15 +304,22 @@ class Boss extends Enemy {
   }
 
 
-
+  /**
+   * This function handles the end position of the boss.
+   * It resets the frame index, changes the state to idle and plays the boss start sound (if not muted).
+   */
   handleEndPositionBoss() {
       this.frameIndex = 0;
       this.state = "idle";
-      this.BOSS_SOUND_START.play();
+      if (!isMuted) {
+        this.BOSS_SOUND_START.play();
+      }
   }
 
 
-
+  /**
+   * This function is used to stop the sounds when the boss is killed.
+   */
   handleDeadBoss() {
     this.BOSS_SOUND_ATTACK.pause();
     this.BOSS_SOUND_WALK.pause();

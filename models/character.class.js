@@ -324,6 +324,7 @@ class Character extends MoveableObject {
 
   /**
    * This function handles the death of the character.
+   * It sets the characterFrozen property to true to prevent further actions.
    * It calls the function to play the death animation and shows a lose banner after a short delay.
    */
   handleDeath() {
