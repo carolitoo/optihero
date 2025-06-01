@@ -5,7 +5,7 @@ class Character extends MoveableObject {
   ratio = 788 / 504;
   height = 240;
   width = this.height * this.ratio;
-  speed = 5;
+  speed = 7;
   jumpY = 25;
 
   acceleration = 2;
@@ -13,6 +13,7 @@ class Character extends MoveableObject {
   levelStartX = -860;
 
   endGame = false;
+  characterFrozen = false;
   bannerDisplayed = false;
   deathAnimationFrame = 0;
 
@@ -326,6 +327,7 @@ class Character extends MoveableObject {
    * It calls the function to play the death animation and shows a lose banner after a short delay.
    */
   handleDeath() {
+    this.characterFrozen = true;
     this.playAnimationDeadCharacter();
     setTimeout(() => {
       if (!this.bannerDisplayed)
@@ -400,7 +402,7 @@ class Character extends MoveableObject {
       this.playAnimation([this.CHARACTER_IMAGE_DEAD[this.deathAnimationFrame]]);
       this.deathAnimationFrame++;
     }
-    if (this.deathAnimationFrame >= this.CHARACTER_IMAGE_DEAD.length) {
+    if (this.deathAnimationFrame >= this.CHARACTER_IMAGE_DEAD.length && !this.isAboveGround()) {
       this.endGame = true;
       stopGame();
       if (!isMuted) {

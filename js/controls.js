@@ -4,7 +4,7 @@
  * The event listener won't call the function while entering data into an input field.
  */
 window.addEventListener('keydown', (e) => {
-    if (document.activeElement.tagName === "INPUT") {
+    if (document.activeElement.tagName === "INPUT" || world.character.characterFrozen) {
         return;
       }
     checkKey(e.code);
