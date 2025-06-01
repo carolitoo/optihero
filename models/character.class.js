@@ -7,9 +7,7 @@ class Character extends MoveableObject {
   width = this.height * this.ratio;
   speed = 7;
   jumpY = 25;
-
   acceleration = 2;
-
   levelStartX = -860;
 
   endGame = false;
@@ -390,9 +388,8 @@ class Character extends MoveableObject {
 
 
   /**
-   * This function plays the animation for the dead character.
-   * It plays the hurt sound (if not muted).
-   * The function plays the dead animation frames one by one and checks if the animation is finished.
+   * This function plays the hurt sound (if not muted) and the animation for the dead character.
+   * It plays the dead animation frames one by one and checks if the animation is finished.
    * After finishing the animation, it stops the game, plays the lose sound and shows the end screen with a delay of 4 seconds.
    */
   playAnimationDeadCharacter() {

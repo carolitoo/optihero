@@ -34,7 +34,11 @@ class World {
         this.run();
     }
 
-
+    /**
+     * This function sets the world for the character and starts the background sound after a delay (because of the countdown).
+     * It also sets the clickable objects and implements the event listener for clicks on the canvas.
+     * It is called when the world is created.
+     */
     setWorld() {
         this.character.world = this;
         setTimeout(() => {
@@ -60,7 +64,11 @@ class World {
     }
 
 
-    
+    /**
+     * This function sets the clickable objects in the level (e.g. sound, fullscreen).
+     * It iterates over all fixed objects in the level and checks if they are clickable.
+     * If they are, it sets their initial values based on the parameters/ current selection.
+     */
     setClickableObjects() {
         this.level.fixedObjects.forEach(object => {
             if (object.clickable) {
@@ -70,7 +78,10 @@ class World {
     }
 
 
-
+    /**
+     * This function implements an event listener for clicks on the canvas.
+     * * It listens for click events and calls the checkClickedObject function to check if an clickable object was clicked.
+     */
     implementEventListener() {
         this.canvas.addEventListener('click', (event) => {
             this.checkClickedObject(event);
@@ -78,7 +89,13 @@ class World {
     }
 
 
-
+    /**
+     * This gets the mouse coordinates relative to the canvas and checks if any of the fixed clickable objects in the level are clicked.
+     * In this case it calls the handleClick function of the object to perform the corresponding action (e.g. toggle fullscreen, sound or music).
+     * It also checks if the music button was clicked and calls the checkMusic function to handle the music state.
+     * 
+     * @param {object} event - The click event object containing the mouse coordinates.
+     */
     checkClickedObject(event) {
         const rectCanvas = canvas.getBoundingClientRect();
         const mouseX = event.clientX - rectCanvas.left;
