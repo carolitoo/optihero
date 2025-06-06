@@ -14,21 +14,14 @@ class World {
     effectObjects = [];
     thrownObjects = [];
     endBanner = [];
-    canThrow = true;
 
     timeScore = 0;
-    
-    BACKGROUND_SOUND = new Audio('./audio/01_game/background/humorous_loop.mp3');
-    COIN_SOUND_COLLECT = new Audio('./audio/01_game/coin/coins-sound-effect-220030.mp3');
-    SWIRL_SOUND_COLLECT = new Audio('./audio/01_game/heart/energy-drink-effect-230559.mp3');
-    BOSS_SOUND_HIT = new Audio('./audio/03_enemies/hit_boss.mp3');
-    WINDMILL_SOUND = new Audio('./audio/01_game/wind/wind.mp3');
-    GAME_SOUND_WIN = new Audio('./audio/01_game/win/level_win.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.sound = new SoundManager();
         this.draw();
         this.setWorld();
         this.run();
@@ -42,25 +35,10 @@ class World {
     setWorld() {
         this.character.world = this;
         setTimeout(() => {
-            this.playBackgroundSound();
+            this.sound.playBackgroundSound();
         }, 4000);
         this.setClickableObjects();
         this.implementEventListener();
-    }
-
-
-    /**
-     * This function checks if the music is turned on. In this case starts the background sound of the game.
-     * It also sets the volume, makes it loop and resets the current time to 0.
-     * 
-     */
-    playBackgroundSound() {
-        if (!musicOff) {
-            this.BACKGROUND_SOUND.volume = 0.3;
-            this.BACKGROUND_SOUND.loop = true;
-            this.BACKGROUND_SOUND.currentTime = 0;
-            this.BACKGROUND_SOUND.play();
-        }
     }
 
 
@@ -105,24 +83,10 @@ class World {
             if (object.isClicked(mouseX, mouseY) && object.clickable) {
               object.handleClick(object.handler);
               if (object.handler === 'music') {
-                this.checkMusic();
+                this.sound.checkMusic();
               }
             }
         });
-    }
-
-
-    /**
-     * This function checks if the music is turned off. 
-     * In this case it pauses the background sound, else it plays the background sound.
-     * The function is called when the music button is clicked.
-     */
-    checkMusic() {
-        if (musicOff) {
-            this.BACKGROUND_SOUND.pause();
-        } else {
-            this.BACKGROUND_SOUND.play();
-        }
     }
 
 
@@ -144,7 +108,6 @@ class World {
     /**
     * This function checks if the first contact with the boss or a shooter has been made.
     * If the first contact with a shooter has been made, the loop for shooting bubbles is started.
-    * // GGF: PRÜFEN //
     */
     checkFirstContact() {
         this.level.enemies.forEach((enemy) => {
@@ -157,7 +120,6 @@ class World {
                     enemy.bossFirstContactAnimation();
                 }
             }
-
         })
     }
 
@@ -169,7 +131,7 @@ class World {
      * It also reduces the number of swirls, updates the corresponding status bar and calls the function to prevent the character from instantly throwing the next swirl.
      */
     checkThrowObjects() {
-        if (this.keyboard.D && this.swirls >= this.valueOfSwirl && this.canThrow) {
+        if (this.keyboard.D && this.swirls >= this.valueOfSwirl && this.character.canThrow) {
             let wind;
             if (!this.character.otherDirection) {
                 wind = new ThrowableObject(this.character.x + this.character.adjustFrameX + 75, this.character.y + this.character.adjustFrameY);
@@ -179,19 +141,8 @@ class World {
             this.thrownObjects.push(wind);
             this.swirls -= this.valueOfSwirl;
             this.level.statusBars[1].setPercentage(this.swirls, 'wind');
-            this.blockThrow();
+            this.character.blockThrow();
         }
-    }
-
-
-    /**
-     * This function blocks the throwing of swirls for 1 second.
-     */
-    blockThrow() {
-        this.canThrow = false;
-        setTimeout(() => {
-            this.canThrow = true;
-        }, 1000);
     }
 
 
@@ -220,82 +171,14 @@ class World {
                     enemy.hit(20);
                     to.removeThrownObject(to.thrownObjectId);
                     if (enemy instanceof Boss) {
-                        this.handlingHitBoss(enemy);
+                        enemy.handlingHitBoss();
                     }   
                     if (enemy.isDead()) {
-                        this.handlingDeadEnemy(enemy);
+                         enemy.handlingDeadEnemy(enemy);
                     } 
                 }
             })
         })
-    }
-
-
-    /**
-     * This function handles the sound when the boss is hit.
-     * It plays the sound (after reseting the current time to 0 to ensure the sound is played from the beginning).
-     */
-    handlingHitBoss(enemy) {
-        if (!isMuted) {
-            this.BOSS_SOUND_HIT.currentTime = 0;
-            this.BOSS_SOUND_HIT.play();
-        }
-        enemy.onHit();
-    }
-
-
-    /**
-     * This function handles the case when an enemy is dead.
-     * It removes the enemy from the array and plays the animation for the disappearance of the respective enemy.
-     * If the dead enemy is the boss, it also calls the win function.
-     * 
-     * @param {object} enemy - The enemy that is dead. 
-     */
-    handlingDeadEnemy(enemy) {
-        if (enemy instanceof Boss) {
-            enemy.animateDissapearanceOfBoss(enemy);
-            this.win(enemy);
-        } else {
-            enemy.animateDissapearanceOfSmallEnemy(enemy);
-        }
-        let enemyIndex = enemy.findIndexOfEnemey(enemy.enemyId);
-        enemy.removeEnemy(enemyIndex);
-    }
-
-
-    /**
-     * This function handles the win condition of the game.
-     * It stops the level, plays the win sound and after a short delay (for the explosion) replaces the boss with windmills and shows the win banner.
-     * It also shows the end screen after a delay of 5 seconds.
-     * 
-     * @param {object} enemy - The enemy that is replaced by windmills (normally the boss).
-     */
-    win(enemy) {
-        this.stopLevel();
-        this.playWinSound();
-       
-        setTimeout(() => {
-            this.showBanner('win',language);
-            this.replaceByWindmills(enemy);
-        }, 400);
-
-        setTimeout(() => {
-            showEndScreen('win', this.timeScore, this.coins);
-        }, 5000);
-    }
-
-
-    /**
-     * This function stops the play clock and the background sound.
-     * It also sets the camera to be frozen and removes all items from the level.
-     * It updates the time score with the time passed by the play clock.
-     */
-    stopLevel() {
-        this.level.playClock[0].stopClock();
-        this.BACKGROUND_SOUND.pause();
-        this.cameraFrozen = true;
-        this.timeScore = this.level.playClock[0].secondsPassed;
-        this.removeLevelItems();
     }
 
 
@@ -310,51 +193,6 @@ class World {
             enemy.energy = 0;
         });
         this.level.enemies = [];
-    }
-
-
-    /**
-     * This function shows the end banner after the game is finished.
-     * It creates a new FixedObject with the image of the end banner and adds it to the endBanner array.
-     * It takes the status (win or lose) and the language as parameters to determine which image to show.
-     * 
-     * @param {string} status - The status of the game (win or lose).
-     * @param {string} language - The language of the game (DE or EN).
-     */
-    showBanner(status, language) {
-        this.endBanner.push(new FixedObject(`img/game/end/${status}_${language}.png`, false, 'none', 200, 150, 400, 100));
-    }
-
-
-    /**
-     * This function replaces an enemy with windmills.
-     * It creates three new Windmill objects and adds them to the effectObjects array.
-     * It also plays the windmill sound and sets it to loop.
-    
-     * @param {object} enemy - The enemy replaced by windmills (normally the boss).
-     */
-    replaceByWindmills(enemy) {
-        if (!isMuted) {
-            this.WINDMILL_SOUND.play();
-            this.WINDMILL_SOUND.loop = true;
-        }
-
-        this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX / 3, 40, 360));
-        this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX + 150, 70, 320));
-        this.effectObjects.push(new Windmill(enemy.x + enemy.adjustFrameX + 80, 185, 200));
-    }
-
-
-    /**
-     * This function plays the win sound after a delay of 1 second (starting after the explosion effect).
-     * It checks if the sound is muted before playing the sound.
-     */
-    playWinSound() {
-        if (!isMuted) {
-            setTimeout(() => {
-                this.GAME_SOUND_WIN.play();
-            }, 1000);
-        }
     }
 
 
@@ -395,8 +233,8 @@ class World {
                 this.coins++;
                 this.level.fixedObjects[2].increaseCoinCounter(this.coins);
                 if (!isMuted) {
-                    this.COIN_SOUND_COLLECT.currentTime = 0;
-                    this.COIN_SOUND_COLLECT.play();
+                    this.sound.COIN_SOUND_COLLECT.currentTime = 0;
+                    this.sound.COIN_SOUND_COLLECT.play();
                 }
             }
         })
@@ -410,9 +248,9 @@ class World {
      * @param {object} coin - The coin to be removed from the map.
      */
     removeCoinFromMap(coin) {
-        let coinIndex = this.level.coins.indexOf(coin); // Index des Coins suchen
+        let coinIndex = this.level.coins.indexOf(coin);
         if (coinIndex > -1) {
-            this.level.coins.splice(coinIndex, 1); // Coin aus dem Array entfernen 
+            this.level.coins.splice(coinIndex, 1);
         } 
     }
 
@@ -441,13 +279,13 @@ class World {
     removeSwirlFromMap(swirl) {
         let swirlIndex = this.level.swirls.indexOf(swirl);
         if (swirlIndex > -1) {
-            this.level.swirls.splice(swirlIndex, 1); // Swirl aus dem Array entfernen
+            this.level.swirls.splice(swirlIndex, 1);
             if (this.swirls < 100) {
                 this.swirls += this.valueOfSwirl;
             }
             if (!isMuted) {
-                this.SWIRL_SOUND_COLLECT.currentTime = 0;
-                this.SWIRL_SOUND_COLLECT.play();
+                this.sound.SWIRL_SOUND_COLLECT.currentTime = 0;
+                this.sound.SWIRL_SOUND_COLLECT.play();
             }
         } 
     }

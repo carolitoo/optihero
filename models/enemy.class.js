@@ -77,6 +77,27 @@ class Enemy extends MoveableObject {
   }
 
 
+  
+    /**
+     * This function handles the case when an enemy is dead.
+     * It removes the enemy from the array and plays the animation for the disappearance of the respective enemy.
+     * If the dead enemy is the boss, it also calls the win function.
+     * 
+     * @param {object} enemy - The enemy that is dead. 
+     */
+    handlingDeadEnemy(enemy) {
+        if (enemy instanceof Boss) {
+            enemy.animateDissapearanceOfBoss(enemy);
+            // world.win(enemy);
+            win(enemy);
+        } else {
+            this.animateDissapearanceOfSmallEnemy(enemy);
+        }
+        let enemyIndex = this.findIndexOfEnemey(enemy.enemyId);
+        this.removeEnemy(enemyIndex);
+    }
+
+
   /**
    * This function removes the enemy from the enemies array.
    * 

@@ -89,11 +89,59 @@ function countdownStart() {
 
 
 /**
+ * This function stops the play clock and the background sound.
+ * It also sets the camera to be frozen and removes all items from the level.
+ * It updates the time score with the time passed by the play clock.
+ */
+function stopLevel() {
+    world.level.playClock[0].stopClock();
+    world.sound.BACKGROUND_SOUND.pause();
+    world.cameraFrozen = true;
+    world.timeScore = world.level.playClock[0].secondsPassed;
+    world.removeLevelItems();
+}
+
+
+/**
+ * This function handles the win condition of the game.
+ * It stops the level, plays the win sound and after a short delay (for the explosion) replaces the boss with windmills and shows the win banner.
+ * It also shows the end screen after a delay of 5 seconds.
+ * 
+ * @param {object} enemy - The enemy that is replaced by windmills (normally the boss).
+ */
+function win(enemy) {
+    stopLevel();
+    world.sound.playWinSound();
+   
+    setTimeout(() => {
+        showBanner('win',language);
+        enemy.replaceBossByWindmills();
+    }, 400);
+
+    setTimeout(() => {
+        showEndScreen('win', world.timeScore, world.coins);
+    }, 5000);
+}
+
+
+/**
+ * This function shows the end banner after the game is finished.
+ * It creates a new FixedObject with the image of the end banner and adds it to the endBanner array.
+ * It takes the status (win or lose) and the language as parameters to determine which image to show.
+ * 
+ * @param {string} status - The status of the game (win or lose).
+ * @param {string} language - The language of the game (DE or EN).
+ */
+function showBanner(status, language) {
+    world.endBanner.push(new FixedObject(`img/game/end/${status}_${language}.png`, false, 'none', 200, 150, 400, 100));
+}
+
+/**
  * This function is called when the game is restarted.
  * It stops the current game, resets the level and starts a new game.
  */
 function restartGame() {
-    world.WINDMILL_SOUND.pause();
+    world.sound.WINDMILL_SOUND.pause();
     startGame();
 }
 
@@ -180,11 +228,11 @@ function toggleMusicInGame() {
     if (musicOff) {
         setIconSources(icon, './img/game/navigation/music_off_turquoise.png', './img/game/navigation/music_off_turquoise_hover.png')
         setIconSources(iconGame, './img/game/navigation/music_off.png', './img/game/navigation/music_off_hover.png')
-        world.BACKGROUND_SOUND.pause();
+        world.sound.BACKGROUND_SOUND.pause();
     } else {
         setIconSources(icon, './img/game/navigation/music_on_turquoise.png', './img/game/navigation/music_on_turquoise_hover.png')
         setIconSources(iconGame, './img/game/navigation/music_on.png', './img/game/navigation/music_on_hover.png')
-        world.BACKGROUND_SOUND.play();
+        world.sound.BACKGROUND_SOUND.play();
     }  
 }
 
@@ -272,8 +320,8 @@ window.addEventListener('resize', checkOrientation);
 function stopGame() {
     clearAllIntervals();
     world.level.playClock[0].stopClock();
-    world.BACKGROUND_SOUND.pause();
-    world.WINDMILL_SOUND.pause();
+    world.sound.BACKGROUND_SOUND.pause();
+    world.sound.WINDMILL_SOUND.pause();
 }
 
 

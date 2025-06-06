@@ -328,6 +328,19 @@ class Boss extends Enemy {
   } 
 
 
+    /**
+     * This function handles the sound when the boss is hit.
+     * It plays the sound (after reseting the current time to 0 to ensure the sound is played from the beginning).
+     */
+    handlingHitBoss() {
+        if (!isMuted) {
+            world.sound.BOSS_SOUND_HIT.currentTime = 0;
+            world.sound.BOSS_SOUND_HIT.play();
+        }
+        this.onHit();
+    }
+
+
   /**
    * This function is called when the boss is killed.
    * It creates an explosion effect and plays a sound (if not muted).
@@ -349,4 +362,21 @@ class Boss extends Enemy {
       }
     }, 400);
   }
+
+
+    /**
+     * This function replaces the boss with windmills.
+     * It creates three new Windmill objects and adds them to the effectObjects array.
+     * It also plays the windmill sound and sets it to loop.
+     */
+      replaceBossByWindmills() {
+        if (!isMuted) {
+            world.sound.WINDMILL_SOUND.play();
+            world.sound.WINDMILL_SOUND.loop = true;
+        }
+
+        world.effectObjects.push(new Windmill(this.x + this.adjustFrameX / 3, 40, 360));
+        world.effectObjects.push(new Windmill(this.x + this.adjustFrameX + 150, 70, 320));
+        world.effectObjects.push(new Windmill(this.x + this.adjustFrameX + 80, 185, 200));
+    }
 }

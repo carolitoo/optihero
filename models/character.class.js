@@ -11,6 +11,7 @@ class Character extends MoveableObject {
   levelStartX = -860;
 
   endGame = false;
+  canThrow = true;
   characterFrozen = false;
   bannerDisplayed = false;
   deathAnimationFrame = 0;
@@ -291,6 +292,17 @@ class Character extends MoveableObject {
 
 
   /**
+   * This function blocks the throwing of swirls for 1 second.
+   */
+  blockThrow() {
+    this.canThrow = false;
+    setTimeout(() => {
+      this.canThrow = true;
+    }, 1000);
+  }
+
+
+  /**
    * This function checks the input of the player and state of the character and calls the functions to handle the particular state.
    */
   animateCharacter() {
@@ -312,7 +324,7 @@ class Character extends MoveableObject {
       this.handleWalk();
       return;
     }
-    if (this.world.keyboard.D && this.world.canThrow) {
+    if (this.world.keyboard.D) {
       this.handleThrow();
       return;
     }
@@ -329,9 +341,10 @@ class Character extends MoveableObject {
     this.characterFrozen = true;
     this.playAnimationDeadCharacter();
     setTimeout(() => {
-      if (!this.bannerDisplayed)
-      world.showBanner('lose', language);
-      this.bannerDisplayed = true;
+      if (!this.bannerDisplayed) {
+        showBanner('lose', language);
+        this.bannerDisplayed = true;
+      }
   }, 800);
   }
   

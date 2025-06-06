@@ -137,7 +137,6 @@ class Shooter extends Enemy {
         let bullet = new Bullet(this.x);
         world.level.enemies.push(bullet);
 
-        // Nur einmal schießen, dann wieder laufen
         setTimeout(() => {
             this.state = "walk";
             this.startLoop();
