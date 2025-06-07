@@ -46,7 +46,7 @@ class FixedObject extends DrawableObject {
    * @param {number} amountOfCoins - The number of coins collected by the player. 
    */
   increaseCoinCounter(amountOfCoins) {
-    this.loadImage(`img/statusbar/coinCollector/coinCounter_${amountOfCoins}.png`);
+    this.img.src = `${this.COIN_COUNTER_IMAGE[amountOfCoins]}`;
   }
 
   
@@ -120,9 +120,9 @@ class FixedObject extends DrawableObject {
    */
   handleWindowIcon() {
     if (document.fullscreenElement) {
-        this.loadImage("img/game/navigation/minimize.png");
+        this.img.src = "img/game/navigation/minimize.png";
     } else if (!document.fullscreenElement) {
-        this.loadImage("img/game/navigation/maximize.png");
+        this.img.src = "img/game/navigation/maximize.png";
     }
   }
 
@@ -132,9 +132,9 @@ class FixedObject extends DrawableObject {
    */
   handleSoundIcon() {
     if (isMuted) {
-      this.loadImage("img/game/navigation/sound_off_x.png");
+      this.img.src = "img/game/navigation/sound_off_x.png";
     } else {
-      this.loadImage("img/game/navigation/sound_on.png");
+      this.img.src = "img/game/navigation/sound_on.png";
     }
   }
 
@@ -144,9 +144,9 @@ class FixedObject extends DrawableObject {
    */
   handleMusicIcon() {
     if (musicOff) {
-      this.loadImage("img/game/navigation/music_off.png");
+      this.img.src = "img/game/navigation/music_off.png";
     } else {
-      this.loadImage("img/game/navigation/music_on.png");
+      this.img.src = "img/game/navigation/music_on.png";
     }
   }
 }

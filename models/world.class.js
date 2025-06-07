@@ -99,7 +99,7 @@ class World {
                 this.checkCollisions();
                 this.checkThrowObjects();
                 this.checkFirstContact();
-            }, 50);
+            }, 30);
             this.level.playClock[0].startClock();
         }, 4000);
     }
