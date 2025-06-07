@@ -88,7 +88,6 @@ class Enemy extends MoveableObject {
     handlingDeadEnemy(enemy) {
         if (enemy instanceof Boss) {
             enemy.animateDissapearanceOfBoss(enemy);
-            // world.win(enemy);
             win(enemy);
         } else {
             this.animateDissapearanceOfSmallEnemy(enemy);

@@ -55,7 +55,7 @@ function init() {
  * This function initiates the game by replacing the start or end screen with the canvas/ game screen.
  * It also starts a countdown and initializes the game.
  */
-function startGame() {
+async function startGame() {
     countdownStart();
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('end-screen').classList.add('d-none');

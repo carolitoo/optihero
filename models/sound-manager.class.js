@@ -1,9 +1,5 @@
 class SoundManager {
 
-  constructor() {
-
-  }
-
     BACKGROUND_SOUND = new Audio('./audio/01_game/background/humorous_loop.mp3');
     COIN_SOUND_COLLECT = new Audio('./audio/01_game/coin/coins-sound-effect-220030.mp3');
     SWIRL_SOUND_COLLECT = new Audio('./audio/01_game/heart/energy-drink-effect-230559.mp3');
