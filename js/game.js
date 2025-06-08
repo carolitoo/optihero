@@ -28,7 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 async function renderStartScreen() {
     checkOrientation();
+    setSoundSettings();
     await renderCharacterSelection();
+}
+
+
+/**
+ * This function gets the sound settings from localStorage and sets the global variables 'isMuted' and 'musicOff'.
+ * It calls the functions to set the sound and music icons based on the current settings.
+ */
+function setSoundSettings() {
+    isMuted = localStorage.getItem('soundIsMuted') === 'true';
+    musicOff = localStorage.getItem('musicIsOff') === 'true';
+    setSoundIcons();
+    setMusicIcons();
 }
 
 
@@ -172,15 +185,25 @@ function selectLanguage(selectedLanguage) {
 
 
 /**
- * This function toggles the sound on and off.
+ * This function toggles the sound on and off by changing the global variable 'isMuted'.
+ * It also saves the current state of the sound in localStorage so that it persists across sessions.
  * It calls a function to change the icons of the sound buttons accordingly (including hover effect).
  * It is called when the player clicks on the sound button on the start screen or in the game.
  */
 function toggleSound() {
+    isMuted = !isMuted;
+    localStorage.setItem('soundIsMuted', isMuted);
+    setSoundIcons();
+}
+
+
+/**
+ * This function sets the icons for the sound buttons on the start screen and in the game.
+ * It changes the icon source based on whether the sound is muted or not.
+ */
+function setSoundIcons() {
     let icon = document.getElementById('toggle-sound-start');
     let iconGame = document.getElementById('toggle-sound-game');
-
-    isMuted = !isMuted;
 
     if (isMuted) {
         setIconSources(icon, './img/game/navigation/sound_off_x_turquoise.png', './img/game/navigation/sound_off_x_turquoise_hover.png')
@@ -189,51 +212,58 @@ function toggleSound() {
         setIconSources(icon, './img/game/navigation/sound_on_turquoise.png', './img/game/navigation/sound_on_turquoise_hover.png')
         setIconSources(iconGame, './img/game/navigation/sound_on.png', './img/game/navigation/sound_on_hover.png')
     }
+
 }
 
 
 /**
- * This function toggles the music on and off.
+ * This function toggles the music on and off by changing the global variable 'musicOff'.
+ * It also saves the current state of the music in localStorage so that it persists across sessions.
  * It calls a function to change the icons of the music buttons accordingly (including hover effect).
  * It is called when the player clicks on the music button on the start screen.
  */
 function toggleMusic() {
-    let icon = document.getElementById('toggle-music-start');
-    let iconGame = document.getElementById('toggle-music-game');
-
     musicOff = !musicOff;
-
-    if (musicOff) {
-        setIconSources(icon, './img/game/navigation/music_off_turquoise.png', './img/game/navigation/music_off_turquoise_hover.png')
-        setIconSources(iconGame, './img/game/navigation/music_off.png', './img/game/navigation/music_off_hover.png')
-    } else {
-        setIconSources(icon, './img/game/navigation/music_on_turquoise.png', './img/game/navigation/music_on_turquoise_hover.png')
-        setIconSources(iconGame, './img/game/navigation/music_on.png', './img/game/navigation/music_on_hover.png')
-    }  
+    localStorage.setItem('musicIsOff', musicOff);
+    setMusicIcons();
 }
 
 
 /**
- * This function toggles the music on and off. 
+ * This function toggles the music on and off by changing the global variable 'musicOff'.
+ * It also saves the current state of the music in localStorage so that it persists across sessions.
  * It calls a function to change the icons of the music buttons accordingly (including hover effect).
  * It is called when the player clicks on the sound button within the game.
  * The function also plays or pauses the background music depending on the current state.
  */
 function toggleMusicInGame() { 
+    musicOff = !musicOff;
+    localStorage.setItem('musicIsOff', musicOff);
+
+    if (musicOff) {
+        world.sound.BACKGROUND_SOUND.pause();
+    } else {
+        world.sound.BACKGROUND_SOUND.play();
+    }  
+    setMusicIcons();
+}
+
+
+/**
+ * This function sets the icons for the music buttons on the start screen and in the game.
+ * It changes the icon source based on whether the sound is muted or not.
+ */
+function setMusicIcons() {
     let icon = document.getElementById('toggle-music-start');
     let iconGame = document.getElementById('toggle-music-game');
-
-    musicOff = !musicOff;
 
     if (musicOff) {
         setIconSources(icon, './img/game/navigation/music_off_turquoise.png', './img/game/navigation/music_off_turquoise_hover.png')
         setIconSources(iconGame, './img/game/navigation/music_off.png', './img/game/navigation/music_off_hover.png')
-        world.sound.BACKGROUND_SOUND.pause();
     } else {
         setIconSources(icon, './img/game/navigation/music_on_turquoise.png', './img/game/navigation/music_on_turquoise_hover.png')
         setIconSources(iconGame, './img/game/navigation/music_on.png', './img/game/navigation/music_on_hover.png')
-        world.sound.BACKGROUND_SOUND.play();
-    }  
+    }
 }
 
 
