@@ -72,8 +72,10 @@
 }
 
 .profile-container {
-    width: 84px;
-    height: 84px;
+    /* width: 84px;
+    height: 84px; */
+    width: calc(var(--selected-profile-container-size) * 0.65);
+    height: calc(var(--selected-profile-container-size) * 0.65);
     border-radius: 50%;
     border: 4px solid #ddd; 
     overflow: hidden; /* Beschneidet alles außerhalb des Containers */
@@ -87,13 +89,17 @@
 }
 
 .selected-profile-container {
-  width: 128px;
-  height: 128px;
+  /* width: 128px;
+  height: 128px; */
+  width: var(--selected-profile-container-size);
+  height: var(--selected-profile-container-size);
 }
 
 .preview-profile-container {
-  width: 64px;
-  height: 64px;
+  /* width: 64px;
+  height: 64px; */
+  width: calc(var(--selected-profile-container-size) * 0.5);
+  height: calc(var(--selected-profile-container-size) * 0.5);
 }
 
 .profile-picture {
@@ -159,14 +165,14 @@
 }
 
 .controls-mobile-container img {
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   border: transparent 2px solid;
 }
 
 .controls-mobile-container img:hover {
-  width: 58px;
-  height: 58px;
+  width: 54px;
+  height: 54px;
   border: none;
 }
 
@@ -181,14 +187,14 @@
 
 .key {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 8px 16px;
   margin: 5px;
   background-color: #f0f0f0;
   color: black;
   border: 2px solid #ccc;
   border-radius: 6px;
   box-shadow: 0 4px #bbb;
-  font-size: 28px;
+  font-size: 24px;
   text-align: center;
   transition: all 0.1s ease-in-out;
   user-select: none;
@@ -285,7 +291,6 @@ th, td {
   height: 480px;
   width: 720px;
   position: absolute;
-  top: 231px;
   display: flex;
   flex-direction: column;
   justify-content: center;

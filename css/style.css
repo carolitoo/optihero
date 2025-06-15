@@ -1,3 +1,7 @@
+:root {
+  --selected-profile-container-size: 128px;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -144,7 +148,7 @@ form {
   width: 70%;
   font-size: 42px;
   margin-top: -48px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   color: #00A79D;
 }
 

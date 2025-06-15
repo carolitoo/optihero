@@ -11,9 +11,9 @@
     />
     <link rel="stylesheet" href="./css/loading.css" />
     <link rel="stylesheet" href="./css/font.css" />
-    <link rel="stylesheet" href="./css/responsive-design.css" />
     <link rel="stylesheet" href="./css/start-end-screen.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/responsive-design.css" />
 
     <script src="./models/drawable-objects.class.js"></script>
     <script src="./models/movable-objects.class.js"></script>
@@ -126,6 +126,15 @@
                 onclick="toggleFullScreen()"
                 onmouseover="this.src='./img/game/navigation/maximize_turquoise_hover.png'"
                 onmouseout="this.src='./img/game/navigation/maximize_turquoise.png'"
+              />
+              <img
+                id="icon-imprint-inline"
+                class="icon-imprint"
+                src="./img/game/navigation/imprint.png"
+                alt="Imprint"
+                onclick="openOverlay('imprint')"
+                onmouseover="this.src='./img/game/navigation/imprint_hover.png'"
+                onmouseout="this.src='./img/game/navigation/imprint.png'"
               />
             </div>
           </header>
@@ -315,33 +324,6 @@
         </div>
       </section>
 
-      <div id="end-screen" class="end-screen d-none">
-        <button
-          onclick="restartGame()"
-          id="restart-button"
-          class="button end-button"
-        >
-          <img
-            class="icon-end-screen"
-            src="./img/game/end/play_again.png"
-            alt="Play again"
-          />
-          <p id="restart-button-label">NOCHMAL SPIELEN!</p>
-        </button>
-        <button
-          onclick="returnToStart()"
-          id="return-to-start-button"
-          class="button end-button"
-        >
-          <img
-            class="icon-end-screen"
-            src="./img/game/end/exit_game.png"
-            alt="exit_game"
-          />
-          <p id="return-to-start-button-label">ZURÜCK ZUM START</p>
-        </button>
-      </div>
-
       <div
         id="enter-top-score"
         class="overlay d-none"
@@ -410,6 +392,7 @@
       </div>
 
       <div class="container-game">
+        
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
 
         <div id="mobile-control-panel" class="mobile-control-panel d-none">
@@ -496,16 +479,34 @@
             </button>
           </div>
         </div>
-      </div>
 
-      <img
-        class="icon-imprint"
-        src="./img/game/navigation/imprint.png"
-        alt="Imprint"
-        onclick="openOverlay('imprint')"
-        onmouseover="this.src='./img/game/navigation/imprint_hover.png'"
-        onmouseout="this.src='./img/game/navigation/imprint.png'"
-      />
+           <div id="end-screen" class="end-screen d-none">
+        <button
+          onclick="restartGame()"
+          id="restart-button"
+          class="button end-button"
+        >
+          <img
+            class="icon-end-screen"
+            src="./img/game/end/play_again.png"
+            alt="Play again"
+          />
+          <p id="restart-button-label">NOCHMAL SPIELEN!</p>
+        </button>
+        <button
+          onclick="returnToStart()"
+          id="return-to-start-button"
+          class="button end-button"
+        >
+          <img
+            class="icon-end-screen"
+            src="./img/game/end/exit_game.png"
+            alt="exit_game"
+          />
+          <p id="return-to-start-button-label">ZURÜCK ZUM START</p>
+        </button>
+      </div>
+      </div>
 
       <div
         id="imprint"
