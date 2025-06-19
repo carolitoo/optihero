@@ -33,9 +33,9 @@
     padding: 8px;
   }
 
-  .mobile-control-panel-side {
+  /* .mobile-control-panel-side {
     display: flex;
-  }
+  } */
 
   .controls-mobile-container {
     gap: 8px;
@@ -218,7 +218,7 @@
 
   .mobile-control-panel-side {
     width: 124px;
-    display: flex;
+    /* display: flex; */
   }
 
   .mobile-control-button {

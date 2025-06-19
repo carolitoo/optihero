@@ -56,6 +56,40 @@ function unsetKeyboard() {
 
 
 /**
+ * This function checks if the user is using a mobile device and displays the mobile control panel accordingly.
+ * If also binds the touch events to the buttons (if needed).
+ */
+function checkDisplayMobileControlPanel() {
+    if (isMobileDevice()) {
+        document.getElementById('mobile-control-panel-left').style.display = 'flex';
+        document.getElementById('mobile-control-panel-side').style.display = 'flex';
+        bindMobileButtons();
+    } else {
+        document.getElementById('mobile-control-panel-left').style.display = 'none';
+        document.getElementById('mobile-control-panel-side').style.display = 'none';
+    }
+}
+
+
+/**
+ * This function checks if the user is on a mobile device.
+ * It returns true if the user is on a mobile device, false otherwise.
+ * 
+ * @returns {boolean} - True if the user is on a mobile device
+ */
+function isMobileDevice() {
+  const ua = navigator.userAgent.toLowerCase();
+  const isAndroid = ua.includes("android");
+  const isIOS = ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod") || 
+                (navigator.userAgent.includes("Macintosh") && 'ontouchend' in document);
+
+  const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 1;
+
+  return hasTouch && (isAndroid || isIOS);
+}
+
+
+/**
  * This function binds the touch events to the mobile buttons.
  * It sets the corresponding property in the keyboard object to true when the button is pressed and to false when the button is released.
  * It also prevents the default behaviour to ensure there are no unwanted side effects (e.g. page scrolling or double events).

@@ -53,7 +53,7 @@ function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    bindMobileButtons();
+    checkDisplayMobileControlPanel();
 
     setTimeout(() => {
         document.getElementById('loading-screen').style.display = 'none';
