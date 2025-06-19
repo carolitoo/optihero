@@ -45,7 +45,7 @@
     <script src="./js/translation.js"></script>
   </head>
 
-  <body onload="renderStartScreen(), getTopScoreFromLocalStorage()", get>
+  <body onload="renderStartScreen(), getTopScoreFromLocalStorage()" , get>
     <div id="loading-screen" class="overlay">
       <div id="loading-spinner" class="loading-spinner">
         <div class="dot"></div>
@@ -387,12 +387,38 @@
             Top 5
           </div>
 
-          <table id="table-top-scores" class="table-top-scores"></table>
+          <table class="table-top-scores">
+            <colgroup>
+              <col style="width: 60px" />
+              <col style="width: 185px" />
+              <col style="width: 80px" />
+              <col style="width: 80px" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Pos.</th>
+                <th class="score-column-name">Name</th>
+                <th><img src="./img/game/navigation/timer_white.png" class="table-img-timer" /></th>
+                <th><img src="./img/game/navigation/coin_score.png" class="table-img-coin" /></th>
+              </tr>
+            </thead>
+          </table>
+          <div class="table-scroll-container">
+            <table class="table-top-scores">
+              <colgroup>
+                <col style="width: 60px" />
+                <col style="width: 185px" />
+                <col style="width: 80px" />
+                <col style="width: 80px" />
+              </colgroup>
+              <tbody id="tbody-top-scores">
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
       <div class="container-game">
-        
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
 
         <div id="mobile-control-panel" class="mobile-control-panel d-none">
@@ -480,32 +506,32 @@
           </div>
         </div>
 
-           <div id="end-screen" class="end-screen d-none">
-        <button
-          onclick="restartGame()"
-          id="restart-button"
-          class="button end-button"
-        >
-          <img
-            class="icon-end-screen"
-            src="./img/game/end/play_again.png"
-            alt="Play again"
-          />
-          <p id="restart-button-label">NOCHMAL SPIELEN!</p>
-        </button>
-        <button
-          onclick="returnToStart()"
-          id="return-to-start-button"
-          class="button end-button"
-        >
-          <img
-            class="icon-end-screen"
-            src="./img/game/end/exit_game.png"
-            alt="exit_game"
-          />
-          <p id="return-to-start-button-label">ZURÜCK ZUM START</p>
-        </button>
-      </div>
+        <div id="end-screen" class="end-screen d-none">
+          <button
+            onclick="restartGame()"
+            id="restart-button"
+            class="button end-button"
+          >
+            <img
+              class="icon-end-screen"
+              src="./img/game/end/play_again.png"
+              alt="Play again"
+            />
+            <p id="restart-button-label">NOCHMAL SPIELEN!</p>
+          </button>
+          <button
+            onclick="returnToStart()"
+            id="return-to-start-button"
+            class="button end-button"
+          >
+            <img
+              class="icon-end-screen"
+              src="./img/game/end/exit_game.png"
+              alt="exit_game"
+            />
+            <p id="return-to-start-button-label">ZURÜCK ZUM START</p>
+          </button>
+        </div>
       </div>
 
       <div
@@ -543,22 +569,18 @@
             <h3>Copyright</h3>
             <div id="imprint-copyright">
               Die Icons kommen von
-                <a
-                  href="https://fontawesome.com/"
-                  rel="nofollow"
-                  target="_blank"
-                  >FontAwesome</a
-                >
-                unter der
-                <br/>
-                <a
-                  href="https://fontawesome.com/license"
-                  target="_blank"
-                  rel="nofollow"
-                  >Creative Commons Attribution 4.0 International license.</a
-                >
-              </p>
-              <br/>
+              <a href="https://fontawesome.com/" rel="nofollow" target="_blank"
+                >FontAwesome</a
+              >
+              unter der
+              <br />
+              <a
+                href="https://fontawesome.com/license"
+                target="_blank"
+                rel="nofollow"
+                >Creative Commons Attribution 4.0 International license.</a
+              >
+              <br />
 
               <p>
                 Die Flaggen-Icons wurden erstellt von
@@ -569,7 +591,7 @@
                   >Freepik - Flaticon.</a
                 >
               </p>
-              <br/>
+              <br />
 
               <p>
                 Die Sounds stammen von

@@ -229,15 +229,13 @@ async function adjustTopScorePositions() {
 
 
 /**
- * This function shows the top score in the table.
- * It clears the existing content of the table and adds the header.
- * It then loops through the top score array and adds each score to the table.
+ * This function shows the top scores in the table.
+ * First it clears the existing content of the table and then loops through the top score array and adds each score to the table.
  * If there are less than the maximum amount of entries, it adds empty score elements to fill the table.
  */
 async function showTopScore() {
-    const scoreTable = document.getElementById('table-top-scores')
+    const scoreTable = document.getElementById('tbody-top-scores');
     scoreTable.innerHTML = '';
-    scoreTable.innerHTML += await createTableHeaderHTML();
 
     for (let i = 0; i < maxTopScores; i++) {
         if (i < topScore.length) {
@@ -248,22 +246,6 @@ async function showTopScore() {
         }
     }
     document.getElementById('list-top-scores').classList.remove('d-none');
-}
-
-
-/**
- * This function creates the header of the score table.
- * 
- * @returns {string} - The HTML string for the table header
- */
-async function createTableHeaderHTML() {
-    return `
-        <tr>
-            <th>Pos.</th>
-            <th class="ta-left column-name-width">Name</th>
-            <th><img src="./img/game/navigation/timer_white.png" class="table-img-timer"></th>
-            <th><img src="./img/game/navigation/coin_score.png" class="table-img-coin"></th>
-        </tr>`;
 }
     
 
@@ -279,7 +261,7 @@ async function createFilledScoreElementHTML(i, formattedTime) {
     return `
     <tr>
         <td>${topScore[i].position}</td>
-        <td class="ta-left column-name-width">${topScore[i].name}</td>
+        <td class="score-column-name">${topScore[i].name}</td>
         <td>${formattedTime}</td>
         <td>${topScore[i].coins}</td>
     </tr>`;
@@ -296,7 +278,7 @@ async function createEmptyScoreElementHTML() {
     return `
     <tr>
         <td>-</td>
-        <td class="ta-left column-name-width">...</td>
+        <td class="score-column-name">...</td>
         <td>-:-</td>
         <td>-</td>
     </tr>`;

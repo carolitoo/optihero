@@ -222,19 +222,22 @@
   margin-top: 12px;
 }
 
+.table-scroll-container {
+  max-height: 480px;     
+  overflow-y: auto;         
+}
+
 th, td {
   padding: 4px 32px;
   text-align: right;
 }
 
-.ta-left {
+.score-column-name {
   text-align: left !important;
   padding-left: 40px !important;
-}
-
-.column-name-width {
-  width: 200px;
-  word-wrap: break-word;
+  white-space: normal;          
+  overflow-wrap: break-word; 
+  word-break: break-all;   
 }
 
 .table-img-timer {

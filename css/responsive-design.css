@@ -11,6 +11,11 @@
     font-size: 32px;
   }
 
+   .img-close-overlay {
+    width: 52px;
+    height: 52px;
+  }
+
   .overlay-content {
     width: 95%;
   }
@@ -23,6 +28,28 @@
 
   .mobile-control-panel-side {
     display: flex;
+  }
+
+   .controls-mobile-container {
+    gap: 8px;
+  }
+
+  .controls-keyboard-container {
+    gap: 8px;
+  }
+
+  .controls-mobile-container img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .key {
+    font-size: 22px;
+  }
+
+  .controls-labels-container {
+    font-size: 24px;
+    gap: 8px;
   }
 
   .end-screen {
