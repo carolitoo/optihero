@@ -112,7 +112,7 @@ form {
 
 .overlay-content {
   width: 680px;
-  max-height: calc(100vh - 40px);
+  max-height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -136,12 +136,14 @@ form {
 .img-close-overlay {
   width: 56px;
   height: 56px;
+  border: 2px solid transparent
 }
 
 .img-close-overlay:hover {
   width: 60px;
   height: 60px;
   cursor: pointer;
+  border: none
 }
 
 .headline-overlay {
@@ -155,7 +157,7 @@ form {
 .instructions-wrapper-text {
   max-height: 480px;
   padding: 0px 82px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .intro-text {
@@ -184,7 +186,8 @@ form {
   max-height: 480px;
   padding: 0px 80px;
   margin-bottom: 24px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 .container-game {

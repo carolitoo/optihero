@@ -219,12 +219,12 @@
   table-layout: fixed;
   width: 100%;
   border-spacing: 4px;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 .table-scroll-container {
   max-height: 480px;     
-  overflow-y: auto;         
+  overflow-y: auto;        
 }
 
 th, td {
