@@ -25,12 +25,6 @@
     width: 95%;
   }
 
-  .mobile-control-panel {
-    justify-content: space-between;
-    width: 90%;
-    padding: 8px;
-  }
-
   .controls-mobile-container, .controls-keyboard-container {
     gap: 8px;
   }
@@ -200,19 +194,13 @@
     height: 100vh;
   }
 
-  .mobile-control-panel {
-    justify-content: space-between;
-    width: 90%;
-    padding: 8px;
-  }
-
   .mobile-control-panel-side {
-    width: 124px;
+    width: 132px;
   }
 
   .mobile-control-button {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
   }
 
   .mobile-control-panel-navigation {
@@ -348,12 +336,8 @@
   }
 
   .mobile-control-button {
-    width: 46px;
-    height: 46px;
-  }
-
-  .mobile-control-panel-side {
-    width: 112px;
+    width: 48px;
+    height: 48px;
   }
 
   .controls-container {
@@ -400,12 +384,12 @@
   }
 
   .mobile-control-button {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
   }
 
   .mobile-control-panel-side {
-    width: 104px;
+    width: 112px;
   }
 
   .mobile-navigation-button {

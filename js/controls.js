@@ -63,6 +63,7 @@ function checkDisplayMobileControlPanel() {
     if (isMobileDevice()) {
         document.getElementById('mobile-control-panel-left').style.display = 'flex';
         document.getElementById('mobile-control-panel-side').style.display = 'flex';
+        document.getElementById('mobile-control-panel').classList.add('mobile-control-button-mob-device');
         bindMobileButtons();
     } else {
         document.getElementById('mobile-control-panel-left').style.display = 'none';

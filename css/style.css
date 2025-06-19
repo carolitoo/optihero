@@ -207,6 +207,12 @@ form {
   z-index: 1;
 }
 
+.mobile-control-button-mob-device {
+    justify-content: space-between !important;
+    width: 90% !important;
+    padding: 8px !important;
+}
+
 .mobile-control-panel-side {
   width: 136px;
   display: none;
