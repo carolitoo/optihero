@@ -12,7 +12,7 @@
   }
 
   .overlay-content {
-    width: 95%
+    width: 95%;
   }
 
   .mobile-control-panel {
@@ -174,11 +174,17 @@
   }
 
   .mobile-control-panel-side {
+    width: 124px;
     display: flex;
   }
 
+  .mobile-control-button {
+    width: 52px;
+    height: 52px;
+  }
+
   .mobile-control-panel-navigation {
-    margin-bottom: -24px;
+    margin-bottom: -18px;
   }
 
   .end-screen {
@@ -188,8 +194,8 @@
   }
 
   .end-button {
-    width: 520px;
-    font-size: 32px;
+    width: 460px;
+    font-size: 30px;
     padding: 4px 0px;
   }
 }
@@ -202,6 +208,57 @@
 
   .start-button {
     font-size: 20px;
+  }
+
+  .mobile-control-button {
+    width: 50px;
+    height: 50px;
+  }
+
+  .headline-overlay {
+    font-size: 32px;
+    width: 75%;
+    margin-top: -40px;
+    margin-bottom: 32px;
+  }
+
+  .img-close-overlay {
+    width: 52px;
+    height: 52px;
+  }
+
+  .imprint-text {
+    font-size: 14px;
+  }
+
+  .instructions-wrapper-text {
+    padding: 0px 96px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+  }
+
+  .controls-mobile-container {
+    gap: 8px;
+  }
+
+  .controls-keyboard-container {
+    gap: 8px;
+  }
+
+  .controls-mobile-container img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .key {
+    font-size: 22px;
+  }
+
+  .controls-labels-container {
+    font-size: 24px;
+    gap: 8px;
   }
 }
 
@@ -237,6 +294,46 @@
   .width-score-button {
     width: 92px !important;
   }
+
+  .mobile-control-button {
+    width: 46px;
+    height: 46px;
+  }
+
+  .mobile-control-panel-side {
+    width: 112px;
+  }
+
+  .controls-container {
+    margin-top: 0px;
+    margin-bottom: 24px;
+  }
+
+  .controls-labels-container {
+    font-size: 22px;
+    gap: 6px;
+  }
+
+  .controls-mobile-container {
+    gap: 6px;
+  }
+
+  .controls-keyboard-container {
+    gap: 6px;
+  }
+
+  .controls-mobile-container img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .key {
+    font-size: 20px;
+  }
+
+  .controls-space-key {
+    width: 172px;
+  }
 }
 
 @media only screen and (max-height: 390px) {
@@ -252,5 +349,24 @@
   .start-button {
     width: 132px;
     font-size: 18px;
+  }
+
+  .mobile-control-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mobile-control-panel-side {
+    width: 104px;
+  }
+
+  .mobile-navigation-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .controls-container {
+    margin-top: -12px;
+    margin-bottom: 8px;
   }
 }
