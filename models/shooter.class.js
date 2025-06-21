@@ -120,7 +120,7 @@ class Shooter extends Enemy {
         if (!this.isDead() && this.hadFirstContact) {
             shootIntervalId = setTimeout(() => {
                 this.shootBullet();
-            }, 1600); 
+            }, 1000); 
         }
     }
 
