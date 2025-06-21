@@ -87,14 +87,31 @@ function checkDisplayMobileControlPanel() {
         document.getElementById('mobile-control-panel-left').style.display = 'flex';
         document.getElementById('mobile-control-panel-side').style.display = 'flex';
         document.getElementById('mobile-control-panel').classList.add('mobile-control-button-mob-device');
+        setPropertiesForMobile();
         bindMobileButtons();
-        document.getElementById('canvas').style.height = '100vh';
-        document.getElementById('canvas').style.width = '100%';
-        document.getElementById('title').style.display = 'none';
     } else {
         document.getElementById('mobile-control-panel-left').style.display = 'none';
         document.getElementById('mobile-control-panel-side').style.display = 'none';
     }
+}
+
+
+/**
+ * This function sets the properties for the mobile device.
+ * It ensures that the canvas takes up the full height and width of the viewport.
+ * It also sets the width and height variables accordingly so that various elements (e.g. buttons) can be dimensioned correctly. 
+ */
+function setPropertiesForMobile() {
+    document.getElementById('canvas').style.height = '100vh';
+    document.getElementById('canvas').style.width = '100%';
+    document.getElementById('title').style.display = 'none';
+
+    let mobileWidth = window.innerWidth; 
+    document.querySelector(':root').style.setProperty('--width-canvas', mobileWidth + 'px');
+
+    let mobileHeight = window.innerHeight;
+    document.querySelector(':root').style.setProperty('--height-canvas', mobileHeight + 'px');
+
 }
 
 

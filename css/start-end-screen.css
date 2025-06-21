@@ -126,10 +126,11 @@
 
 .end-button {
   width: 80%;
-  font-size: 36px;
+  max-width: var(--height-canvas);
+  font-size: calc(var(--height-canvas) *0.065);
   display: flex;
   align-items: center;
-  padding: 12px 0px;
+  padding: calc(var(--height-canvas) *0.025) 0px;
 }
 
 .controls-container {
@@ -285,20 +286,20 @@ th, td {
 }
 
 .end-screen {
-  height: 480px;
-  width: 720px;
+  height: var(--height-canvas);
+  width:  var(--width-canvas);
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 36px;
+  gap: calc(var(--height-canvas) *0.075);
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
 
 .icon-end-screen {
-  width: 64px;
-  height: 64px;
+  width: calc(var(--height-canvas) *0.11);;
+  height: calc(var(--height-canvas) *0.11);;
   margin: 0px 20px;
 }

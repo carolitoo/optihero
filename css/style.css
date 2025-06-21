@@ -1,5 +1,7 @@
 :root {
   --selected-profile-container-size: 128px;
+  --width-canvas: 720px;
+  --height-canvas: 480px;
 }
 
 body {
@@ -207,7 +209,7 @@ form {
 }
 
 .mobile-control-panel-side {
-  width: 136px;
+  width: calc(var(--width-canvas) * 0.2);
   display: none;
   justify-content: space-between;
   align-items: center;
@@ -222,8 +224,8 @@ form {
 }
 
 .mobile-control-button {
-  width: 56px;
-  height: 56px;
+  width: calc(var(--height-canvas) * 0.12);
+  height: calc(var(--height-canvas) * 0.12);
   background: white;
   border-radius: 50%;
   border: none;
@@ -241,8 +243,8 @@ form {
 }
 
 .mobile-navigation-button {
-  width: 52px;
-  height: 52px;
+  width: calc(var(--height-canvas) * 0.11);
+  height: calc(var(--height-canvas) * 0.11);
 }
 
 .mobile-navigation-button:hover {

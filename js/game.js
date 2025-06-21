@@ -163,12 +163,16 @@ function restartGame() {
  * This function stops the game and returns to the start screen.
  * It is called when the player loses or wins the game.
  * The current settings are retained (e.g. sound, music, fullscreen).
+ * It also ensures that the title is displayed again if the window height is greater than 630px (relevant for mobile devices).
  */
 function returnToStart() {
     stopGame();
     document.getElementById('start-screen').classList.remove('d-none');
     document.getElementById('end-screen').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
+    if (window.innerHeight > 630) {
+        document.getElementById('title').style.display = 'block';
+    }
     selectLanguage(language);
 }
 
