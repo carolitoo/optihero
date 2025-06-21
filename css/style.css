@@ -82,20 +82,6 @@ form {
     background-color: #018B81;
 }
 
-.img-orientation {
-  width: 72px;
-  height: 72px;
-  filter:invert(1);
-  margin-top: 40px;
-  margin-bottom: 32px;
-}
-
-.text-orientation {
-  font-size: 24px;
-  padding: 4px 40px;
-  margin-bottom: 40px;
-}
-
 .overlay {
   position: fixed; 
   top: 0;
@@ -154,6 +140,25 @@ form {
   color: #00A79D;
 }
 
+.img-orientation {
+  width: 72px;
+  height: 72px;
+  filter:invert(1);
+  margin-top: 40px;
+  margin-bottom: 32px;
+}
+
+.text-orientation {
+  font-size: 24px;
+  padding: 4px 40px;
+  margin-bottom: 40px;
+}
+
+.orientation-warning {
+  background: rgba(0, 0, 0, 0.95); 
+  z-index: 1001;
+}
+
 .instructions-wrapper-text {
   max-height: 480px;
   padding: 0px 82px;
@@ -168,18 +173,6 @@ form {
 .intro-end {
   font-size: 36px;
   color: #00A79D;
-}
-
-.icon-imprint {
-  width: 42px;
-  height: 42px;
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-}
-
-.icon-imprint:hover {
-  cursor: pointer;
 }
 
 .imprint-text {
@@ -209,7 +202,7 @@ form {
 
 .mobile-control-button-mob-device {
     justify-content: space-between !important;
-    width: 90% !important;
+    width: 95% !important;
     padding: 8px !important;
 }
 

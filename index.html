@@ -61,9 +61,9 @@
     </div>
 
     <div id="wrapper-fullscreen" class="wrapper-fullscreen d-none">
-      <h1>opti.hero</h1>
+      <h1 id="title">opti.hero</h1>
 
-      <div id="orientation-warning" class="orientation-warning overlay d-none">
+      <section id="orientation-warning" class="orientation-warning overlay d-none">
         <div class="overlay-content">
           <img
             class="img-orientation"
@@ -75,166 +75,9 @@
             um zu spielen.
           </div>
         </div>
-      </div>
+      </section>
 
-      <div id="start-screen" class="start-screen">
-        <div class="start-screen-content">
-          <header class="header-start-screen">
-            <div class="selection-language">
-              <div class="container-language">
-                <img
-                  class="img-language"
-                  src="./img/game/start/en.png"
-                  alt="EN"
-                  onclick="selectLanguage('EN'), translateEN()"
-                />
-              </div>
-
-              <div class="container-language">
-                <img
-                  class="img-language"
-                  src="./img/game/start/de.png"
-                  alt="DE"
-                  onclick="selectLanguage('DE'), translateDE()"
-                />
-              </div>
-            </div>
-            <div class="task-bar-start">
-              <img
-                id="toggle-music-start"
-                class="img-task-bar"
-                src="./img/game/navigation/music_on_turquoise.png"
-                alt="Music on/off"
-                onclick="toggleMusic()"
-                onmouseover="this.src='./img/game/navigation/music_on_turquoise_hover.png'"
-                onmouseout="this.src='./img/game/navigation/music_on_turquoise.png'"
-              />
-              <img
-                id="toggle-sound-start"
-                class="img-task-bar"
-                src="./img/game/navigation/sound_on_turquoise.png"
-                alt="Sound on/off"
-                onclick="toggleSound()"
-                onmouseover="this.src='./img/game/navigation/sound_on_turquoise_hover.png'"
-                onmouseout="this.src='./img/game/navigation/sound_on_turquoise.png'"
-              />
-              <img
-                id="toggle-fullscreen"
-                class="img-task-bar"
-                src="./img/game/navigation/maximize_turquoise.png"
-                alt="Fullscreen on/off"
-                onclick="toggleFullScreen()"
-                onmouseover="this.src='./img/game/navigation/maximize_turquoise_hover.png'"
-                onmouseout="this.src='./img/game/navigation/maximize_turquoise.png'"
-              />
-              <img
-                id="icon-imprint-inline"
-                class="icon-imprint"
-                src="./img/game/navigation/imprint.png"
-                alt="Imprint"
-                onclick="openOverlay('imprint')"
-                onmouseover="this.src='./img/game/navigation/imprint_hover.png'"
-                onmouseout="this.src='./img/game/navigation/imprint.png'"
-              />
-            </div>
-          </header>
-
-          <h2 id="text-selection-character">WÄHLE DEINEN OPTI.HERO</h2>
-          <section id="selection-character" class="selection-character">
-            <div
-              class="profile-container preview-profile-container"
-              id="profile-1"
-            >
-              <img
-                class="profile-picture"
-                src="./img/character/Character1/Idle/Character01-Idle_00.png"
-                alt="Character1"
-                onclick="previousCharacter2()"
-              />
-            </div>
-            <div class="profile-container" id="profile-2">
-              <img
-                class="profile-picture"
-                src="./img/character/Character3/Idle/Character03-Idle_00.png"
-                alt="Character2"
-                onclick="previousCharacter()"
-              />
-            </div>
-            <div
-              class="profile-container selected-profile-container"
-              id="profile-3"
-            >
-              <img
-                class="profile-picture"
-                src="./img/character/Character10/Idle/Character010-Idle_00.png"
-                alt="Character3"
-              />
-            </div>
-            <div class="profile-container" id="profile-4">
-              <img
-                class="profile-picture"
-                src="./img/character/Character12/Idle/Character012-Idle_00.png"
-                alt="Character4"
-                onclick="nextCharacter()"
-              />
-            </div>
-            <div
-              class="profile-container preview-profile-container"
-              id="profile-5"
-            >
-              <img
-                class="profile-picture"
-                src="./img/character/Character13/Idle/Character013-Idle_00.png"
-                alt="Character5"
-                onclick="nextCharacter2()"
-              />
-            </div>
-          </section>
-
-          <section class="start-screen-buttons">
-            <button
-              onclick="startGame()"
-              id="start-button"
-              class="button start-button"
-            >
-              LOS <br />
-              GEHT'S!
-            </button>
-            <button
-              onclick="openOverlay('instructions')"
-              id="how-to-play-button"
-              class="button start-button"
-            >
-              INFO ZUM<br />
-              SPIEL
-            </button>
-            <button
-              onclick="openOverlay('controls')"
-              id="control-button"
-              class="button start-button"
-            >
-              BELEGUNG <br />
-              TASTEN
-            </button>
-            <button
-              onclick="showTopScore()"
-              class="button start-button width-score-button"
-            >
-              <img
-                class="img-task-bar"
-                src="./img/game/end/enter_score.png"
-                alt="Top 5"
-              />
-            </button>
-          </section>
-        </div>
-      </div>
-
-      <section
-        id="instructions"
-        class="overlay d-none"
-        onclick="closeOverlay('instructions')"
-      >
+      <section id="instructions" class="overlay d-none" onclick="closeOverlay('instructions')">
         <div class="overlay-content" onclick="event.stopPropagation()">
           <div class="container-close-overlay">
             <img
@@ -272,11 +115,7 @@
         </div>
       </section>
 
-      <section
-        id="controls"
-        class="overlay d-none"
-        onclick="closeOverlay('controls')"
-      >
+      <section id="controls" class="overlay d-none" onclick="closeOverlay('controls')">
         <div class="overlay-content" onclick="event.stopPropagation()">
           <div class="container-close-overlay">
             <img
@@ -324,11 +163,7 @@
         </div>
       </section>
 
-      <div
-        id="enter-top-score"
-        class="overlay d-none"
-        onclick="closeOverlay('enter-top-score')"
-      >
+      <section id="enter-top-score" class="overlay d-none" onclick="closeOverlay('enter-top-score')">
         <div class="overlay-content" onclick="event.stopPropagation()">
           <div class="container-close-overlay">
             <img
@@ -367,13 +202,9 @@
             </button>
           </form>
         </div>
-      </div>
+      </section>
 
-      <div
-        id="list-top-scores"
-        class="overlay d-none"
-        onclick="closeOverlay('list-top-scores')"
-      >
+      <section id="list-top-scores" class="overlay d-none" onclick="closeOverlay('list-top-scores')">
         <div class="overlay-content" onclick="event.stopPropagation()">
           <div class="container-close-overlay">
             <img
@@ -416,9 +247,231 @@
             </table>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="container-game">
+      <section id="imprint" class="overlay d-none" onclick="closeOverlay('imprint')">
+        <div class="overlay-content" onclick="event.stopPropagation()">
+          <div class="container-close-overlay">
+            <img
+              class="img-close-overlay"
+              src="./img/game/end/exit_game.png"
+              alt="Close Overlay"
+              onclick="closeOverlay('imprint')"
+            />
+          </div>
+          <div id="imprint-headline" class="headline-overlay">Impressum</div>
+          <div id="imprint-text" class="imprint-text">
+            <p>
+              <b>Carolin Öller</b><br />
+              Weinstr. 14/2<br />
+              74172 Neckarsulm
+            </p>
+            <br />
+
+            <h3 id="imprint-contact">Kontakt</h3>
+            <div class="imprint-contact">
+              <p>E-Mail:</p>
+              <a href="mailto:carolin.oeller@gmail.com"
+                >carolin.oeller@gmail.com</a
+              >
+            </div>
+            <br />
+
+            <h3>Copyright</h3>
+            <div id="imprint-copyright">
+              Die Icons kommen von
+              <a href="https://fontawesome.com/" rel="nofollow" target="_blank"
+                >FontAwesome</a
+              >
+              unter der
+              <br />
+              <a
+                href="https://fontawesome.com/license"
+                target="_blank"
+                rel="nofollow"
+                >Creative Commons Attribution 4.0 International license.</a
+              >
+              <br />
+
+              <p>
+                Die Flaggen-Icons wurden erstellt von
+                <a
+                  href="https://www.flaticon.com/packs/countrys-flags/"
+                  rel="nofollow"
+                  target="_blank"
+                  >Freepik - Flaticon.</a
+                >
+              </p>
+              <br />
+
+              <p>
+                Die Sounds stammen von
+                <a
+                  href="https://pixabay.com/service/license-summary/"
+                  rel="nofollow"
+                  target="_blank"
+                  >Pixaby.</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id ="container-game" class="container-game">
+        <div id="start-screen" class="start-screen">
+          <div class="start-screen-content">
+            <header class="header-start-screen">
+              <div class="selection-language">
+                <div class="container-language">
+                  <img
+                    class="img-language"
+                    src="./img/game/start/en.png"
+                    alt="EN"
+                    onclick="selectLanguage('EN'), translateEN()"
+                  />
+                </div>
+  
+                <div class="container-language">
+                  <img
+                    class="img-language"
+                    src="./img/game/start/de.png"
+                    alt="DE"
+                    onclick="selectLanguage('DE'), translateDE()"
+                  />
+                </div>
+              </div>
+              <div class="task-bar-start">
+                <img
+                  id="toggle-music-start"
+                  class="img-task-bar"
+                  src="./img/game/navigation/music_on_turquoise.png"
+                  alt="Music on/off"
+                  onclick="toggleMusic()"
+                  onmouseover="this.src='./img/game/navigation/music_on_turquoise_hover.png'"
+                  onmouseout="this.src='./img/game/navigation/music_on_turquoise.png'"
+                />
+                <img
+                  id="toggle-sound-start"
+                  class="img-task-bar"
+                  src="./img/game/navigation/sound_on_turquoise.png"
+                  alt="Sound on/off"
+                  onclick="toggleSound()"
+                  onmouseover="this.src='./img/game/navigation/sound_on_turquoise_hover.png'"
+                  onmouseout="this.src='./img/game/navigation/sound_on_turquoise.png'"
+                />
+                <img
+                  id="toggle-fullscreen"
+                  class="img-task-bar"
+                  src="./img/game/navigation/maximize_turquoise.png"
+                  alt="Fullscreen on/off"
+                  onclick="toggleFullScreen()"
+                  onmouseover="this.src='./img/game/navigation/maximize_turquoise_hover.png'"
+                  onmouseout="this.src='./img/game/navigation/maximize_turquoise.png'"
+                />
+                <img
+                  id="icon-imprint-inline"
+                  class="img-task-bar"
+                  src="./img/game/navigation/imprint_circle.png"
+                  alt="Imprint"
+                  onclick="openOverlay('imprint')"
+                  onmouseover="this.src='./img/game/navigation/imprint_circle_hover.png'"
+                  onmouseout="this.src='./img/game/navigation/imprint_circle.png'"
+                />
+              </div>
+            </header>
+  
+            <h2 id="text-selection-character">WÄHLE DEINEN OPTI.HERO</h2>
+            <section id="selection-character" class="selection-character">
+              <div
+                class="profile-container preview-profile-container"
+                id="profile-1"
+              >
+                <img
+                  class="profile-picture"
+                  src="./img/character/Character1/Idle/Character01-Idle_00.png"
+                  alt="Character1"
+                  onclick="previousCharacter2()"
+                />
+              </div>
+              <div class="profile-container" id="profile-2">
+                <img
+                  class="profile-picture"
+                  src="./img/character/Character3/Idle/Character03-Idle_00.png"
+                  alt="Character2"
+                  onclick="previousCharacter()"
+                />
+              </div>
+              <div
+                class="profile-container selected-profile-container"
+                id="profile-3"
+              >
+                <img
+                  class="profile-picture"
+                  src="./img/character/Character10/Idle/Character010-Idle_00.png"
+                  alt="Character3"
+                />
+              </div>
+              <div class="profile-container" id="profile-4">
+                <img
+                  class="profile-picture"
+                  src="./img/character/Character12/Idle/Character012-Idle_00.png"
+                  alt="Character4"
+                  onclick="nextCharacter()"
+                />
+              </div>
+              <div
+                class="profile-container preview-profile-container"
+                id="profile-5"
+              >
+                <img
+                  class="profile-picture"
+                  src="./img/character/Character13/Idle/Character013-Idle_00.png"
+                  alt="Character5"
+                  onclick="nextCharacter2()"
+                />
+              </div>
+            </section>
+  
+            <section class="start-screen-buttons">
+              <button
+                onclick="startGame()"
+                id="start-button"
+                class="button start-button"
+              >
+                LOS <br />
+                GEHT'S!
+              </button>
+              <button
+                onclick="openOverlay('instructions')"
+                id="how-to-play-button"
+                class="button start-button"
+              >
+                INFO ZUM<br />
+                SPIEL
+              </button>
+              <button
+                onclick="openOverlay('controls')"
+                id="control-button"
+                class="button start-button"
+              >
+                BELEGUNG <br />
+                TASTEN
+              </button>
+              <button
+                onclick="showTopScore()"
+                class="button start-button width-score-button"
+              >
+                <img
+                  class="img-task-bar"
+                  src="./img/game/end/enter_score.png"
+                  alt="Top 5"
+                />
+              </button>
+            </section>
+          </div>
+        </div>
+
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
 
         <div id="mobile-control-panel" class="mobile-control-panel d-none">
@@ -532,80 +585,8 @@
             <p id="return-to-start-button-label">ZURÜCK ZUM START</p>
           </button>
         </div>
-      </div>
+      </section>
 
-      <div
-        id="imprint"
-        class="overlay d-none"
-        onclick="closeOverlay('imprint')"
-      >
-        <div class="overlay-content" onclick="event.stopPropagation()">
-          <div class="container-close-overlay">
-            <img
-              class="img-close-overlay"
-              src="./img/game/end/exit_game.png"
-              alt="Close Overlay"
-              onclick="closeOverlay('imprint')"
-            />
-          </div>
-          <div id="imprint-headline" class="headline-overlay">Impressum</div>
-          <div id="imprint-text" class="imprint-text">
-            <p>
-              <b>Carolin Öller</b><br />
-              Weinstr. 14/2<br />
-              74172 Neckarsulm
-            </p>
-            <br />
-
-            <h3 id="imprint-contact">Kontakt</h3>
-            <div class="imprint-contact">
-              <p>E-Mail:</p>
-              <a href="mailto:carolin.oeller@gmail.com"
-                >carolin.oeller@gmail.com</a
-              >
-            </div>
-            <br />
-
-            <h3>Copyright</h3>
-            <div id="imprint-copyright">
-              Die Icons kommen von
-              <a href="https://fontawesome.com/" rel="nofollow" target="_blank"
-                >FontAwesome</a
-              >
-              unter der
-              <br />
-              <a
-                href="https://fontawesome.com/license"
-                target="_blank"
-                rel="nofollow"
-                >Creative Commons Attribution 4.0 International license.</a
-              >
-              <br />
-
-              <p>
-                Die Flaggen-Icons wurden erstellt von
-                <a
-                  href="https://www.flaticon.com/packs/countrys-flags/"
-                  rel="nofollow"
-                  target="_blank"
-                  >Freepik - Flaticon.</a
-                >
-              </p>
-              <br />
-
-              <p>
-                Die Sounds stammen von
-                <a
-                  href="https://pixabay.com/service/license-summary/"
-                  rel="nofollow"
-                  target="_blank"
-                  >Pixaby.</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </body>
 </html>

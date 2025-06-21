@@ -329,11 +329,14 @@ function closeOverlay(id) {
  * It is called when the window is resized or the start page is loaded.
  */  
 function checkOrientation() {
-    if (window.matchMedia("(orientation: portrait)").matches && window.innerWidth < 670) {
-    document.getElementById('orientation-warning').classList.remove('d-none');}
-    else [
-        document.getElementById('orientation-warning').classList.add('d-none')
-    ]
+    if (window.matchMedia("(orientation: portrait)").matches) {
+    document.getElementById('orientation-warning').classList.remove('d-none');
+    document.getElementById('container-game').classList.add('d-none');
+    }
+    else {
+        document.getElementById('orientation-warning').classList.add('d-none');
+        document.getElementById('container-game').classList.remove('d-none');
+    }
 }
 
 

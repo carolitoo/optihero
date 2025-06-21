@@ -88,6 +88,9 @@ function checkDisplayMobileControlPanel() {
         document.getElementById('mobile-control-panel-side').style.display = 'flex';
         document.getElementById('mobile-control-panel').classList.add('mobile-control-button-mob-device');
         bindMobileButtons();
+        document.getElementById('canvas').style.height = '100vh';
+        document.getElementById('canvas').style.width = '100%';
+        document.getElementById('title').style.display = 'none';
     } else {
         document.getElementById('mobile-control-panel-left').style.display = 'none';
         document.getElementById('mobile-control-panel-side').style.display = 'none';

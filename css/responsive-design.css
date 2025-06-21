@@ -159,11 +159,6 @@
     margin-top: 56px;
     margin-bottom: 56px;
   }
-
-  .icon-imprint {
-    position: static;
-    margin-left: 12px;
-  }
 }
 
 @media only screen and (max-height: 680px) {
@@ -315,11 +310,6 @@
   .img-task-bar {
     width: 48px;
     height: 48px;
-  }
-
-  .icon-imprint {
-    width: 36px;
-    height: 36px;
   }
 
   h2 {
