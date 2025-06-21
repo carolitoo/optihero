@@ -4,7 +4,8 @@
  * The event listener won't call the function while entering data into an input field.
  */
 window.addEventListener('keydown', (e) => {
-    if (document.activeElement.tagName === "INPUT" || world.character.characterFrozen) {
+    // if (document.activeElement.tagName === "INPUT" || world.character.characterFrozen) {
+    if (document.activeElement.tagName === "INPUT") {
         return;
       }
     checkKey(e.code);
@@ -15,8 +16,8 @@ window.addEventListener('keydown', (e) => {
  * This event listener is for the keyboard controls of the game.
  * It checks if a key is released and if so it calls the function to unset the pressed key.
 */
-window.addEventListener('keyup', () => {
-    unsetKeyboard();
+window.addEventListener('keyup', (e) => {
+    unsetKey(e.code);
 });
 
 
@@ -38,6 +39,29 @@ function checkKey(code) {
             break;
         case 'KeyD':
             keyboard.D = true;
+            break;
+    }
+}
+
+
+/**
+ * This function unsets a single key by setting the corresponding property in the keyboard object to false.
+ * 
+ * @param {string} code - The code of the released key 
+ */
+function unsetKey(code) {
+    switch (code) {
+        case 'ArrowLeft':
+            keyboard.LEFT = false;
+            break;
+        case 'ArrowRight':
+            keyboard.RIGHT = false;
+            break;
+        case 'Space':
+            keyboard.SPACE = false;
+            break;
+        case 'KeyD':
+            keyboard.D = false;
             break;
     }
 }
