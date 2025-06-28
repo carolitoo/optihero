@@ -13,12 +13,15 @@ let COUNTDOWN_SOUND = new Audio('./audio/01_game/countdown/game-countdown.mp3');
 /**
  * This function is called when the page is loaded. 
  * It sets a timeout to hide the loading screen and shows the intro screen after 4 seconds.
+ * It also adds an event listener to check the orientation of the device when the page is loaded.
  */
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       document.getElementById('loading-screen').style.display = 'none';
       document.getElementById('wrapper-fullscreen').style.display = 'flex';
-    }, 4000);
+      window.addEventListener('resize', checkOrientation); 
+      preloadImagesInOrder(imgToPreload);
+    }, 5000);
   });
 
 
@@ -49,7 +52,6 @@ function setSoundSettings() {
 /**
  * This function initializes the game by setting up the level and creating a new world instance.
  * It also binds mobile buttons for touch controls and sets a timeout to hide the loading screen and show the main game screen.
- * The function adds an event listener and calls the checkOrientation function when the window is resized.
  */
 function init() {
     initLevel();
@@ -61,7 +63,6 @@ function init() {
         document.getElementById('loading-screen').style.display = 'none';
         document.getElementById('wrapper-fullscreen').style.display = 'flex';
         document.getElementById('mobile-control-panel').classList.remove('d-none');
-        window.addEventListener('resize', checkOrientation); 
       }, 4000);
 
     }

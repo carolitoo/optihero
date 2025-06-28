@@ -340,6 +340,9 @@ class Boss extends Enemy {
      */
     handlingHitBoss() {
         if (!isMuted) {
+          if (this.BOSS_SOUND_WALK.currentTime > 0) {
+            this.BOSS_SOUND_WALK.pause()
+          }
             world.sound.BOSS_SOUND_HIT.currentTime = 0;
             world.sound.BOSS_SOUND_HIT.play();
         }
