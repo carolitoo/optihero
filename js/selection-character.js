@@ -78,6 +78,8 @@ async function previousCharacter2() {
     indexOfSelectedCharacter = await getIndexOfCharacter(selectedCharacter);
     if (indexOfSelectedCharacter === 0) {
         selectedCharacter = selectableCharacters[selectableCharacters.length - 2].idCharacter;
+    } else if (indexOfSelectedCharacter === 1) {
+        selectedCharacter = selectableCharacters[selectableCharacters.length - 1].idCharacter;  
     } else {
         selectedCharacter = selectableCharacters[indexOfSelectedCharacter - 2].idCharacter;
     }
