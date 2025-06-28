@@ -129,6 +129,5 @@ function preloadImage(url) {
 async function preloadImagesInOrder(urls) {
   for (const url of urls) {
     await preloadImage(url);
-    console.log(`Bild geladen: ${url}`);
   }
 }

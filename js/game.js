@@ -16,10 +16,10 @@ let COUNTDOWN_SOUND = new Audio('./audio/01_game/countdown/game-countdown.mp3');
  * It also adds an event listener to check the orientation of the device when the page is loaded.
  */
 document.addEventListener("DOMContentLoaded", () => {
+     window.addEventListener('resize', checkOrientation); 
     setTimeout(() => {
       document.getElementById('loading-screen').style.display = 'none';
       document.getElementById('wrapper-fullscreen').style.display = 'flex';
-      window.addEventListener('resize', checkOrientation); 
       preloadImagesInOrder(imgToPreload);
     }, 5000);
   });
