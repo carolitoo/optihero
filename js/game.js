@@ -5,6 +5,7 @@ let keyboard = new Keyboard();
 let language = 'DE';
 let isMuted = !true;
 let musicOff = !true;
+let gameStarted = false;
 
 let COUNTDOWN_SOUND = new Audio('./audio/01_game/countdown/game-countdown.mp3');
 
@@ -73,6 +74,7 @@ async function startGame() {
     document.getElementById('start-screen').classList.add('d-none');
     document.getElementById('end-screen').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
+    gameStarted = true;
     init();
 }
 
@@ -170,6 +172,7 @@ function returnToStart() {
     document.getElementById('start-screen').classList.remove('d-none');
     document.getElementById('end-screen').classList.add('d-none');
     document.getElementById('canvas').classList.add('d-none');
+    gameStarted = false;
     if (window.innerHeight > 630) {
         document.getElementById('title').style.display = 'block';
     }
@@ -275,6 +278,8 @@ function setMusicIcons() {
  * This function toggles the fullscreen mode on and off.
  * It calls a function to change the icons of the fullscreen buttons accordingly (including hover effect).
  * It is called when the player clicks on the fullscreen button on the start screen or in the game.
+ * It also checks if the device is a mobile device and sets the properties accordingly.
+ * The function "setPropertiesForMobile()"" is called twice because sometimes the fullscreen mode is not applied immediately on mobile devices).
  */
 function toggleFullScreen() {
     let icon = document.getElementById('toggle-fullscreen');
@@ -288,7 +293,14 @@ function toggleFullScreen() {
         document.exitFullscreen();
         setIconSources(icon, './img/game/navigation/maximize_turquoise.png', './img/game/navigation/maximize_turquoise_hover.png')
         setIconSources(iconGame, './img/game/navigation/maximize.png', './img/game/navigation/maximize_hover.png')
-        }
+    }
+    
+    if (isMobileDevice()) {
+        setPropertiesForMobile();
+        setTimeout(() => {
+            setPropertiesForMobile();
+        }, 1500);
+    }  
 }
 
 

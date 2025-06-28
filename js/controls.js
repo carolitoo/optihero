@@ -104,8 +104,9 @@ function checkDisplayMobileControlPanel() {
 function setPropertiesForMobile() {
     document.getElementById('canvas').style.height = '100vh';
     document.getElementById('canvas').style.width = '100%';
-    document.getElementById('title').style.display = 'none';
-
+    if (gameStarted) {
+        document.getElementById('title').style.display = 'none';
+    }
     let mobileWidth = window.innerWidth; 
     document.querySelector(':root').style.setProperty('--width-canvas', mobileWidth + 'px');
 
