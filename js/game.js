@@ -49,6 +49,7 @@ function setSoundSettings() {
 /**
  * This function initializes the game by setting up the level and creating a new world instance.
  * It also binds mobile buttons for touch controls and sets a timeout to hide the loading screen and show the main game screen.
+ * The function adds an event listener and calls the checkOrientation function when the window is resized.
  */
 function init() {
     initLevel();
@@ -60,6 +61,7 @@ function init() {
         document.getElementById('loading-screen').style.display = 'none';
         document.getElementById('wrapper-fullscreen').style.display = 'flex';
         document.getElementById('mobile-control-panel').classList.remove('d-none');
+        window.addEventListener('resize', checkOrientation); 
       }, 4000);
 
     }
@@ -354,12 +356,6 @@ function checkOrientation() {
         document.getElementById('container-game').classList.remove('d-none');
     }
 }
-
-
-/**
- * This function adds an event listener and calls the checkOrientation function when the window is resized.
- */
-window.addEventListener('resize', checkOrientation); 
 
 
 /**
