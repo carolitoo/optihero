@@ -45,7 +45,7 @@
     <script src="./js/translation.js"></script>
   </head>
 
-  <body onload="renderStartScreen(), getTopScoreFromLocalStorage()" , get>
+  <body onload="renderStartScreen(), getTopScoreFromLocalStorage()">
     <div id="loading-screen" class="overlay">
       <div id="loading-spinner" class="loading-spinner">
         <div class="dot"></div>
@@ -474,7 +474,7 @@
 
         <canvas id="canvas" width="720" height="480" class="d-none"></canvas>
 
-        <div id="mobile-control-panel" class="mobile-control-panel d-none">
+        <div id="mobile-control-panel" class="mobile-control-panel d-none" oncontextmenu="return false">
           <div
             id="mobile-control-panel-left"
             class="mobile-control-panel-side"

@@ -58,12 +58,15 @@ class World {
 
     /**
      * This function implements an event listener for clicks on the canvas.
-     * * It listens for click events and calls the checkClickedObject function to check if an clickable object was clicked.
+     * It listens for click events and calls the checkClickedObject function to check if an clickable object was clicked.
+     * It also prevents the default behavior of the right-click context menu to avoid unwanted interactions.
      */
     implementEventListener() {
         this.canvas.addEventListener('click', (event) => {
             this.checkClickedObject(event);
           });
+        
+        this.canvas.addEventListener('contextmenu', event => event.preventDefault());
     }
 
 

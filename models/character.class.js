@@ -316,7 +316,9 @@ class Character extends MoveableObject {
    * This function checks the input of the player and state of the character and calls the functions to handle the particular state.
    */
   animateCharacter() {
-    this.CHARACTER_SOUND_WALK.pause();
+    if (this.CHARACTER_SOUND_WALK.currentTime > 0) {
+        this.CHARACTER_SOUND_WALK.pause();
+    }
 
     if (this.characterFrozen) {
       this.img.src = this.CHARACTER_IMAGE_DEAD[this.CHARACTER_IMAGE_DEAD.length - 1];
@@ -404,7 +406,9 @@ class Character extends MoveableObject {
   handleThrow() {
     this.playAnimation(this.CHARACTER_IMAGE_THROWING);
     if (!isMuted && this.world.swirls >= this.world.valueOfSwirl) {
-      this.CHARACTER_SOUND_THROWING.pause();
+      if (this.CHARACTER_SOUND_THROWING.currentTime > 0) {
+        this.CHARACTER_SOUND_THROWING.pause();
+      }
       this.CHARACTER_SOUND_THROWING.currentTime = 0;
       this.CHARACTER_SOUND_THROWING.play();
     }

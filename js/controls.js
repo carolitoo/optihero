@@ -87,6 +87,7 @@ function checkDisplayMobileControlPanel() {
         document.getElementById('mobile-control-panel-left').style.display = 'flex';
         document.getElementById('mobile-control-panel-side').style.display = 'flex';
         document.getElementById('mobile-control-panel').classList.add('mobile-control-button-mob-device');
+        document.getElementById('mobile-control-panel').addEventListener('dblclick', e => e.preventDefault());
         setPropertiesForMobile();
         bindMobileButtons();
     } else {
@@ -142,40 +143,56 @@ function isMobileDevice() {
 function bindMobileButtons() {
 
     document.getElementById('mobile-left').addEventListener('touchstart', (e) => {
-        e.preventDefault();
+          if (e.cancelable) {
+            e.preventDefault();
+        }
         keyboard.LEFT = true;
     });
     document.getElementById('mobile-left').addEventListener('touchend', (e) => {
-        e.preventDefault();
+          if (e.cancelable) {
+            e.preventDefault();
+        }
         keyboard.LEFT = false;
     });
 
     document.getElementById('mobile-right').addEventListener('touchstart', (e) => {
-        e.preventDefault();
+          if (e.cancelable) {
+            e.preventDefault();
+        }
         keyboard.RIGHT = true;
     });
     document.getElementById('mobile-right').addEventListener('touchend', (e) => {
-        e.preventDefault();
+          if (e.cancelable) {
+            e.preventDefault();
+        }
         keyboard.RIGHT = false;
     });
 
     document.getElementById('mobile-jump').addEventListener('touchstart', (e) => {
-        e.preventDefault();
+         if (e.cancelable) {
+            e.preventDefault();
+        }
         keyboard.SPACE = true;
     });
 
     document.getElementById('mobile-jump').addEventListener('touchend', (e) => {
-        e.preventDefault();
+          if (e.cancelable) {
+            e.preventDefault();
+        }
         keyboard.SPACE = false;
     });
 
     document.getElementById('mobile-throw').addEventListener('touchstart', (e) => {
-        e.preventDefault();
+         if (e.cancelable) {
+            e.preventDefault();
+        }
         keyboard.D = true;
     });
 
     document.getElementById('mobile-throw').addEventListener('touchend', (e) => {
-        e.preventDefault();
+          if (e.cancelable) {
+            e.preventDefault();
+        }
         keyboard.D = false;
     });
 }

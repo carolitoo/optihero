@@ -201,6 +201,10 @@ form {
   position: absolute;
   bottom: 4px;
   z-index: 1;
+  user-select: none;    
+  -webkit-user-select: none; 
+  -moz-user-select: none;     
+  -ms-user-select: none;   
 }
 
 .mobile-control-button-mob-device {
@@ -210,7 +214,7 @@ form {
 }
 
 .mobile-control-panel-side {
-  width: calc(var(--width-canvas) * 0.2);
+  width: calc(var(--width-canvas) * 0.21);
   display: none;
   justify-content: space-between;
   align-items: center;

@@ -7,6 +7,10 @@
     width: 100%;
   }
 
+   h2 {
+    font-size: 28px;
+  }
+
   .headline-overlay {
     font-size: 32px;
   }

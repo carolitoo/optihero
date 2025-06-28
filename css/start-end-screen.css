@@ -126,7 +126,7 @@
 
 .end-button {
   width: 80%;
-  max-width: var(--height-canvas);
+  max-width: calc(var(--height-canvas)*1.05);
   font-size: calc(var(--height-canvas) *0.06);
   display: flex;
   align-items: center;

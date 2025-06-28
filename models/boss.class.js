@@ -194,13 +194,19 @@ class Boss extends Enemy {
           break;
 
         case "attacking":
-          this.BOSS_SOUND_WALK.pause();
+          if (this.BOSS_SOUND_WALK.currentTime > 0) {
+            this.BOSS_SOUND_WALK.pause();
+          }
           this.handleAttackingBoss();
           break;
-
+          
         case "hurt":
-          this.BOSS_SOUND_WALK.pause();
-          this.BOSS_SOUND_ATTACK.pause();
+          if (this.BOSS_SOUND_WALK > 0) {
+            this.BOSS_SOUND_WALK.pause();
+          }
+          if (this.BOSS_SOUND_ATTACK.currentTime > 0) {
+            this.BOSS_SOUND_ATTACK.pause();
+          }
           this.handleHurtBoss();
           break;
 
