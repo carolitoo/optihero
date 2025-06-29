@@ -343,8 +343,14 @@ class Boss extends Enemy {
           if (this.BOSS_SOUND_WALK.currentTime > 0) {
             this.BOSS_SOUND_WALK.pause()
           }
-            world.sound.BOSS_SOUND_HIT.currentTime = 0;
-            world.sound.BOSS_SOUND_HIT.play();
+          if (this.BOSS_SOUND_ATTACK.currentTime > 0) {
+                this.BOSS_SOUND_ATTACK.pause();
+          }
+          if (this.BOSS_SOUND_START.currentTime > 0) {
+              this.BOSS_SOUND_START.pause();
+          }
+          world.sound.BOSS_SOUND_HIT.currentTime = 0;
+          world.sound.BOSS_SOUND_HIT.play();
         }
         this.onHit();
     }
