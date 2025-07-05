@@ -345,6 +345,7 @@ function closeOverlay(id) {
 /**
  * This function checks the orientation of the device and displays a warning if it is in portrait mode.
  * It also checks the width of the window to determine if the warning should be displayed.
+ * It calls the function to check if/ how the mobile control panel should be displayed.
  * It is called when the window is resized or the start page is loaded.
  */  
 function checkOrientation() {
@@ -356,6 +357,7 @@ function checkOrientation() {
         document.getElementById('orientation-warning').classList.add('d-none');
         document.getElementById('container-game').classList.remove('d-none');
     }
+    checkDisplayMobileControlPanel();
 }
 
 

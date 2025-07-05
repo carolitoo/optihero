@@ -1,4 +1,12 @@
 /**
+ * This event listener checks if the pointer is coarse (e.g. touch screen).
+ * It ensures that the mobile control panel is displayed correctly also on simulating a mobile device (e.g. in a browser/ dev tools). 
+ */
+const mqCoarse = window.matchMedia('(pointer: coarse)');
+mqCoarse.addEventListener('change', checkDisplayMobileControlPanel);
+
+
+/**
  * This event listener is for the keyboard controls of the game.
  * It checks if a key is pressed and if so it calls the function to check if the pressed key is relevant for the game.
  * The event listener won't call the function while entering data into an input field.
@@ -81,9 +89,10 @@ function unsetKeyboard() {
 /**
  * This function checks if the user is using a mobile device and displays the mobile control panel accordingly.
  * If also binds the touch events to the buttons (if needed).
+ * It is called when the window is resized, the page is loaded or the pointer is changed.
  */
 function checkDisplayMobileControlPanel() {
-    if (isMobileDevice()) {
+    if (isMobileDevice() || mqCoarse.matches) {
         document.getElementById('mobile-control-panel-left').style.display = 'flex';
         document.getElementById('mobile-control-panel-side').style.display = 'flex';
         document.getElementById('mobile-control-panel').classList.add('mobile-control-button-mob-device');
@@ -93,6 +102,8 @@ function checkDisplayMobileControlPanel() {
     } else {
         document.getElementById('mobile-control-panel-left').style.display = 'none';
         document.getElementById('mobile-control-panel-side').style.display = 'none';
+        document.getElementById('mobile-control-panel').classList.remove('mobile-control-button-mob-device');
+        resetPropertiesForDesktop();
     }
 }
 
@@ -113,7 +124,32 @@ function setPropertiesForMobile() {
 
     let mobileHeight = window.innerHeight;
     document.querySelector(':root').style.setProperty('--height-canvas', mobileHeight + 'px');
+}
 
+
+/**
+ * This function ensures that the properties are reseted correctly for desktop devices.
+ */
+function resetPropertiesForDesktop() {
+    if (window.innerWidth >= 720) {
+        document.querySelector(':root').style.setProperty('--width-canvas', '720px');
+        document.getElementById('canvas').style.width = '720px';
+    } else {
+        document.querySelector(':root').style.setProperty('--width-canvas', '100%');
+        document.getElementById('canvas').style.width = '100%';
+    }
+
+    if (window.innerHeight >= 480) {
+        document.querySelector(':root').style.setProperty('--height-canvas', '480px');
+        document.getElementById('canvas').style.height = '480px';
+    } else {    
+        document.querySelector(':root').style.setProperty('--height-canvas', '100vh');
+        document.getElementById('canvas').style.height = '100vh';
+    }
+
+    if (window.innerHeight >= 630) {
+        document.getElementById('title').style.display = 'flex';
+    }
 }
 
 
